@@ -1,0 +1,89 @@
+\section{Adjacent squares in binary windows with few palindromes}
+\label{sec:binary-finite}
+
+Let the following morphisms be listed in source-letter order \(0,1,2\).
+\[
+  \varphi=(01,21,0),\qquad \mu=(011001,1001,0),\qquad \nu=(011,0,01).
+\]
+Write \(p=\varphi^\omega(0)\) and
+\[
+ F=\{00,11,22,20,212,0101,02102,121012,01021010,21021012102\}.
+\]
+Here an \(F\)-legal ternary word is cube-free and avoids \(F\). The morphisms, catalogue thresholds and the reference comparisons come from Dvo\v r\'akov\'a, Ochem and Opo\v censk\'a \cite{DOO}. The length estimates and the legal finite transfers below use the actual endpoints.
+
+\begin{theorem}\label{thm:binary-linear-square}
+If a binary word \(W\) has length \(L\ge150000\) and is either \(13/5\)-free with at most \(18\) palindromes or \(28/11\)-free with at most \(20\), it contains a square of root length greater than \(L/200000\). For the two respective cases \(g=\mu,\nu\), every sufficiently long such window has a square with root length \(|g\varphi^j(10)|\) for any fixed \(j\ge0\).
+\end{theorem}
+
+\begin{proof}
+We give the finite inputs using the central-word digraph of Section~\ref{sec:ternary-descent}. The complete adjacent-pair set of \(p\) is \(01,02,10,12,21\), by closure under \(\varphi\). For a target length \(d\), the exact \(g(p)\)-language follows from these pair images at any depth with single-image length at least \(d\). The following table reports the checked central words and full windows.
+\begin{center}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Window restriction & \(d\) & Full words & Central words\\
+\midrule
+\(13/5\)-free with at most \(18\) palindromes & 80 & 11324 & 644\\
+\(28/11\)-free with at most \(20\) palindromes & 78 & 140320 & 2008\\
+\(F\)-legal ternary words & 25 & 724 & 51\\
+\bottomrule
+\end{tabular}
+\end{center}
+In the first graph there are four components of \(161\) edges and no intercomponent edge. Their four label sets are \(\mu(p)\), its reversal, its binary complement and its complemented reversal, taken at length \(80\). In the second graph \(1336\) components have \(1384\) intercomponent edges. The only four components with internal edges form the \(156\)-edge reference sets of the four corresponding \(\nu(p)\) directions. The longest path in its acyclic component graph has length \(81\). The third central set is exactly the length-\(25\) language of \(p\).
+
+In the first case cut \(80\) digits from each end. Apply the indicated comparison symmetry, so all remaining \(80\)-windows are factors of \(\mu(p)\). Every reference \(13\)-window contains the marker \(0101\), and a marker start plus two digits is a true \(\mu\)-cut. For each consecutive marker pair, the interval between the two cuts is one of
+\[
+   \word{0110011001}\mapsto01,\qquad
+   \word{01001}\mapsto21,\qquad
+   \word{011001}\mapsto0 .
+\]
+These are exact finite checks on the reference language. The distance from the first marker start to the next marker's end is at most \(14\), so checking the images of source length-\(14\) factors suffices. First and last marker cuts in the interior of \(W\) yield \(\mu(z_0)\) with a total loss at most \(190\). A source cube would lift to a cube in \(W\). If \(f\in F\) occurred in \(z_0\), take the factor spanning that occurrence and the bracketing complete markers. It has length at most \(38+20+4<80\), including the largest \(\mu(f)\), incomplete returns and markers. It occurs in \(\mu(p)\) and the same marker decoding would put \(f\) in \(p\), which avoids \(F\). Hence \(z_0\) is \(F\)-legal.
+
+In the second case cut \(78\) at each end, giving \(L-233\) graph edges. At most \(81\) are intercomponent edges, and internal edges occur in at most four stretches. Thus a subword of length at least \((L-314)/4\) has all \(78\)-windows in a single reference direction. Work in the direction of \(\nu(p)\). Here every \(0\) is a cut, and the runs of \(1\)'s in \(W\) have length at most two, since \(W\) is cube-free. From first to last cut, the number of \(1\)'s between consecutive \(0\)'s decodes \(1,2,0\) for gaps with respectively zero, one and two such letters. Each end loses at most three digits. A cube lifts to \(W\). If \(z_0\) contains \(f\in F\), then \(\nu(f)0\) with the next marker has length below \(78\) and must occur in \(\nu(p)\), decoding \(f\) in \(p\). This proves legality also in the second case.
+
+In both cases set \(B_0=g(z_0)\). We have \(|B_0|\ge L/5\) and \(|z_0|\ge L/30\). To descend, take any \(F\)-legal word \(z_i\) of length at least \(250\). The central \(25\)-window identity after cutting \(25\) at either end permits the same \(\varphi\)-decoding as in \(p\). Use the first and last \(0\) or \(2\) in that interval as cut positions. The pair \(21\) decodes as \(1\), and \(01\) decodes as \(0\). A \(0\) followed by \(0\) or \(2\) decodes as \(2\). The assumption of \(F\)-legality rules out the other possibilities. This gives
+\[
+                  z_i=P_i\varphi(z_{i+1})Q_i,\qquad
+                  |P_i|,|Q_i|\le27.
+\]
+The surviving image is followed by a \(0\) or \(2\) guard. For \(f\in F\), its \(\varphi\)-image followed by the next cut letter has length at most \(19\) and would occur in the reference central language, at the same guarded cuts. Thus \(f\) cannot occur in \(z_{i+1}\). A cube in \(z_{i+1}\) would lift to a cube in \(z_i\). This preserves legality at every depth.
+
+Stop at \(98\le|z_k|\le249\). The least length follows from the previous stage and the largest \(\varphi\)-image length two. The word shrinks at each stage, and \(|z_0|\le249\cdot2^k+54(2^k-1)<303\cdot2^k\), so \(k\ge5\). Put \(M_i=\max_a|g\varphi^i(a)|\), \(m_i=\min_a|g\varphi^i(a)|\). Every letter occurs in some \(\varphi\)-image, so \(M_i\) is nondecreasing. Checking the three letters gives \(|g\varphi^2(a)|\ge2|g(a)|\), whence \(M_{i+2}\ge2M_i\). Thus
+\[
+ \sum_{i<k}M_i\le3M_k,\qquad
+ |B_0|\le249 M_k+54\sum_{i<k}M_i\le411 M_k .
+\]
+Every \(\varphi^3(a)\) contains all three letters and has length at most eight, giving \(M_i/m_i\le8\) for \(i\ge3\), with \(i=0,1,2\) checked directly. Every \(\varphi^5(a)\) contains \(1010\) and has length at most \(21\). Any letter of \(z_k\) now supplies an actual square
+\[
+                       \big(g\varphi^{k-5}(10)\big)^2
+\]
+in \(W\) under the comparison symmetry. Its root length is at least \(2m_{k-5}\ge M_k/84\), thus at least \(L/(5\cdot411\cdot84)>L/200000\). Increasing \(L\) forces \(k\) as large as desired, giving the fixed smaller scales too. The inverse of the comparison symmetry preserves literal equality of the two adjacent roots.
+\end{proof}
+
+The arXiv v2 proof of \cite[Theorem~7(a)]{DOO} uses a different length-\(20\) central graph for the first class. Exhaustive computation gives a single strongly connected component and \(282\) central words. For example,
+\[
+ \word{001001100101100100110010110011001001101001100110100110010011}
+\]
+is admissible and its central word \(\word{00101100110010011010}\) is outside the four complete \(20\)-letter reference sets. The length-\(80\) finite input avoids this discrepancy. Using the same decoding on both sides, all layers of an appropriate two-sided word stay in one reference direction, without end cuts. Every fixed factor appears within at most two adjacent full images at a large depth. All the recovered adjacent pairs belong to \(\mathcal L_2(p)\). Conversely, primitivity of \(\varphi\) puts each reference factor in every sufficiently deep image. This recovers the language assertion for the two-sided classes. The eventual single component on a one-sided path and two-sided limits identify its recurrent language as well.
+
+For a binary digit string with at most \(17\) recurrent nonempty palindromes use \(r=13/5\) in Section~\ref{sec:few-palindromes}, and with at most \(19\) use \(r=28/11\). Sparse starts force unbounded square-root lengths in the original string. An algebraic irrational satisfies \eqref{eq:start-count} in the relevant case, and bounded roots would give a positive lower density of starts. The next construction shows that these two conclusions about starts are compatible with bounded roots.
+
+\subsection{Equality at the exponent thresholds}
+
+The \(21\)-uniform four-to-two-letter code \(H\) of Karhum\"aki and Shallit \cite[Lemma~8 and Fact~9]{KS} maps square-free words to \(7/3^+\)-free words. In source-letter order its images are
+\[
+ \begin{gathered}\word{011010011001001101001},\quad\word{100101100100110010110}, \\ \word{100101100110110010110},\quad\word{011010011011001101001}.\end{gathered}
+\]
+Let \(C_1,C_2\) be the \(72\)-uniform and \(49\)-uniform binary codes of \cite[Theorem~3(e),(f)]{DOO}. On \(7/3^+\)-free sources they give respectively \(13/5^+\)-free outputs with at most \(18\) palindromes and \(28/11^+\)-free outputs with at most \(19\). The images of \(C_1,C_2\) are provided by the verifier. Each is injective, and a complete \(C_i\)-image in the concatenation of two \(C_i\)-images starts only at a true boundary. A concatenation of two full \(H\)-images in \(H\) of any word also starts only at a true boundary. The two properties follow from the complete off-boundary checks with two and three neighboring images, respectively.
+
+Take a four-letter \(7/5^+\)-free source \(a\), which is square-free. The composition \(y=C_i(H(a))\) has block width \(Q=21|C_i(0)|\). A match of length at least \(3Q\) aligns at full composite cuts. Indeed it contains two complete successive composite blocks from the first copy, \(C_i\)-synchronization aligns the internal cuts on the second copy, and the two decoded \(H\)-images fix the \(H\)-phase. A square of root length \(s\ge3Q\) thus has \(s=kQ\). At least \(2k-1\) whole composite images in it decode to a word of period \(k\) and exponent at least \(2-1/k>7/5\). Hence the roots are bounded by \(s<3Q\), giving \(4536\) and \(3087\) as strict bounds, respectively. All \(r\)-powers at the two thresholds have bounded periods since \(r>2\). Theorem~\ref{thm:binary-linear-square} gives a positive lower density of complete \(r\)-power starts, by partitioning into disjoint fixed-length windows.
+
+\begin{lemma}\label{lem:entropy-repetitions}
+In a finite-alphabet subshift of positive topological entropy \(h\), an ergodic measure of maximal entropy has \(R(N)=o(N)\) for almost every one-sided restriction. The subshift of four-letter \(7/5^+\)-free words has positive entropy.
+\end{lemma}
+\begin{proof}
+In a finite-alphabet subshift the entropy map is upper semicontinuous, since measure entropy is the infimum of normalized finite digit entropies. The variational principle and the ergodic decomposition give an ergodic measure of entropy \(h\). For a fixed \(\epsilon>0\), a length-\(N\) word with a disjoint match of length \(s\ge\epsilon N\) is determined by the two starts, \(s\), and the prefix and suffix left after deleting the second copy. These last two pieces are admissible. The entropy estimate on the number of factors bounds the number of such length-\(N\) words by \(O_\delta(N^3)e^{(h+\delta)(1-\epsilon)N}\). The Shannon--McMillan--Breiman theorem \cite{Breiman} gives mass at most \(e^{-(h-\delta)N}\) for almost every point's prefix cylinder for all sufficiently large \(N\). Restrict to cylinders satisfying this mass bound and choose small \(\delta>0\). The probabilities are summable, so Borel--Cantelli gives the claim, using a countable sequence of \(\epsilon\) decreasing to zero.
+
+Ochem \cite[Theorem~4.2(2)]{OchemSource} gives exponential growth for the finite four-letter \(7/5^+\)-free words. For each fixed length \(d\), a \(d\)-block with arbitrarily long admissible contexts on both sides is in the two-sided language, by compactness. The finitely many \(d\)-blocks therefore admit a uniform context size that guarantees this. Apart from two bounded ends, arbitrarily long finite words can be partitioned into consecutive such \(d\)-blocks. Their exponential growth rate is at most the number of two-sided \(d\)-blocks raised to \(1/d\). Letting \(d\) increase shows that the two-sided entropy equals the finite-word growth rate, and is positive.
+\end{proof}
+
+Using the almost-everywhere source from Lemma~\ref{lem:entropy-repetitions}, the composite synchronization lifts \(R_a(N)=o(N)\) to \(R_y(N)=o(N)\), since a disjoint match of length \(s\ge3Q\) gives a disjoint source match of length at least \(s/Q-2\). Restrict the source measure to a positive-measure set with the uniform cylinder bound \(e^{-(h-\delta)n}\) for all sufficiently large \(n\). A length-\(N\) output prefix fixes \(\lfloor N/Q\rfloor\) source digits. The image measure on binary cylinders has mass \(O(e^{-(h-\delta)N/Q})\). An interval of length \(2^{-N}\) meets at most three such cylinders. The mass distribution principle yields dimension at least \(h/(Q\log2)>0\) after taking \(\delta\downarrow0\). These are symbolic examples obeying the early-repetition constraint, with no assertion of algebraic irrationality.

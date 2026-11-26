@@ -1,0 +1,316 @@
+\section{Exact power counts at selectable phases}\label{sec:phase-counts}
+
+Fix an integer base \(b\ge2\) and a real algebraic irrational \(\alpha\).
+For a root length \(h\) and integer \(s\ge2\) put
+\[
+ B=b^h,\qquad D=B-1,\qquad M=B^s,\qquad L=(M-1)/D.
+\]
+For an integer \(u>0\) let \(u_\perp\) denote its largest divisor coprime
+to \(b\). Ridout's theorem gives, for every \(\epsilon>0\),
+\begin{equation}\label{eq:phase-ridout}
+ \|k b^m\alpha\|\gg_{\alpha,b,\epsilon}
+               b^{-\epsilon m}|k|^{-1-\epsilon}
+ \qquad (k\in\Z\setminus\{0\},\ m\ge0).
+\end{equation}
+Indeed the version with restricted denominator factors gives
+\(q_\perp\|q\alpha\|\gg_{\alpha,b,\epsilon}q^{-\epsilon}\).
+If the nearest numerator and \(q\) have a common factor, reducing the
+fraction only decreases the product on the left
+\cite{RidoutPadic}. Take \(q=|k|b^m\) and use \(q_\perp\le |k|\).
+
+\subsection{Simultaneous exclusion of small-residue frequencies}
+
+\begin{lemma}\label{lem:phase-residue}
+Let \(s\ge2\) and \(C_0\ge0\) be fixed. Suppose
+\(\kappa,\gamma_0,\rho>0\), \(\omega=\kappa+\gamma_0\),
+\(2(\omega+\rho)<1\), and \(\rho<1/16\). For every sufficiently large
+\(h\), every integer window
+\([m_0,m_0+(2s+16)h]\), \(0\le m_0\le C_0h\), contains a run of
+\(\gg h\) consecutive phases \(m\) at which the following system has
+no solution:
+\begin{equation}\label{eq:phase-bad}
+ 0<|k|\le B^{s+\kappa},\quad |r|\le B^\rho,\quad k\equiv r\pmod D,
+ \qquad \|k b^m\alpha\|\le B^{-s+\gamma_0}.
+\end{equation}
+The excluded residues include \(r=0\).
+\end{lemma}
+
+\begin{proof}
+Choose \(\sigma>0\) small and \(\Lambda\) so that
+\[
+ \sigma<1/16,\quad 2\omega+3\sigma<1,\quad
+ \omega+\rho+3\sigma<\Lambda<1-\omega-\rho.
+\]
+Set \(G=\lfloor\sigma h/10\rfloor\), \(H=\lfloor\Lambda h\rfloor\),
+\(d_1=2\omega+2\sigma\) and \(d_2=\omega+\rho+2\sigma\).
+If there is no run of \(G\) good phases, choose one witness to
+\eqref{eq:phase-bad} at each bad phase. Every interval of \(G\)
+consecutive phases contains a witness. At relative offset \(j\) put
+\[
+ \alpha_0=b^{m_0}\alpha,\qquad Q_j=b^j k_j,\qquad
+ R_j=b^j r_j,\qquad e_j=Q_j\alpha_0-P_j
+\]
+with \(k_j>0\) after a change of sign and \(P_j\) the nearest integer.
+By \eqref{eq:phase-ridout}, with \(\epsilon\) small in terms of
+\(C_0,s,\kappa,\sigma\), all the witnesses satisfy
+\begin{equation}\label{eq:phase-range}
+ k_j>B^{s-\gamma_0-\sigma},\qquad
+ |e_j|\gg B^{-s-\kappa-\sigma/4}.
+\end{equation}
+The same bounds apply if the relative origin is reset at a subwindow.
+In fact the only arithmetic inputs in the proof are
+\eqref{eq:phase-range} and the lower bound on \(U+V\alpha_0\)
+used below.
+
+For two witnesses \(i<j\) with \(j-i\ge d_1h\), their
+\((Q,P)\) projections cannot be proportional. Otherwise
+\[
+ |e_i|=(Q_i/Q_j)|e_j|
+ \le B^{-(j-i)/h+\omega+\sigma}B^{-s+\gamma_0}
+ \le B^{-s-\kappa-\sigma}.
+\]
+For nonzero residues, the full rows \((Q,P,R)\) cannot be proportional
+if \(j-i\ge d_2h\). Proportionality would also imply
+\(k_i/k_j=r_i/r_j\le B^\rho\), giving the stronger estimate
+\(|e_i|\le B^{-s-\kappa-2\sigma}\).
+
+For three witnesses spanning at most \(H\) positions let \(j_*\) be the
+latest offset. The integer determinant of the rows
+\((k_j,b^{j_*-j}P_j,r_j)\) is divisible by \(D\). Subtracting
+\(b^{j_*}\alpha_0\) times the first column from the second bounds its
+absolute value by \(6B^{\omega+\rho}b^H<D\) for large \(h\).
+The determinant is therefore zero. Scaling rows and columns identifies
+its rank with that of the original rows.
+
+First consider a subwindow of length \((s+6)h+1\) with witnesses
+throughout at the stated \(G\)-spacing, all of nonzero residue. Reset
+its relative origin. Every \(H+1\) consecutive positions and every
+overlap between two consecutive such intervals contains two witnesses
+at distance at least \(d_2h\), by \(H-2G>d_2h\) with a fixed positive
+margin. The rows consequently lie in a single rational plane
+\(UQ+VP+WR=0\). Use a cross product from the first such window so that
+\(|V|\le 2B^{s+\kappa+\rho+2\Lambda}\). The first and last witnesses
+have independent \((Q,P)\) projections, so \(W\ne0\). We have
+\begin{equation}\label{eq:plane-phase}
+ (U+V\alpha_0)k_j+Wr_j=V b^{-j} e_j .
+\end{equation}
+If \(V\ne0\), the Ridout bound yields
+\(\left|U+V\alpha_0\right|\gg B^{-\sigma/4}/|V|\)
+by reducing \(\epsilon\) further. Using
+\(2\kappa+2\rho+4\Lambda+\gamma_0<4\) gives
+\[
+ \frac{|V|B^{-s+\gamma_0}}{|U+V\alpha_0|}
+    \ll B^{s+4+\sigma/4}.
+\]
+For \(j\ge(s+5)h\), all the ratios \(k_j/r_j\) are within
+\(O(B^{-1+\sigma/4})=o(B^{-2\rho})\) of
+\(-W/(U+V\alpha_0)\). Distinct ratios with denominators at most
+\(B^\rho\) differ by at least \(B^{-2\rho}\).
+Hence the ratios are equal, and the plane equation makes the
+\((Q,P)\) projections proportional in this last segment. The segment
+contains two witnesses at distance at least \(d_1h\), a contradiction.
+
+If \(V=0\), the nonzero ratio \(r_j/k_j\) is fixed. Its reduced
+denominator \(q\) divides each \(k_j\) and is greater than
+\(B^{s-\gamma_0-\sigma-\rho}\). For adjacent witnesses of gap
+\(g\le G\) the integer
+\[
+ k_iP_j-b^g k_jP_i=b^g k_j e_i-k_i e_j
+\]
+is divisible by \(q\) and has magnitude at most
+\((b^G+1)B^\omega<q\). Hence it vanishes, giving proportional
+projections throughout the subwindow, again a contradiction.
+
+Return to the full window. For consecutive zero-residue witnesses
+\(i<j\), if \(j-i\le H\) the same two-row determinant is divisible by
+\(D\) and is smaller than \(D\). Their projections are proportional.
+If \(j-i>H\), all intervening witnesses are nonzero. The intervals of
+\(H\) interior positions and their adjacent overlaps transmit a single
+plane by the same rank argument. The first and last intervals of
+\(H\) interior positions join the respective endpoint row to that plane
+by the three-row determinant. The plane intersects \(R=0\) in a line
+because it contains a row with \(R\ne0\). Thus the projections of the
+two endpoints are again proportional. All zero-residue witnesses now
+have proportional projections. Their first-to-last span is less
+than \(d_1h<h\). Removing that span leaves a subwindow of length
+\((s+6)h+1\) at one end of the original interval, with only nonzero
+witnesses and with the \(G\)-spacing. In the absence of zero
+witnesses one can choose any such subwindow. The preceding
+contradiction completes the proof.
+\end{proof}
+
+\subsection{Exact digit targets and root templates}
+
+\begin{theorem}\label{thm:selectable-counts}
+Fix \(s\ge2\), \(C_0\ge0\) and \(0<\gamma<1/2\). In every window
+of Lemma~\ref{lem:phase-residue} there is a run of \(\gg h\)
+consecutive phases on which the following count holds. Put
+\(A=B^{s-\gamma}\). For bounded fixed half-open intervals
+\(I\subset\R\), \(J\subset[0,1)\) of positive length and every
+\(\theta\in\R\), count the integers \(a\) such that \(a/A\in I\)
+and the first \(sh\) digits of \(\{\theta+a b^m\alpha\}\) are
+\(V^s\), with \(w=[V]_b\) and \(w/B\in J\). The count is
+\begin{equation}\label{eq:exact-power-count}
+        (1+o(1))\,|I||J|\,AB/M .
+\end{equation}
+It is uniform in \(\theta\) and in the selected phases. Restriction
+to \(a\equiv a_0\bmod d\), with \(d\) fixed, divides the main term
+by \(d\).
+
+There are also constants \(\chi,\tau>0\) such that one may select
+a run of \(\gg h\) consecutive phases in the same window for the
+following count. Put \(l=\lfloor\chi h\rfloor\), \(E=b^l\), and
+\(E_1=E\) or \(bE\). Prescribe the first \(\log_b E_1\) digits and
+the last \(l\) digits of \(V\). Suppose the center of the prescribed
+prefix cylinder lies in \([1/4,3/4]\), and take any
+\(1\le d\le B^\tau\), \(a_0\bmod d\). The count in that congruence
+class with the prescribed templates and \(a/A\in I\) is
+\begin{equation}\label{eq:exact-template-count}
+        (1+o(1))\,\frac{|I|A}{d L E_1 E}.
+\end{equation}
+The error is uniform in the stated template and congruence ranges
+and in \(\theta\) and the selected phases.
+\end{theorem}
+
+\begin{proof}
+For a real \(y\) let \(\langle y\rangle\in[-1/2,1/2)\) denote its
+centered fractional part. Since \(M=1+LD\), the exact criterion
+at \(x\in[0,1)\), for large \(h\), is
+\begin{equation}\label{eq:target-centred}
+ \lfloor Mx\rfloor=Lw\text{ for some }0\le w<B
+ \quad\Longleftrightarrow\quad -x\le L\langle Dx\rangle<1-x.
+\end{equation}
+A hit gives \(Dx-w=(Mx-Lw-x)/L\), of magnitude less than \(1/L\).
+Conversely take \(w\) to be the nearest integer to \(Dx\).
+At a hit \(w=\lfloor Bx\rfloor\).
+
+For the first assertion take small positive \(\lambda,\kappa,\rho\)
+with \(2(\kappa+\gamma+\lambda+\rho)<1\) and \(\rho<1/16\).
+Use Lemma~\ref{lem:phase-residue} with \(\gamma_0=\gamma+\lambda\),
+and write \(\beta=b^m\alpha\), \(e(t)=\exp(2\pi i t)\).
+Take smooth compactly supported \(g,\psi\) and a fixed
+trigonometric polynomial \(P\). For samples \(x_a=\{\theta+a\beta\}\)
+sum
+\[
+ g(a/A)P(x_a)\sum_{j\in\Z}\psi(L(Dx_a+j)).
+\]
+The frequencies are \(u+vD\), with \(u\) from the finite support
+of \(P\) and \(v\in\Z\). The periodic sum has coefficients
+\(L^{-1}\widehat\psi(v/L)\). With \(a=a_0+dn\), the nonzero
+frequencies \(|v|\le L B^{\kappa/2}\) give a step
+\(d(u+vD)\) in the range of \eqref{eq:phase-bad}, and
+\[
+ (A/d)\|d(u+vD)\beta\|\gg_d B^\lambda.
+\]
+The weighted sum over the progression has bound
+\[
+ \left|\sum_n g((a_0+dn)/A)e(nt)\right|
+ \ll_N (A/d)\bigl(1+(A/d)\|t\|\bigr)^{-N}
+\]
+by finite differences. The coefficient absolute sum is bounded.
+The errors inside and outside the cutoff are, respectively,
+\(O((A/d)B^{-N\lambda})\) and
+\(O((A/d)B^{-(N-1)\kappa/2})\). Take a fixed \(N\) large enough
+that both are \(o(A/(dL))\). The zero frequency has asymptotic
+\((A/(dL))\int g\int_0^1P\int\psi\). None of these bounds depends
+on \(\theta\). Trigonometric approximation and smooth
+majorants and minorants for rectangles give Lebesgue area in
+\((x,t)\), \(t=L\langle Dx\rangle\), after division by \(A/(dL)\).
+A finite union of rectangles can enclose and approximate the domain
+\(x\in J,\ -x\le t<1-x\) up to arbitrarily small area, since the
+boundary has area zero. Enlarging or shrinking \(J\) by a fixed small
+amount and then sending that amount to zero handles \(w/B=x+O(1/B)\).
+The same approximation on \(I\) yields \eqref{eq:exact-power-count}
+since \(1/L\sim B/M\).
+
+For the second assertion choose \(\chi,\tau,\mu,\lambda>0\) with
+\[
+ \gamma+4\chi+3\tau+4\mu+\lambda<1/2,\qquad
+ 2\chi+\tau+2\mu<1/16 .
+\]
+Set \(\kappa=\chi+\tau+2\mu,\ \rho=2\chi+\tau+2\mu\),
+\(\gamma_0=\gamma+\chi+\tau+\lambda\). These satisfy the hypotheses
+of Lemma~\ref{lem:phase-residue}. Let \(x_0\) be the prefix cylinder
+center and \(w_0\bmod E\) the specified suffix label. Use the smooth
+product
+\[
+  P_h(x)T_h(x)=\varphi(E_1(x-x_0))
+      \sum_{t\in\Z}\psi\bigl(L(Dx-w_0-Et)\bigr)
+\]
+on \(0\le x<1\), extended periodically in \(x\). The first factor
+is supported away from both endpoints for large \(h\). On the
+support of the second factor, the integer from its nonzero term
+must be the nearest integer \(w\) to \(Dx\), with \(w\equiv w_0\bmod E\).
+
+Expand the second factor in \(Dx\), with period \(E\), and write
+its index \(\nu=Ev+j\) for \(0\le j<E\). The factor
+\(P_h(x)e(-jx/E)\) has Fourier coefficients \(p_j(u)\) with
+\[
+ |p_j(u)|\ll_N E_1^{-1}(1+|u|/E_1)^{-N}
+\]
+uniformly, by integrating derivatives on its support of length
+\(O(1/E_1)\). The full coefficient is
+\((LE)^{-1}p_j(u)\widehat\psi((v+j/E)/L)e(-jw_0/E)\)
+at the integer frequency
+\[
+ k=u+vD+(B/E)j,\qquad E k=(Ev+j)D+(Eu+j).
+\]
+On \(|u|\le E_1B^\mu,\ |v|\le LB^\mu\) with \(d\le B^\tau\),
+the integer \(dEk\) has magnitude at most \(B^{s+\kappa}\) and
+residue representative \(d(Eu+j)\) of magnitude at most \(B^\rho<D\).
+Thus \(k=0\) there forces \(u=v=j=0\). If \(k\ne0\), the inequality
+\(\|dk\beta\|\le B^{-s+\gamma+\tau+\lambda}\) would make \(dEk\)
+a forbidden frequency. Hence the step satisfies
+\((A/d)\|dk\beta\|>B^\lambda\). The full coefficient absolute sum
+is \(O(1)\), since \((LE)^{-1}\sum_{j,v}
+|\widehat\psi((v+j/E)/L)|=O(1)\) and \(\sum_u|p_j(u)|=O(1)\).
+The tail outside the cutoff has absolute sum
+\(O(B^{-\mu(N-1)})\). As above, arbitrary fixed derivative order
+makes each error \(o(A/(dLE_1E))\). The zero term equals
+\((1+o(1))\,A(\int g)(\int\varphi)(\int\psi)/(dLE_1E)\)
+for nonzero integrals.
+
+Finally the prefix condition is \(E_1(x-x_0)\in[-1/2,1/2)\)
+and on its slight enlargement \(x=x_0+O(1/E_1)\).
+One can sandwich this condition, the interval \(I\), and the
+\(t\)-interval \([-x,1-x)\) in \eqref{eq:target-centred} between
+smooth functions with arbitrarily small integral discrepancy.
+For the \(t\)-interval use translates of smooth approximants to
+\([0,1)\), with supports modestly enlarged and shrunken by a
+fixed margin to accommodate \(x-x_0\). All derivative bounds used
+above are uniform for \(x_0\in[1/4,3/4]\). This gives
+\eqref{eq:exact-template-count} with the specified half-open digit
+conditions.
+\end{proof}
+
+\begin{corollary}\label{cor:phase-palindrome}
+For \(s=2\), \(\theta=0\) and the phases of
+Theorem~\ref{thm:selectable-counts}, one can choose
+\(a_h\equiv1\bmod b\), \(0<a_h=o(B^{2-\gamma})\), such that the
+actual digits of \(a_h\alpha\) after \(m\) places contain a square
+of least period \(h\). At its seam there is a prescribed
+palindrome \(\overleftarrow{U}U\) or \(\overleftarrow{U}cU\) of
+length \(2l\) or \(2l+1\), respectively, provided the initial
+template \(U\) or \(cU\) has its cylinder center in \([1/4,3/4]\).
+Here \(c\) is a digit, \(l=\lfloor\chi h\rfloor\), and
+\(\overleftarrow{U}\) is the reversal of \(U\).
+\end{corollary}
+
+\begin{proof}
+Prescribe the indicated prefix and the suffix \(\overleftarrow{U}\).
+For any fixed \(0<c_1<1\), the number of hits in \(0<a<c_1A\)
+with \(a\equiv1\bmod b\) is \(\gg_{c_1} B^{1-\gamma-2\chi}\).
+Distinct multipliers in this range have circle distance greater
+than \(1/M\) by \eqref{eq:phase-ridout} with sufficiently small
+\(\epsilon\). Each root label specifies a digit cylinder of
+length \(1/M\), so the hits use distinct roots. There are
+\(O(B^{1/2})\) roots of length \(h\) with a period at most \(h/2\).
+If \(V^2\) has a period \(t<h\), comparing positions in the two
+copies makes \(V\) invariant under cyclic shift by \(t\). It then
+has the period \(\gcd(t,h)\le h/2\). The parameter choice makes
+\(1-\gamma-2\chi>1/2\), so there are hits of least period \(h\)
+for every \(c_1\). The minimum successful positive multiplier
+is \(o(A)\). The seam has the required digits because they are
+part of the two completed copies.
+\end{proof}
+

@@ -1,0 +1,112 @@
+\section{Local frequency bounds and the structure of maximizing cycles}
+\label{sec:frequency}
+
+We now work in any integer base \(b\). A finite list of forbidden factors is encoded by a digit graph \(G\) with memory \(m\ge1\). An edge with label \(a_0\cdots a_m\) goes from \(a_0\cdots a_{m-1}\) to \(a_1\cdots a_m\) and outputs \(a_m\). We retain only the allowed labels. A finite word on the path consists of the initial \(m\) digits and the outputs. Let \(w(e)\in\mathbb Q\) be an edge weight. Assuming \(G\) has a cycle, set
+\[
+  \rho=\max_C |C|^{-1}\sum_{e\in C} w(e),\qquad
+  D_n=\rho n-\sum_{i=1}^{n}w(e_i).
+\]
+Here \(C\) ranges over the directed cycles and \(e_1,\ldots,e_n\) are the first \(n\) edges of the path. Write \(G_{\max}\) for the graph of edges on cycles of mean \(\rho\). A period word is called reversible up to rotation if its reversal is a cyclic rotation of it. For the estimates below a positive constant in a denominator is chosen large enough that \(D_n+C>0\) for every path.
+
+\begin{theorem}\label{thm:extreme-frequency}
+Suppose every strongly connected component of \(G_{\max}\) is a simple directed cycle. In the first \(m+n\) digits of any path, the maximum square-root length is at least
+\[
+                 c\frac{n}{D_n+C}-C
+\]
+for positive \(c,C\) depending only on \(G,w\). If every period word of these cycles is reversible up to rotation, the same assertion holds for the maximum palindrome length, with possibly different constants. In particular, \(\liminf_n D_n/n=0\) forces the respective unbounded lengths in the same digit string.
+\end{theorem}
+
+\begin{proof}
+For each vertex \(v\), let \(h(v)\) be the largest sum of \(w(e)-\rho\) on a path ending at \(v\), with arbitrary start and with the empty path allowed. Removing closed subwalks cannot decrease this sum, so a path of length at most \(|V(G)|-1\) attains the maximum. For an edge \(e:u\to v\) put
+\[
+ c(e)=h(v)-h(u)+\rho-w(e)\ge0,
+ \qquad
+ \sum_{i=1}^n c(e_i)=D_n+h(v_n)-h(v_0).                         \tag{*}
+ \label{eq:tight-cost}
+\]
+A cycle has mean \(\rho\) exactly when all its edges are tight, meaning \(c(e)=0\). Every internal edge in a cyclic strongly connected component of the tight graph lies on such a cycle, which identifies the cyclic components with those of \(G_{\max}\).
+
+There are \(O_{G,w}(D_n+C_0)\) edges of positive cost on the path, by dividing the right side of \eqref{eq:tight-cost} by the least strictly positive cost if one exists. If no such edge exists there are zero to cut. Each resulting tight stretch crosses at most \(|V(G)|-1\) intercomponent edges, since the graph of components is acyclic. Cutting those leaves \(O_{G,w}(D_n+C_0)\) sections on the cycles and removes \(O_{G,w}(D_n+C_0)\) edges in total. One section has length at least \(c_1 n/(D_n+C_0)-C_1\).
+
+A length-\(s\) section of a cycle of period \(p\) contains a square of root length \(p\lfloor s/(2p)\rfloor\) when \(s\ge2p\). The cycle periods are bounded. For a reversible period there is an integer \(a\) for which the cyclic digits satisfy \(d_i=d_{a-i\bmod p}\). Choosing the nearest center from those with \(2c\equiv a\bmod p\) and trimming symmetrically gives a palindrome of length at least \(s-2p\) when this lower bound is positive. This proves both estimates.
+\end{proof}
+
+\begin{theorem}\label{thm:extreme-arithmetic}
+Under the simple-cycle hypothesis of Theorem~\ref{thm:extreme-frequency}, let a canonical expansion of an algebraic irrational \(\alpha\) follow the graph, possibly after a fixed prefix. Then, for all sufficiently large \(n\),
+\[
+                 D_n\gg_{\alpha,G,w}
+                 \frac{(\log n)^{3/2}}{\sqrt{\log\log n}} .
+\]
+Here the count starts at the chosen suffix, and \(b\) is encoded by the graph's alphabet.
+\end{theorem}
+
+\begin{proof}
+Let \(P\) be the least common multiple of the lengths of the simple cycles in \(G_{\max}\). Write \(x=0.a_1a_2\cdots\) in base \(b\) for the chosen suffix. As \(x\) is obtained by multiplying \(\alpha\) by a power of \(b\) and subtracting an integer, it is algebraic irrational. With \(N=m+n\) set
+\[
+ E_P(N-P)=\#\{1\le i\le N-P:a_i\ne a_{i+P}\}.
+\]
+A pair in the same periodic section of the preceding proof agrees. The initial \(m\) symbols, cut edges and last \(P\) positions of each section account for all possible mismatches. Thus \(E_P(N-P)\ll_{G,w}D_n+C_0\).
+
+The fractional part \(y=\{(b^P-1)x\}\) is also algebraic irrational. It is the fractional part of \(\sum_{i\ge1}(a_{i+P}-a_i)b^{-i}\). For a length-\(s\) zero run of these signed differences, multiply by \(b^{i-1}\) for its initial index \(i\) and discard the integral contribution from earlier differences. The remaining signed tail is nonzero and has absolute value strictly less than \(b^{-s}\). Irrationality excludes equality and zero. Its base-\(b\) fractional digits start with \(s\) zeros or \(s\) copies of \(b-1\), according to the sign. Partitioning the first \(N-P\) positions into these zero runs and singleton nonzero differences shows that the number of adjacent digit changes in the corresponding prefix of \(y\) is at most \(2E_P(N-P)+O(1)\). Bugeaud and Evertse's digit-change bound \cite[Theorem~3.1]{BE} gives the asserted inequality. A fixed cut changes the prefactor \(b^P-1\) on \(\alpha\) by a fixed power of \(b\).
+\end{proof}
+
+\subsection{Branching and bounded lengths at the maximum}
+
+We use the following binary source. Let \(a\) be a four-letter \(7/5^+\)-free word chosen from the positive-entropy subshift in Lemma~\ref{lem:entropy-repetitions}, and put \(z=H(a)\), with the 21-uniform code \(H\) from Section~\ref{sec:binary-finite}. A match of length at least \(63\) in \(z\) contains two consecutive full \(H\)-images and therefore aligns modulo \(21\) by the finite synchronizing check there. In particular, \(R_z(N)=o(N)\) when \(R_a(N)=o(N)\). Also, \(z\) has no factor of exponent at least \(9/5\) with period \(p\ge126\). A periodic factor of that length would have a match of length at least \((4/5)p\ge63\), so \(p=21d\) with \(d\ge6\). The full images inside the factor would give a source factor of period \(d\) and exponent at least \(9/5-2/d>7/5\). The same source measure from Lemma~\ref{lem:entropy-repetitions} is used for the dimension estimates.
+
+\begin{theorem}\label{thm:branching-frequency}
+If a strongly connected component of \(G_{\max}\) has a vertex with two outgoing edges in the component, there is a positive-Hausdorff-dimension set of real numbers with digit strings following \(G\) for which \(D_n=O(1)\), square-root lengths and palindrome lengths are both bounded, and \(R(N)=o(N)\).
+\end{theorem}
+
+\begin{proof}
+Fix a branching vertex \(v\) in the component and output words \(U_0,U_1\) of two first returns from its distinct outgoing edges. The words have distinct first digits. The closed paths with words \(U_0U_1\) and \(U_1U_0\) have a common output length \(q\). Their \(n\)-fold concatenations are \(2^n\) distinct cyclic words with designated initial position, all of length \(nq\). Given one reflection \(i\mapsto a-i\bmod nq\), any word fixed by it is determined by a contiguous cyclic arc of length at most \(\lceil nq/2\rceil+1\). Such an arc contains at least one representative of every reflection orbit, by taking positions between the reflection axes and including adjacent integer endpoints. It intersects at most \(\lceil n/2\rceil+3\) of the original length-\(q\) slots. Consequently at most \(nq\,2^{\lceil n/2\rceil+3}\) of the words are reversible up to rotation. For large \(n\), choose a word \(U\) outside this set. Let \(p\) be the least period of the periodic continuation \(U^\omega\), so \(p\) divides \(|U|\). The languages of length \(p\) of \(U^\omega\) and its reversed period are disjoint, since equality of any two such words would identify the rotations and give a reflection.
+
+Choose one of the original first returns \(D\in\{U_0,U_1\}\) with first digit different from that of \(U\), and put \(d=|D|\). Write
+\[
+ r=d+p+1,\qquad q_0=\left\lceil\frac{d+2p+1}{|U|}\right\rceil .
+\]
+Choose integers \(M_1=M_0+1\) with \(M_0|U|>4r\) and \(M_0>q_0\). From the state \(v\), follow the paths with output
+\[
+                  U^{M_0}D\,U^{M_{z_1}}D\,U^{M_{z_2}}D\cdots .
+                                                        \tag{**}
+\]
+The actual digit string \(x\) includes the initial state \(v\) of length \(m\). All paths used are tight, so \eqref{eq:tight-cost} gives \(D_n=O(1)\).
+
+The word \(V=U^{q_0}\) occurs with bounded gaps in the tail in \((**)\). Each length-\(|V|\) window there meets at most one copy of \(D\) and has more than \(2p\) digits in at most two portions of the periodic \(U\)-runs. It therefore contains \(p\) consecutive digits from \(U^\omega\). This excludes the occurrence of \(V^{\rev}\), using disjointness of the two length-\(p\) languages. A palindrome containing \(V\) would contain \(V^{\rev}\), so palindrome lengths are bounded in the tail. Symmetric trimming loses at most \(2m\) digits from a palindrome meeting the initial state.
+
+For decoding, index the actual digits from zero and set \(f_i=1\) when \(x_i\ne x_{i+p}\) and \(f_i=0\) otherwise. Away from the initial state the nonzero flags lie within the intervals \([s-p,s+d)\) for the starts \(s\) of copies of \(D\). In each such interval the set of nonzero positions is the same translate of a fixed nonempty set \(F\). Indeed, both neighboring runs have fixed phases, and \(F=\varnothing\) would force the first digit of \(D\) to be the periodic continuation of the preceding \(U\)-run. Distinct translated sets are separated by more than \(r\) zero flags. Within one set the successive nonzero positions are at distance at most \(d+p\). Thus the marker \(c=s+\min F\) is characterized by the requirement \(f_c=1\) and \(f_{c-r}=\cdots=f_{c-1}=0\), using markers in the tail after the initial state. The first marker is at a fixed position. Its test and all later tests use only digits in \([c-r,c+p]\). Consecutive marker gaps are \(d+M_0|U|\) or \(d+M_1|U|\), and they recover \(z_1,z_2,\ldots\) in order. Put \(J_*=d+M_1|U|\).
+
+Take a fixed integer \(B\) larger than the first marker position plus \(m+r+p\). In two equal digit intervals starting at \(t,t'\) with length \(s>B+J_*+p\), the first marker at or after \(t+B\) is at a position \(c<t+B+J_*\). Equality of the digits gives equality of the full marker tests under translation by \(t'-t\) for positions from \(c\) up to but excluding \(t+s-p\). Hence the complete gaps in this region decode identical blocks of \(z\). If the two intervals are the halves of a square of root length \(s\), the markers \(c,c+s\) are \(d_*\ge s/J_*\) gaps apart. Among the gaps from \(c\) to \(c+s\), the matching tests can lose at most \(B+J_*+p+1\) at the end, since gap lengths are at least one. We obtain a factor in \(z\) with period \(d_*\) and length at least \(2d_*-(B+J_*+p+1)\). For large \(s\) this contradicts the \(9/5\) restriction on \(z\). For two disjoint equal intervals of length \(s\), there are at least \((s-B-J_*-p)/J_*-2\) identical complete gaps on each side, disjoint also at source level. If the original intervals lie in the first \(N\) digits, the recovered gaps lie in the first \(N\) source symbols. This gives \(R_x(N)=o(N)\).
+
+A prefix of \(N\) digits determines the first \(\lfloor (N-C_*)/J_*\rfloor\) complete gaps for a fixed \(C_*\). It reads back this many binary source symbols, and then at least \(\lfloor (N-C_*)/(21J_*)\rfloor-O(1)\) four-letter source symbols. Restrict the maximum-entropy source measure to a positive-measure subset on which all sufficiently long cylinders have mass at most \(e^{-(h-\delta)n}\), as in Lemma~\ref{lem:entropy-repetitions}. The image measure on base-\(b\) cylinders has mass \(O(e^{-(h-\delta)N/(21J_*)})\) in cylinders of length \(N\). The expansions are aperiodic since the square-root lengths are bounded. Ordinary intervals of scale \(b^{-N}\) meet at most three such cylinders. The mass distribution principle gives dimension at least \(h/(21J_*\log b)>0\) upon letting \(\delta\) decrease to zero.
+\end{proof}
+
+It follows that every path with \(\liminf D_n/n=0\) has unbounded square-root lengths exactly when \(G_{\max}\) consists of simple cycle components. The simultaneous square and palindrome conclusion holds for all such paths exactly when those components are simple cycles and all their period words are reversible up to rotation. For necessity in the simple-cycle case, the periodic path on an irreversible cycle has bounded palindrome lengths. A palindrome of length at least \(p+1\) in a period-\(p\) word would equate a full period with a rotation of its reverse. These characterizations concern all graph paths. The positive-dimensional constructions yield symbolic examples, with the algebraic-irrational case subject to further constraints.
+
+\subsection{Explicit frequency bounds}
+
+For binary words with palindrome lengths at most six, it suffices to forbid length-seven and length-eight palindromes. With memory seven the graph has \(112\) vertices and \(182\) edges. Table~\ref{tab:frequency-graphs} gives three rational optima. They are certified by exact comparisons of \(h(v)\ge h(u)+w(e)-\rho\) and by exhibited tight cycles. The program uses Karp's cycle-mean formula \cite{Karp} to find the candidate \(\rho\), and verifies the certificate independently of this candidate selection.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}llcl@{}}
+\toprule
+Local restriction & Event & Max. & Cyclic components\\
+\midrule
+Palindrome length \(\le6\) & digit \(1\) & \(2/3\) & two \(9\)-cycles\\
+Palindrome length \(\le6\) & factor \(0011\) & \(1/6\) & \(18\) vertices, \(20\) edges\\
+No \(000\) or \(111\) & equal neighbors & \(1/2\) & one \(4\)-cycle\\
+\bottomrule
+\end{tabular}
+\caption{Exact frequency bounds and the components of the maximizing graph.}
+\label{tab:frequency-graphs}
+\end{table}
+
+In the first row, the two period words are \(\word{110011011}\) and \(\word{110011110}\) up to rotation. Complementation gives the minimum one-frequency \(1/3\), with the same period lengths. If an algebraic irrational's binary expansion eventually has the indicated restriction, let \(A(N)\) count the ones in its original first \(N\) digits. Theorem~\ref{thm:extreme-arithmetic}, with \(P=9\), gives
+\[
+  A(N)-N/3,\quad 2N/3-A(N)
+          \gg_\alpha \frac{(\log N)^{3/2}}{\sqrt{\log\log N}} .
+\]
+The cut changes each deficit by at most a fixed additive amount. For the minimum one can equivalently apply the theorem with weight zero on ones and one on zeros. If the upper density attains \(2/3\) or the lower density attains \(1/3\), Theorem~\ref{thm:extreme-frequency} gives unbounded square-root lengths. The logarithmic deficit bound still allows sublinear deficit.
+
+In the second row the unique cyclic component has two branching vertices. At the state \(\word{0110100}\), two first returns have words \(\word{011001110100110100}\) and \(\word{110100}\). Their weights are respectively three and one, with lengths eighteen and six. Theorem~\ref{thm:branching-frequency} applies. In the last row the period \(\word{1100}\) is reversible up to rotation. Attaining upper density \(1/2\) for equal neighbors under this local restriction therefore forces both unbounded lengths in the same string.

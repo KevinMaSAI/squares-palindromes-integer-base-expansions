@@ -1,0 +1,78 @@
+\section{A factor entropy threshold for rational translations}\label{sec:affine-entropy}
+
+For a real number \(x\), let \(p_b(x,n)\) be the number of distinct length-\(n\) factors in its canonical base-\(b\) expansion. Use the normalized entropy
+\[
+                 H_b(x)=\lim_{n\to\infty}\frac{\log_b p_b(x,n)}{n},
+\]
+which exists by subadditivity. Grouping in the base \(b^j\) refers to successive aligned blocks of \(j\) base-\(b\) digits. Reversal of grouped digits keeps the internal order of the \(j\) physical digits in each block.
+
+\begin{theorem}\label{thm:entropy-masks}
+Suppose \(H_b(x)<1/2\). Given finitely many nonzero rational slopes \(\lambda\) and finitely many grouping widths \(j\), there is a common rational translation \(\tau\) for which the base-\(b^j\) palindromes of every \(\lambda x+\tau\) have bounded length. Given any \(\delta>0\), the same \(\tau\) can also be chosen to bound those palindrome lengths by one on a set of grouping widths of natural density at least \(1-\delta\). If \(x\) is algebraic irrational, all these images are algebraic irrationals in its number field.
+\end{theorem}
+
+\begin{proof}
+For \(y=(ax+r)/q\) with \(a\ne0,q\ge1\) integers and \(r\) rational, let \(U_x(t,s)\) be the integer label of the length-\(s\) block after position \(t\). The integer \(K_t=q\lfloor b^t y\rfloor-a\lfloor b^t x\rfloor-\lfloor b^t r\rfloor\) belongs to a fixed finite set, as is seen by writing each floor as a real number minus its fractional part. Consequently
+\begin{equation}\label{eq:affine-block-entropy}
+ qU_y(t,s)\equiv aU_x(t,s)+U_r(t,s)+K_{t+s}\pmod{b^s}.
+\end{equation}
+For each \(s\), the rational \(r\) has \(O_r(1)\) possible block labels, including those meeting its transient. Each right-hand side in \eqref{eq:affine-block-entropy} gives at most \(q\) labels for \(U_y\). Thus \(p_b(y,s)\le C p_b(x,s)\) uniformly in \(s\). The inverse affine map gives \(H_b(y)=H_b(x)\).
+
+Choose a large prime \(p>2\) and a random integer \(T\) uniform in \([0,b^p-1)\). Set \(\tau=T/(b^p-1)\). For one of the prescribed widths \(j\), take each of \(s=\lfloor p/j\rfloor\) and \(s=\lfloor p/j\rfloor-1\). For a given phase, an unconditioned uniformly random mask of \(p\) physical digits supplies a uniform word of length \(js\le p\). Conditioning out the all-maximum mask raises each probability bound by at most \(b^p/(b^p-1)\). For a fixed block of \(\lambda x\) and a fixed possible carry \(0\) or \(1\) from the right, the word after addition has palindrome probability \((b^j)^{-\lfloor s/2\rfloor}\). Taking the union over phases, carries, all original block labels and the fixed slopes and grouping widths gives an upper bound tending to zero, since \(H_b(\lambda x)<1/2\). The two adjacent prohibited lengths exclude larger palindromes by central trimming.
+
+For the additional conclusion impose that equal length-\(p\) physical blocks of \(\lambda x+\tau\) start at the same phase modulo \(p\). Put \(M=b^p-1\). The mask from phase \(i\) has label \(T_i=b^iT\bmod M\) in \([0,M)\). For \(i\not\equiv i'\pmod p\) the difference is uniform modulo \(M\) on a subgroup of size \(M/(b-1)\), because \(\gcd(b^{|i-i'|}-1,M)=b-1\) when \(i,i'\in[0,p)\). For fixed original block labels and two fixed carries, equal output labels specify \(T_i-T_{i'}\bmod b^p\). The difference lies in \((-M,M)\), so at most three residues modulo \(M\) are possible. The union bound for a mismatched phase is at most
+\[
+       \frac{12p^2(b-1)}{M}\sum_\lambda p_b(\lambda x,p)^2=o(1).
+\]
+Both sets of requirements therefore hold for some one mask. If \(j\ge p\) and \(p\nmid j\), any two equal \(b^j\)-digits have starting positions equal modulo \(p\). The spacings of the outside letters of length-two and length-three palindromes are \(j\) and \(2j\) physical digits, neither divisible by \(p\). Hence such palindromes are absent. These \(j\) have density \(1-1/p\). In those bases any square that does occur has root length divisible by \(p\), by the same starting-position test. Finally rational affine maps with nonzero slope preserve the degree and generated number field of an algebraic irrational.
+\end{proof}
+
+The finite grouping menu has a genuine quantifier limitation. For example \(x=\sum_{k\ge1} b^{-2^k}\) has \(p_b(x,n)=O(n)\), since beyond a cut of size \(O(n)\) each length-\(n\) block contains at most one \(1\). For any rational \(\tau\), take \(j\) divisible by its eventual base-\(b\) period. On arbitrarily long, aligned zero stretches of \(x\), its positive tail perturbs the constant \(b^j\) tail of \(\tau\) by less than the distance to the right endpoint of any prescribed finite cylinder. Thus \(x+\tau\) has unbounded constant runs in that \(b^j\).
+
+\begin{theorem}\label{thm:entropy-sharpness}
+Fix \(\varepsilon>0\) and a finite set \(\Lambda\) of nonzero rational slopes. There is a set \(E\) of transcendental numbers of Hausdorff dimension at least \(1/2\) with
+\[
+                   \tfrac12\le H_b(x)<\tfrac12+\varepsilon\quad(x\in E).
+\]
+For every \(x\in E\), \(\lambda\in\Lambda\cup\{1\}\), rational \(\tau\), and fixed \(j\ge1\), the canonical base-\(b^j\) expansion of \(\lambda x+\tau\) contains arbitrarily long square roots and arbitrarily long even palindromes. Both occur at arbitrarily late positions at each prescribed target size. Moreover, for every nonzero rational affine image of \(x\) and each fixed \(j\), its first \(N\) base-\(b^j\) digits have maximum disjoint equal-block length and maximum disjoint reversed-block length \(O(\log N)\).
+\end{theorem}
+
+\begin{proof}
+First include \(1\) and the absolute values of the slopes in the finite positive menu. For a slope \(a/q>0\) in lowest terms let \(a_S,q_S\) be the parts of \(a,q\) supported on primes dividing \(b\), and let \(q_\perp=q/q_S\). Choose \(k\ge2\) large enough that \(a_S,q_S\mid b^k\) and \(q_\perp\le b^k\) for each slope. The construction alternates free and restricted short segments of widths \(\ell\ge k\) bounded above by a fixed constant. On a free segment use any label in \([0,b^\ell)\). On a restricted segment allow \(0,b^\ell-1\), the integers \(0,\ldots,q_S-1\) for each slope, and all solutions of
+\begin{equation}\label{eq:entropy-allowed}
+ au\equiv z\pmod{b^\ell},\qquad |z|\le q(a_S+1)+a
+\end{equation}
+for each slope. This set has size at most \(C_\Lambda\) uniformly in \(\ell,k\), because each congruence gives at most \(a_S\) labels. Enlarge \(k\) so \(\log_b C_\Lambda/(2k)<\varepsilon\).
+
+For each mode \(j\ge k\), divide a block of physical width \(j\) into an odd number of segments, taking the largest odd number at most \(\lfloor j/k\rfloor\). All widths except the last are \(k\) and the last is in \([k,3k)\). The first type of block starts and ends with a free segment. The second type exchanges the two roles at every segment of the same width. Alternate those two types. For \(j<k\), use the common width \(P_j=k\operatorname{lcm}(1,\ldots,k-1)\), alternating an entirely free block and an entirely restricted block. Put \(P_j=j\) in the former case. Each two-block pattern has period \(2P_j\) with equal total free and restricted widths. Concatenate successive mode regions, with each positive \(j\) used infinitely often, their region lengths at least doubling, and each boundary a common multiple of the two adjacent pattern periods. The physical grouping is aligned with the original origin.
+
+Every physical interval of length \(n\) has \(n/2+O(1)\) free places. Indeed whole mode regions and whole block pairs are balanced, and each partial pair has a uniformly bounded discrepancy. In the large modes this follows by alternating equal-width segments with a bounded last segment. The small modes have a fixed bound. A position symbol records whether its segment is free, the segment width and the local offset. The total number of length-\(n\) position words is polynomial in \(n\). In a single mode with \(j\le n+6k\), summing the periods over all such modes gives \(O((n+1)^2)\) possibilities. For \(j>n+6k\) at most one nonstandard-width segment can be met, leaving \(O_k(n+1)\) possibilities across these large modes. A factor crossing one boundary consists of two single-mode pieces. One that crosses at least two contains a full mode region of length at most \(n\), which lies within the first \(2n\) positions by doubling. This also gives a polynomial bound. A position word admits at most \(b^{n/2+O(1)}C_\Lambda^{\,n/(2k)+O(1)}\) digit words, including the two partially met restricted segments. This proves the required strict upper bound for \(H_b\).
+
+Take independent uniform labels in the allowed set of each segment. The measure of each length-\(n\) cylinder is at most \(b^{-n/2+O(1)}\), by counting the free positions that it fixes. Intervals of comparable length are covered by at most a fixed number of these cylinders. Every subset of full measure has Hausdorff dimension at least \(1/2\). The measure has no atoms.
+
+Fix \(a/q\) in the positive menu, a rational shift \(r/q\), and width \(j\). Take a window of \(2h\) consecutive blocks starting with the free-first type inside a region of mode \(j\). Write \(t\) for its starting cut and \(n=2hP_j\) for its physical length. At this alignment, reversal of the base-\(b^j\) groups exchanges each restricted segment with a free segment of the same width. If \(j\ge k\), the internal positions of the destination short segment remain in their order. If \(j<k\), an entire restricted segment is mapped to an entire free segment, with its internal \(b^j\)-groups reversed.
+
+Let \(C=\lfloor b^{t+n}r\rfloor\) and \(C_i\) be the mixed-width labels of \(C\bmod b^n\). Define an output palindrome label \(Y\) by assigning \(Y_i=\lfloor C_i/q\rfloor\) on restricted segments and reflecting to the free segments. The last segment is restricted. Alter its assignment by at most \(a_S-1\), staying in its digit range, to ensure \(qY_i-C_i\equiv0\pmod{a_S}\). This is possible since \((q,a_S)=1\) and its label range has at least \(a_S\) consecutive integers. Propagate this alteration to its reflected free segment. Thus \(Z=(qY-C)\bmod b^n\) is divisible by \(a_S\). There is a solution \(0\le X<b^n\) to \(aX\equiv Z\bmod b^n\).
+
+For any such solution every restricted segment of \(X\) satisfies \eqref{eq:entropy-allowed}. For \(qY-C\), the mixed-base carry from the right stays in \([-1,q-1]\), since \(qY_i-C_i+c\) lies between \(-b^{\ell_i}\) and \(qb^{\ell_i}-1\). On a restricted segment, \(|qY_i-C_i|\le qa_S-1\). The local label of \(Z\) there is therefore congruent to an integer of absolute value at most \(q(a_S+1)\). For \(aX\), the incoming carry is in \([0,a-1]\), so subtracting it leaves a congruence of the form \eqref{eq:entropy-allowed}. This verifies admissibility of the entire original label \(X\).
+
+Put \(K_0=(aX+C-qY)/b^n\). If \(p_t=\lfloor b^t x\rfloor\), the two segments immediately before the template have a free label \(u\) followed by a restricted label \(v\). With widths \(\ell_F,\ell_D\) these give
+\[
+      p_t=b^{\ell_F+\ell_D}p'+b^{\ell_D}u+v
+\]
+for an arbitrary earlier prefix \(p'\). Set \(v\in[0,q_S)\) to obtain any prescribed residue modulo \(q_S\), then set \(u\in[0,q_\perp)\) to meet any residue modulo \(q_\perp\). In the latter step \(b^{\ell_D}\) is invertible. This permits \(ap_t+K_0\equiv0\pmod q\). After the template a sufficiently long zero guard makes \(a\{b^{t+n}x\}+\{b^{t+n}r\}<1\). Indeed the rational remainder is fixed below one when \(t\) is fixed modulo the eventual period of \(r/q\). Now
+\[
+ q b^{t+n}(ax+r)/q=b^n(ap_t+K_0)+qY+a\{b^{t+n}x\}+\{b^{t+n}r\}.
+\]
+Division by \(q\) and taking the floor gives output label \(Y\bmod b^n\). It is an actual palindrome of even length \(n/j\) in the target grouping.
+
+For each fixed \(r/q,j,h\), there are infinitely many disjoint trials wholly inside the arbitrarily long regions of mode \(j\). Their \(t\)'s can be taken in the same rational phase as well as the same pattern phase. The data \(X\) and guard size can then be fixed, since \(C\bmod qb^n\) and the rational remainder are fixed. Conditional on any earlier history, the chance of realizing the required preceding two segments, \(X\), and the guard is bounded below by a fixed positive constant. The probability of failing all future disjoint trials is zero by iterating the conditional bound. Taking a countable intersection gives arbitrarily late successes for every fixed target.
+
+For squares, use the two preceding segments to set \(p_t\equiv0\pmod q\), and use a long zero guard starting at the template. On a fixed rational phase, \(\{b^t(ax+r)/q\}\) is then an arbitrarily small nonnegative perturbation of \(\{b^t r/q\}\). At any prescribed length, if the guard is long enough, this lies in the same canonical cylinder to the right of the rational tail. The canonical rational tail is eventually periodic. Its finite prefix can be taken long enough to contain the desired square. The positive conditional probability argument again applies to all countably many targets. For negative slopes, negation of an irrational complements the digits, preserving the equalities and reversal properties.
+
+It remains to bound early matches. Fix any nonzero rational affine image, with its slope allowed outside the menu, and any \(j\). Condition on all original digits outside the first of two disjoint windows of physical length \(s\). The second original label is fixed, so \eqref{eq:affine-block-entropy} gives only a bounded number of second output labels. If the first output equals it or its reversal as a list of \(j\)-digit groups, then the first output has only a bounded number of possible labels too. Applying \eqref{eq:affine-block-entropy} to the first window bounds the number of compatible first original labels by a constant, using the finite carries and at most \(|a|\) solutions of each \(aU_x\) congruence. The first window contains \(s/2-O(1)\) independent uniform physical free digits. Thus the conditional match probability is \(O(b^{-s/2})\). Sum over pairs of starts in a physical prefix of length \(N\) and lengths \(s\ge10\log_b N\). The resulting probabilities are \(O(N^{-3})\), so Borel--Cantelli gives the claimed \(O(\log N)\) bounds, also after converting to grouped lengths. Take a countable intersection over all nonzero rational affine maps and grouping widths.
+
+The full-measure intersection has dimension at least \(1/2\), and deleting algebraic numbers preserves full measure. Since the positive menu includes \(1\), every rational translation of each retained \(x\) has unbounded base-\(b\) palindromes. Theorem~\ref{thm:entropy-masks} therefore gives \(H_b(x)\ge1/2\). This proves the threshold assertion.
+\end{proof}
+
+The lower-entropy reduction preserves algebraicity. In particular, existence of a degree-\(d\) algebraic irrational with \(H_b<1/2\) would yield a degree-\(d\) counterexample to the palindrome question. The dimension construction proves sharpness of the entropy threshold among real inputs and gives logarithmic early matching lengths.
+

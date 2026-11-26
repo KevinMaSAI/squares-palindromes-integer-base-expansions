@@ -1,0 +1,36 @@
+\section{An early congruence criterion}\label{sec:arith}
+
+The following cofactor bound will be used to test constructions against an arithmetic constraint that every algebraic irrational must satisfy.
+For a finite set of primes $S$, put $[E]_S=\prod_{p\in S}p^{v_p(E)}$ and $w_S(E)=|E|/[E]_S$ for $E\ne0$. Set $w_S(0)=1$.
+
+\begin{theorem}\label{thm:cofactor}
+Fix $b$, a finite prime set $S$ containing the prime divisors of $b$, real algebraic $\beta_1,\ldots,\beta_t$, a finite number of error terms, and constants $A,C>0$. For every $0<\delta<1$ the following holds at sufficiently large $\ell$. If integers $U_i,E_j,P$ satisfy $|U_i|,|E_j|\le Cb^{A\ell}$,
+\[
+ \Phi=\sum_i\beta_i U_i\notin\Q,\qquad
+ \left|b^\ell(\Phi-P)-\sum_jE_j\right|\le C,
+\]
+then
+\[
+ \prod_i w_S(U_i)\prod_j w_S(E_j)>b^{(1-\delta)\ell}.
+\]
+\end{theorem}
+
+\begin{proof}
+Suppose to the contrary that there is an infinite sequence of increasing $\ell$. Write $X_i=b^\ell U_i$, $Z=b^\ell P$, and $L=\sum_i\beta_iX_i-Z-\sum_jE_j$. Pass to a subsequence with fixed zero pattern, remove identically zero coordinates, and keep $|L|\le C$. All coordinates have height $O(b^{(A+1)\ell})$, including $Z$ by the assumed error bound.
+
+At each stage the value $b^\ell\Phi$ is a linear combination of the retained $X_i$, with fixed algebraic coefficients. For $L$ the coefficients of these coordinates differ from those of $b^\ell\Phi$ by rational numbers. All coefficients of $Z,E_j$ in $L$ are rational. In particular some retained $X_i$ has irrational coefficient in $L$. Drop $Z$ if its coefficient is zero.
+
+Use all coordinate forms at each $p\in S$. At the real place replace $Z$ by $L$ if $Z$ is present, and replace an $X_i$ with irrational coefficient otherwise. The forms are independent at every place. The coordinate replaced at the real place is a nonzero multiple of $b^\ell$, so its finite-place factor is at most $b^{-\ell}$. Each other original $X_i$ contributes $w_S(U_i)$ and each other error coordinate contributes $w_S(E_j)$. The total local product is at most $Cb^{-\delta\ell}$. Applying Schlickewei's Subspace Theorem in the form stated in \cite[Theorem A]{ABind} produces a fixed nontrivial rational relation along an infinite subsequence.
+
+Eliminate an $E_j$ if any has nonzero coefficient in that relation. Then eliminate $Z$ if it has nonzero coefficient and the relation contains no errors. Either operation alters only the rational part of $L$. In the remaining case eliminate an $X_i$ using a relation among the $X_i$ and perform the same elimination in $b^\ell\Phi$. It preserves the asserted coefficient differences. All remaining coordinates are original coordinates and removing a cofactor can only decrease the product budget. The process strictly decreases the dimension. In dimension one the remaining coordinate is an $X_i$ with nonzero coefficient and magnitude at least $b^\ell$, contradicting $|L|\le C$.
+\end{proof}
+
+\begin{corollary}\label{cor:modular}
+Fix a real algebraic irrational $\alpha$, an integer base $b$, a prime $p$, and $A,c>0$. For all sufficiently large $\ell$, the integer block values $D_{n,\ell}(\alpha)$ for $0\le n\le A\ell$ are pairwise distinct modulo $p^{\lceil c\ell\rceil}$.
+\end{corollary}
+
+\begin{proof}
+For $n<m$, put $E=D_{m,\ell}(\alpha)-D_{n,\ell}(\alpha)$, $U_1=b^m$, $U_2=b^n$, and $P=\lfloor b^m\alpha\rfloor-\lfloor b^n\alpha\rfloor$. The error is at most $1$, and $\Phi=(b^m-b^n)\alpha$ is irrational. Theorem~\ref{thm:cofactor} gives $E\ne0$ and $w_S(E)>b^{(1-\delta)\ell}$. Since $|E|<b^\ell$, $[E]_S<b^{\delta\ell}$. Choose $p\in S$ and $\delta<c\log_b p$.
+\end{proof}
+
+The case $E=0$ in the corollary is already excluded by \eqref{eq:known-early}, since both blocks lie among the first $\lfloor (A+1)\ell\rfloor$ digits. The additional content of the corollary is a divisibility constraint for $E\ne0$, including when $p$ does not divide the base.

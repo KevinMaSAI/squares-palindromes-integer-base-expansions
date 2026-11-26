@@ -1,0 +1,380 @@
+\subsection{Statement and background}
+
+For a finite or infinite word \(x\), a factor is a contiguous subword.
+Write \(\Fac_m(x)\) for its set of length-\(m\) factors. A square is
+\(UU\) with \(U\ne\e\), and a word is square-free if it has no square
+factor. A factor of a one-sided infinite word is recurrent if its
+set of starting positions is infinite. Positions in infinite words
+are numbered from one.
+
+\begin{theoremT}\label{thm:T}
+Let \(\xi\) be a real algebraic irrational and let \(\mathbf a\) be the
+canonical ternary digit word of its fractional part. Write
+\[
+P=\{\tern{010},\tern{020},\tern{101},\tern{121},\tern{202},\tern{212}\}.
+\]
+Then at least one of the following holds.
+\begin{enumerate}
+\item Infinitely many positions of \(\mathbf a\) are starting positions
+of a square.
+\item At least five distinct members of \(P\) are recurrent in
+\(\mathbf a\).
+\end{enumerate}
+\end{theoremT}
+
+Adamczewski and Rampersad \cite[Theorem 3.1]{AR} proved that an
+algebraic ternary expansion has infinitely many square occurrences
+or that \(\tern{010}\) or \(\tern{02120}\) is recurrent.
+Theorem~T concerns square starting positions and recurrence of
+specified words of length three. It gives no unbounded-length conclusion
+for square roots or palindromes in Bugeaud's Problem~10.42 \cite{Bugeaud}.
+
+Over a finite alphabet, infinitely many distinct squares are
+equivalent to unbounded square-root lengths. Infinite binary words
+with finitely many distinct squares exist \cite{BC}. They have
+infinitely many square starting positions because every length-four
+binary word contains a square.
+
+Equivalently, the base-\(3\) value of a one-sided digit word is
+transcendental if the word has a square-free suffix avoiding two
+distinct members of \(P\). Indeed, finitely many square starting
+positions and finitely many occurrences of the two words can all be
+passed by one fixed cut. Such a suffix also excludes eventual
+periodicity, so the value is irrational.
+
+We derive Theorem~T as a corollary of established results. The two
+one-sided lemmas in Section~\ref{sec:lifting} give the prefix control
+needed to use the criterion of Adamczewski, Bugeaud, and Luca
+\cite{ABL}.
+
+\subsection{The avoidance inputs}
+
+Put \(\Sigma_3=\{0,1,2\}\) and \(\Sigma_5=\{0,1,2,3,4\}\).
+Badkobeh and Ochem \cite[Theorems 1 and 2]{BO} use the morphism
+\(f=f_5\) defined by the images
+\[
+(f(0),f(1),f(2),f(3),f(4))
+=(\tern{01},\tern{23},\tern{4},\tern{21},\tern{0}).
+\]
+Let \(t=f^\omega(0)\) and let
+\[
+\begin{split}
+F_5=\{&
+\tern{02},\tern{03},\tern{13},\tern{14},\tern{20},\tern{24},
+\tern{31},\tern{32},\tern{40},\tern{41},\tern{43},\\
+&\tern{121},\tern{212},\tern{304},\tern{3423},\tern{4234}\}.
+\end{split}
+\]
+Let \(\Y\) consist of all one-sided infinite square-free words on
+\(\Sigma_5\) that avoid \(F_5\). Theorem 1 gives \(t\in\Y\). Its proof
+supplies the finite input
+\begin{equation}\label{eq:window}
+\begin{gathered}
+pvs\text{ is square-free and avoids }F_5,\qquad
+|p|=|s|=32,\quad |v|=8\\
+\Longrightarrow\quad v\in\Fac_8(t).
+\end{gathered}
+\end{equation}
+Section~\ref{sec:computation} describes an independent reproduction
+of \eqref{eq:window}.
+
+For \(i=1,2\) put
+\[
+B_1=\{\tern{010},\tern{020}\},\qquad
+B_2=\{\tern{121},\tern{212}\}.
+\]
+Theorem 2 of \cite{BO}, with the definition of characterization
+in that paper, asserts that every recurrent factor of any one-sided
+infinite square-free word avoiding \(B_i\) occurs in \(s_i=M_i(t)\).
+In the order \(0,1,2,3,4\), the images are
+\[
+M_1=(\tern{012},\tern{1},\tern{02},\tern{12},\e),\qquad
+M_2=(\tern{02},\tern{1},\tern{0},\tern{12},\e).
+\]
+The recurrent languages also appear in Ochem and Rosenfeld
+\cite[Theorems 2 and 3]{OR}, where the characterization is expressed
+via distances between consecutive occurrences of a letter. Our use
+of these classes requires statements about arbitrary one-sided words,
+including their initial factors.
+
+\subsection{Two one-sided transfer lemmas}\label{sec:lifting}
+
+Badkobeh and Ochem \cite[\S3.1]{BO} give the four nonempty
+images of \(M_i\circ f\), which appear as \(A,B,C,D\) below.
+Define \(g_i=M_i\circ f^2\), so that \(s_i=g_i(t)\).
+Direct composition gives the five images in the last column.
+\[
+\begin{array}{c@{\quad}cccc@{\quad}c}
+\toprule
+i & A & B & C & D & (g_i(0),g_i(1),g_i(2),g_i(3),g_i(4))\\
+\midrule
+1 & \tern{0121} & \tern{0212} & \tern{012} & \tern{021} & (AB,D,C,B,A)\\
+2 & \tern{021} & \tern{012} & \tern{02} & \tern{01} & (AB,D,C,B,A)\\
+\bottomrule
+\end{array}
+\]
+Each of \(A,B,C,D\) has its only \(0\) at the beginning.
+Every letter image under \(g_i\) has length between \(2\) and \(8\).
+
+\begin{lemma}[Ternary suffix decoding]\label{lem:ternary}
+If a one-sided infinite square-free word \(x\) on \(\Sigma_3\)
+avoids \(B_i\), then \(x=H g_i(z_0)\) for a finite prefix \(H\)
+and \(z_0\in\Y\). More precisely, if every length-\(41\) factor
+starting at or after position \(N\) in \(x\) occurs in \(s_i\),
+then \(H\) can be chosen with \(|H|\le N+10\).
+\end{lemma}
+
+\begin{proof}
+Theorem 2 of \cite{BO} ensures that such an \(N\) exists. Each
+length-\(41\) word outside \(\Fac_{41}(s_i)\) occurs only finitely
+often in \(x\), and there are finitely many such words. Take \(N\)
+one greater than the last starting position of any of them, or
+take \(N=1\) if there is no such position.
+
+Call the segment from one \(0\) to just before the next \(0\) a return
+block. In a square-free ternary word every length-\(4\) factor contains
+\(0\). A word of length \(4\) on \(\{1,2\}\) has an adjacent equal
+pair or is an alternating square. Thus consecutive zero positions
+in \(x\) differ by at most \(4\). If a return block \(R\) starts at
+or after \(N\), the length-at-most-\(5\) word \(R0\) occurs in
+\(s_i\) by right extension to length \(41\). All zero positions in
+\(s_i=g_i(t)\) mark return-block starts by the table. The two zeros
+of this occurrence of \(R0\) are consecutive, so \(R\) is one of
+\(A,B,C,D\).
+
+In the return-block sequence of \(g_i(t)\), an adjacent \(AB\)
+occurrence is exactly the image of \(0\). For such a pair to cross
+an image boundary, the image on the left would have to be \(g_i(4)\),
+which ends in \(A\), and the one on the right would have to be
+\(g_i(3)\), which starts in \(B\). The word \(t\) avoids \(\tern{43}\).
+The local rule therefore pairs every adjacent \(AB\) and decodes it
+as \(0\). It decodes the unpaired blocks \(D,C,B,A\) as \(1,2,3,4\),
+respectively. All pairs are disjoint, and the neighbors of a block
+determine whether it belongs to a pair.
+
+Let \(q_0\) be the first zero position in \(x\) at or after \(N\), and
+let \(q_1,q_2\) be the next two. Their bounds are \(q_0\le N+3\),
+\(q_1\le N+7\), and \(q_2\le N+11\). Apply the pairing rule to the
+return-block sequence beginning at \(q_0\). Cut at \(q_1\) unless
+its block is the second member of a pair, in which case cut at
+\(q_2\). The cut is an image boundary and has a preceding return
+block starting at or after \(N\). This gives \(|H|\le N+10\)
+and the exact factorization \(x=H g_i(z_0)\). The decoded word
+\(z_0\) is infinite because each decoded letter uses at most two
+return blocks.
+
+To verify the legality of \(z_0\), consider any factor \(v\) of
+length at most \(4\) in it. Its image \(g_i(v)\) uses at most eight
+return blocks. Include the immediately preceding and following
+return blocks in \(x\), and append the zero that marks the end
+of the following block. The resulting segment has length at most
+\(4(8+2)+1=41\). Its start lies at or after \(N\), including when
+\(v\) is an initial factor of \(z_0\). By right extension to
+length \(41\), the segment occurs in \(s_i\). The zeros identify
+all of its return blocks there. The two neighbors guarantee the
+same pairing decisions on the core. The occurrence in \(s_i\)
+thus decodes to an occurrence of \(v\) in \(t\). All members of
+\(F_5\) have length at most \(4\), so \(z_0\) avoids \(F_5\).
+A square in \(z_0\) would map to a nonempty square in \(x\),
+since \(g_i\) is nonerasing. Hence \(z_0\in\Y\).
+\end{proof}
+
+\begin{lemma}[Uniform five-letter desubstitution]\label{lem:five}
+Every \(z\in\Y\) has the form \(z=p f(z')\), where \(p\) is a
+prefix of length at most \(33\) and \(z'\in\Y\).
+\end{lemma}
+
+\begin{proof}
+For every position \(s\ge33\) the length-\(8\) factor of \(z\)
+starting at \(s\) has \(32\) letters on both sides in \(z\).
+Since \(z\in\Y\), \eqref{eq:window} puts the factor in \(\Fac_8(t)\).
+
+In the displayed images of \(f\), \(0,2,4\) occur exactly at image
+starts, and \(1,3\) occur only as last letters of two-letter images.
+Each \(1\) or \(3\) in \(t=f(t)\) is followed by an image start.
+These are local rules on factors of length two, so position \(33\)
+or \(34\) in \(z\) is an image start. From that position, read \(01\)
+if \(0\) is followed by \(1\), and read the single letter \(0\)
+otherwise. Read \(23\) or \(21\) at a \(2\), and read the single
+letter \(4\) at a \(4\). These cases follow from the length-two
+factors of \(t\) starting at those symbols. Each read ends just
+before another image start. Thus the rule reads the whole suffix,
+length \(32\) or \(33\) is discarded, and \(z=p f(z')\) for an
+infinite word \(z'\).
+
+The morphism \(f\) is nonerasing, so a square in \(z'\) would give
+a square in \(z\). Suppose \(v\in F_5\) does occur in \(z'\).
+Then \(f(v)\) begins at an image start at or after position \(33\)
+in \(z\). For \(v\in F_5\) we have \(|f(v)|\le6\). This follows
+from \(|v|\le3\) except at \(\tern{3423}\) and \(\tern{4234}\),
+whose images have lengths \(6\) and \(5\), respectively.
+Include the first symbol of the next image. The resulting
+segment has length at most \(7\), and its right extension to
+length \(8\) occurs in \(t\). Both its first symbol and the
+appended symbol mark image starts in that occurrence in \(t\).
+They fix the decoding, including at a terminal \(0\) of \(f(v)\).
+Hence \(v\) occurs in the preimage \(t\) of \(t=f(t)\), a
+contradiction. The right boundary matters because, for example,
+\(f(\tern{14})=\tern{230}\) is a prefix of
+\(f(\tern{10})=\tern{2301}\). In fact \(\tern{10}\) occurs
+in \(f^4(0)\), so the bare image \(\tern{230}\) occurs in \(t\)
+even though \(\tern{14}\) is forbidden. Therefore \(z'\) avoids
+\(F_5\) and belongs to \(\Y\).
+\end{proof}
+
+\subsection{Prefix bounds and the arithmetic corollary}\label{sec:arithmetic}
+
+Starting from \(z_0\) in Lemma~\ref{lem:ternary}, apply
+Lemma~\ref{lem:five} successively. Its legality conclusion is the
+hypothesis needed for the next application. Thus for every \(j\ge0\)
+there are \(z_{j+1}\in\Y\) and a prefix \(p_j\) with
+\[
+z_j=p_j f(z_{j+1}),\qquad |p_j|\le33.
+\]
+In particular, for every \(k\ge1\) the original ternary word \(x\)
+has the factorization
+\begin{equation}\label{eq:iteration}
+x=H\,g_i(p_0)\,g_i(f(p_1))\cdots
+     g_i(f^{k-1}(p_{k-1}))\,g_i(f^k(z_k)).
+\end{equation}
+
+Write \(m_k=\min_{a\in\Sigma_5}|f^k(a)|\) and
+\(L_k=\max_{a\in\Sigma_5}|f^k(a)|\). In the order \(0,1,2,3,4\),
+the third iterates are
+\[
+(\tern{0123421},\tern{0423},\tern{01},\tern{0421},\tern{0123}).
+\]
+Every third iterate contains \(0\) and has length at least \(2\).
+Since \(f^3(0)\) contains all five letters, every \(f^6(a)\) contains
+all five letters. Also \(|f^6(a)|\le 64\). It follows that
+\begin{equation}\label{eq:growth}
+m_k\ge2^{\lfloor k/3\rfloor},\qquad L_{k+3}\ge2L_k,\qquad
+L_k\le64L_{k-6}\le64m_k\quad(k\ge6).
+\end{equation}
+For the last inequality, use \(f^k(a)=f^{k-6}(f^6(a))\).
+The sequence \(L_k\) is nondecreasing because \(f\) is nonerasing.
+For \(1\le d\le k\) we have
+\(L_{k-d}\le 2^{-\lfloor d/3\rfloor}L_k\), and thus
+\begin{equation}\label{eq:sum}
+\sum_{j=0}^{k-1} L_j
+\le \left(2+3\sum_{h=1}^\infty 2^{-h}\right)L_k=5L_k.
+\end{equation}
+The part before \(g_i(f^k(z_k))\) in \eqref{eq:iteration} therefore
+has length at most \(|H|+8\cdot33\cdot5L_k=|H|+1320L_k\).
+
+Two of the first six letters of \(z_k\) are equal. Their images
+under \(g_i\circ f^k\) are identical factors of \(x\). Let their
+length be \(n_k\), their starting positions \(u_k<v_k\), and their
+distance \(d_k=v_k-u_k\). Each letter image under \(g_i\circ f^k\)
+has length between \(2m_k\) and \(8L_k\). There are at most five of
+these images between the two starts. By \eqref{eq:growth}, for \(k\ge6\),
+\begin{equation}\label{eq:dist}
+\begin{aligned}
+n_k &\ge2m_k,\qquad
+d_k\le40L_k\le2560m_k\le1280n_k,\\
+u_k-1 &\le |H|+1360L_k.
+\end{aligned}
+\end{equation}
+The equality of the two factors supplies all comparisons needed
+for period \(d_k\) on the length-\((d_k+n_k)\) segment starting at
+\(u_k\). If \(d_k\le n_k\), this segment contains a square of root
+length \(d_k\) at \(u_k\). Therefore \(d_k>n_k\).
+
+Suppose now that \(x\) is a letter permutation of a suffix of a
+ternary digit word \(\mathbf a=a_1a_2\cdots\), after discarding
+\(\ell\) digits. The inverse permutation gives identical factors
+at positions \(\ell+u_k,\ell+v_k\) in \(\mathbf a\). Let \(U_k\) be
+the prefix ending at \(\ell+u_k-1\), and \(V_k\) the segment from
+\(\ell+u_k\) to \(\ell+v_k-1\). Define \(V^w\) for \(w>1\) to be the
+length-\(\lceil w|V|\rceil\) prefix of \(V^\omega\). Using
+\eqref{eq:dist} with \(w=1+1/1280\), we have
+\(\lceil d_k/1280\rceil\le n_k\).
+The periodic segment in \(\mathbf a\) therefore gives
+\begin{equation}\label{eq:abl}
+\begin{aligned}
+U_kV_k^w &\preceq \mathbf a,\qquad
+          |V_k|=d_k>n_k\longrightarrow\infty,\\
+\frac{|U_k|}{|V_k|}
+&\le \frac{\ell+|H|+1360L_k}{d_k}
+ \le \ell+|H|+43520.
+\end{aligned}
+\end{equation}
+Here \(\preceq\) denotes the prefix relation and
+\(L_k\le64m_k\le32n_k<32d_k\).
+The transfer to \(\mathbf a\) uses only equality and length of
+corresponding factors under the permutation.
+
+\begin{proof}[Proof of Theorem T]
+If both alternatives fail, choose two distinct members of \(P\)
+with finitely many occurrences. Cut the digit word beyond their
+last occurrences and beyond every square start. Encode a palindrome
+\(aba\) by the arrow \(a\to b\). Under permutations of \(\Sigma_3\),
+an unordered pair of distinct arrows has a common target, a common
+source, opposite directions on the same edge, or forms a directed
+path of length two. Representatives of the four types are
+\[
+\{\tern{010},\tern{212}\},\quad B_1,\quad B_2,\quad
+\{\tern{010},\tern{121}\}.
+\]
+
+For \(\{\tern{010},\tern{121}\}\), the jump graph of Shallit and Shur
+\cite[\S3.1, Figure 1 and Lemma 21(2)]{SS} excludes an infinite
+square-free avoiding word. Every length-six factor of a square-free
+word contains a jump \(aba\), since three distinct letters in every
+consecutive triple would force a square of length six. Both
+forbidden jumps belong to
+\(\{\tern{010},\tern{121},\tern{202}\}\), one side of the graph.
+With only \(\tern{202}\) left on that side, successive two-edge
+returns give label pairs \(11,22\), or \(33\). The lemma excludes
+an internal \(11\). A pair \(22\) followed by \(22\) gives the
+forbidden \(222\) with a closed two-edge prefix. A pair \(22\)
+followed by \(33\) gives an internal \(223\), also forbidden.
+A tail of pairs \(33\) gives a forbidden \(333\) with a closed
+two-edge prefix. An infinite walk is therefore impossible.
+
+For \(\{\tern{010},\tern{212}\}\), the suffix also avoids
+\(\tern{02120}\). The proof of \cite[Theorem 3.1]{AR} supplies
+prefixes \(Y_k Z_k c_k Z_k\) on the normalized suffix, with
+\(c_k\) a letter, \(|Y_k|\le2^{k+2}\) and \(|Z_k|\ge2^k/3\).
+For all sufficiently large \(k\), the period word \(Z_kc_k\)
+and the final \(Z_k\) give a \(3/2\)-power. After the inverse
+permutation and the restoration of the fixed initial \(\ell\)
+digits, the roots tend to infinity and the prefix-to-root ratios
+are at most \(\ell+12\). For \(B_1\) and \(B_2\) the required
+prefixes are those of \eqref{eq:abl}.
+
+In all three cases with controlled prefixes, take a subsequence
+on which the root lengths strictly increase. Since \(\xi\) is
+irrational, its original digit word is not eventually periodic.
+The criterion of Adamczewski, Bugeaud, and Luca
+\cite[Theorem 1]{ABL}, applied in base \(3\) to that word, makes
+\(\xi-\lfloor\xi\rfloor\) transcendental. This contradicts
+algebraicity of \(\xi\).
+\end{proof}
+
+\subsection{Finite verification}\label{sec:computation}
+
+The supplement's \texttt{verify\_window.py} enumerates the words
+of length \(72\) on \(\Sigma_5\) that are square-free and avoid
+\(F_5\). Starting with the empty word, it appends each letter.
+When the prefix is legal, a new forbidden factor or square must
+end at the appended letter. The checks are therefore all
+forbidden suffixes and every square suffix with root length at
+most half the new length. Induction on length establishes
+completeness of this enumeration.
+
+The enumeration gives \(1{,}012\) legal words of length \(72\)
+and \(33\) distinct centers of length \(8\) at zero-based offsets
+\(32\) through \(39\). Each center occurs in \(f^8(0)\), a prefix
+of \(t\) of length \(72\). The JSON certificate records the
+population at each length, one context witness and one prefix
+offset per center, and a SHA-256 digest of the lexicographic stream
+of legal length-\(72\) words. Running
+\texttt{python verify\_window.py} beside the certificate repeats
+the enumeration and checks the recorded data.
+
+This computation verifies \eqref{eq:window}. Legality of the
+arbitrary infinite preimages, the iteration, and the prefix
+estimates come from the proofs of Lemmas~\ref{lem:ternary}
+and~\ref{lem:five} and Section~\ref{sec:arithmetic}.
+

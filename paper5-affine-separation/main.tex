@@ -1,0 +1,160 @@
+\documentclass[11pt,reqno,a4paper]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+\allowdisplaybreaks[2]
+\raggedbottom
+\setlength{\emergencystretch}{1.8em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{theoremT}{Theorem T}
+
+\newcommand{\Fac}{\operatorname{Fac}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\tern}[1]{\mathtt{#1}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\dist}[1]{\lVert#1\rVert}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\word}[1]{\mathtt{#1}}
+\newcommand{\HH}{\mathcal H}
+
+\title[Affine separation and a transcendental family]
+{Affine separation of squares and palindromes and a full-dimensional transcendental family}
+\newsavebox{\affilbox}
+\address{School of Artificial Intelligence, Shanghai Jiao Tong University, Shanghai, China}
+\email{mqyqwerty@sjtu.edu.cn}
+\date{}
+\subjclass[2020]{11J68, 11J83, 68R15}
+\keywords{Algebraic irrationals, integer-base expansions, squares, palindromes, rational affine maps, Hausdorff dimension, transcendence}
+\hypersetup{pdfauthor={Qiyuan Ma},pdftitle={Affine separation of squares and palindromes and a full-dimensional transcendental family},pdfdisplaydoctitle=true}
+
+\begin{document}
+\sbox{\affilbox}{%
+  \begin{minipage}{0.92\textwidth}
+    \centering\normalfont\normalsize
+    School of Artificial Intelligence,\\
+    Shanghai Jiao Tong University, Shanghai, China\\
+    ORCID: \href{https://orcid.org/0009-0000-9532-0821}{0009-0000-9532-0821}\\
+    \href{mailto:mqyqwerty@sjtu.edu.cn}{mqyqwerty@sjtu.edu.cn}
+  \end{minipage}}
+\author[Qiyuan Ma]{Qiyuan Ma\\[6pt]\protect\usebox{\affilbox}}
+
+\begin{abstract}
+Bugeaud's Problem~10.42 asks whether every real algebraic irrational has unbounded square-root lengths and unbounded palindrome lengths in every integer-base expansion. We show that these two properties can be separated by rational affine maps. There are uncountably many irrationals whose rational affine images all have unbounded palindromes of both parities, while excluding long high-power repetitions; and there are uncountably many whose rational affine images all have unbounded square-root lengths in every grouped base, yet have bounded palindrome lengths. In particular, an argument invariant under rational affine maps cannot establish both conclusions at once. We also construct a set of transcendental numbers of Hausdorff dimension one such that, for every nonconstant rational function $f$ with rational coefficients, the value $f(x)$ is defined and, in every integer base, has bounded square-root lengths and bounded palindrome lengths. Thus any positive answer to the unbounded-length questions must use algebraicity in an essential way: the two properties fail on a full-dimensional set of real numbers. Both questions of Problem~10.42 remain open for algebraic irrationals.
+\end{abstract}
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+For an integer $b\ge2$ and a real number $x$, write $\{x\}=x-\lfloor x\rfloor$ and $\dist{x}=\min_{n\in\Z}|x-n|$. Let $\mathsf S_b(x)$ mean that the canonical base-$b$ expansion of the fractional part of $x$ contains factors $VV$ with $|V|$ unbounded. Let $\mathsf P_b(x)$ mean that it contains palindromes of unbounded length. Bugeaud's Problem~10.42 asks whether each property holds for every real algebraic irrational $x$ and every integer $b\ge2$ \cite[p.~220]{Bugeaud}. Adamczewski and Rampersad posed the corresponding questions in base two \cite{AR}.
+
+The digit block starting after $i$ places and of length $d$ has integer value
+\begin{equation}\label{eq:digitblock}
+ D_{i,d}(x)=\lfloor b^{i+d}x\rfloor-b^d\lfloor b^i x\rfloor.
+\end{equation}
+Leading zeros are included. For a word $W$ let $[W]_b$ denote its integer value. Deleting any fixed prefix preserves both $\mathsf S_b$ and $\mathsf P_b$. A long palindrome can be trimmed symmetrically. If all unbounded squares began in a finite set of starts, one start would have unbounded roots. The second half of a sufficiently large square at that start contains each earlier given square at the same start, and moves that square beyond the deleted segment.
+
+The long-repetition criterion of Adamczewski--Bugeaud--Luca, as stated by Bilu \cite[Theorem~3.3, p.~8]{Bilu}, implies that the greatest length of two disjoint equal factors among the first $N$ digits of a fixed real algebraic irrational is $o(N)$. The corresponding length $L_b(N)$ with distinct starts and possible overlap also satisfies
+\begin{equation}\label{eq:known-early}
+ L_b(N)=o(N).
+\end{equation}
+Indeed, overlapping matches of length $\ell$ at distance $d<\ell$ give a period-$d$ segment of length $\ell+d$. It contains $\lfloor\ell/d\rfloor+1$ adjacent copies of a length-$d$ word. Splitting them into two equal groups gives a disjoint match of length at least $\ell/3$, as in \cite[Lemma~3.4]{Bilu}.
+
+The two properties $\mathsf S_b$ and $\mathsf P_b$ are not interchangeable, and neither is an automatic feature of ``most'' real numbers. The purpose of this paper is to make both observations precise.
+
+Theorem~\ref{thm:affine} separates the two unbounded-length assertions under rational affine maps. For any finite set of nonzero rational slopes, there is an uncountable family of irrationals $x$ such that every image $\lambda x+t$ has unbounded palindromes of both parities, while every rational affine image of $x$ excludes arbitrarily long high powers; and there is a complementary uncountable family for which every such image has unbounded square-root lengths in every grouped base $b^s$, yet has bounded palindrome lengths in each of those bases. Each family contains uncountably many transcendental numbers. Consequently, a proof of both $\mathsf S_b$ and $\mathsf P_b$ for algebraic irrationals cannot proceed by an argument that is invariant under rational affine maps and makes no further use of algebraicity.
+
+Theorem~\ref{thm:nonlinear} supplies a complementary metric obstruction. There is a set $\mathcal K$ of Hausdorff dimension one, consisting entirely of transcendental numbers, such that for every $x\in\mathcal K$ and every nonconstant $f\in\Q(X)$, the value $f(x)$ is defined and its expansion in every integer base has bounded square-root lengths and bounded palindrome lengths. In particular, the unbounded-length conclusions of Problem~10.42 fail throughout a full-dimensional set, and they fail not only for $x$ itself but for every nonconstant rational-function image of $x$. A positive answer for algebraic irrationals must therefore use algebraicity in an essential way. The corresponding polynomial constraints in the construction exclude algebraic points from this particular family; it remains unknown whether the original avoidance sets contain any algebraic irrational.
+
+The algebraic side of the comparison is represented by a congruence restriction that every algebraic irrational must satisfy. Corollary~\ref{cor:modular}, deduced from a cofactor form of the Subspace Theorem, asserts that early length-$\ell$ blocks of a fixed algebraic irrational are pairwise distinct modulo a large prime power. Proposition~\ref{prop:modtest} exhibits, within a single bounded-avoidance class, both uncountable families that obey this restriction and a positive-dimensional compact class that violates it at unbounded lengths and is therefore transcendental.
+
+Theorem~\ref{thm:moving-maps} extends the avoidance from a fixed countable family of maps to moving families of controlled cardinality, still at dimension arbitrarily close to one. The supporting cylinder-event lemmas are recorded in Section~\ref{sec:sparse-arithmetic}.
+
+Both unbounded-length questions of Problem~10.42 remain open for every algebraic irrational in every integer base.
+
+\input{cofactor-modular}
+\input{construct-results}
+\input{cylinder-lemmas}
+\input{nonlinear-avoidance}
+
+\section*{Numbering correspondence}
+For ease of cross-reference, the following table records the numbering of the principal statements as they appeared in an unpublished extended account of related results dated 26~November~2026.
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+This paper & Extended account \\
+\midrule
+Theorem~\ref{thm:cofactor} & Theorem~4.2 \\
+Corollary~\ref{cor:modular} & Corollary~4.3 \\
+Proposition~\ref{prop:modtest} & Proposition~5.1 \\
+Theorem~\ref{thm:affine} & Theorem~5.2 \\
+Lemma~\ref{lem:ordered-cylinders} & Lemma~13.1 \\
+Lemma~\ref{lem:dimension-by-coverage} & Lemma~13.2 \\
+Theorem~\ref{thm:nonlinear} & Theorem~15.1 \\
+Theorem~\ref{thm:moving-maps} & Theorem~15.2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{99}
+\bibitem{AR}
+B. Adamczewski and N. Rampersad,
+\emph{On patterns occurring in binary algebraic numbers},
+Proc. Amer. Math. Soc. 136 (2008), 3105--3109.
+\href{https://doi.org/10.1090/S0002-9939-08-09319-2}{DOI}.
+\href{https://adamczewski.perso.math.cnrs.fr/Overlap.pdf}{Author version}.
+
+\bibitem{Bugeaud}
+Y. Bugeaud,
+\emph{Distribution Modulo One and Diophantine Approximation},
+Cambridge Tracts in Mathematics, vol.~193, Cambridge University Press,
+2012.
+\href{https://doi.org/10.1017/CBO9781139017732}{DOI}.
+
+\bibitem{ABind}
+B. Adamczewski and Y. Bugeaud, \emph{On the independence of expansions of algebraic numbers in an integer base}, Bull. Lond. Math. Soc. 39 (2007), 283--289. \href{https://doi.org/10.1112/blms/bdl036}{DOI}. \href{https://adamczewski.perso.math.cnrs.fr/ProxNbsAlg.pdf}{Author version}.
+
+\bibitem{BBCP}
+D. H. Bailey, J. M. Borwein, R. E. Crandall, and C. Pomerance, \emph{On the binary expansions of algebraic numbers}, J. Th\'eor. Nombres Bordeaux 16 (2004), 487--518. \href{https://www.davidhbailey.com/dhbpapers/algebraic-bits.pdf}{Author version}.
+
+\bibitem{Bilu}
+Y. F. Bilu, \emph{The many faces of the subspace theorem [after
+Adamczewski, Bugeaud, Corvaja, Zannier...]}, S\'eminaire Bourbaki,
+expos\'e 967, Ast\'erisque 317 (2008), 1--38.
+\href{https://www.numdam.org/book-part/AST_2008__317__1_0/}{Publication record}.
+\href{https://arxiv.org/pdf/0907.2098#page=8}{Theorem 3.3, printed p.~8}.
+
+\bibitem{BNY}
+V. Beresnevich, E. Nesharim, and L. Yang, \emph{Winning property of badly approximable points on curves}. \href{https://arxiv.org/abs/2005.02128v3}{arXiv:2005.02128v3}.
+
+\bibitem{DMMM}
+J. Dassow, F. Manea, R. Merca\c{s}, and G. M\"uller, \emph{Inner palindromic closure}, in Developments in Language Theory, LNCS 7907, Springer, 2013. \href{https://doi.org/10.1007/978-3-642-38771-5_15}{DOI}. \href{https://oceanrep.geomar.de/id/eprint/21189/1/DasManMerMul_DLT12_CR.pdf}{Author version}.
+
+\bibitem{EZ}
+S. B. Ekhad and D. Zeilberger, \emph{There are more than $2^{n/17}$ $n$-letter ternary square-free words}, J. Integer Seq. 1 (1998), Article 98.1.9. \href{https://cs.uwaterloo.ca/journals/JIS/zeil.html}{Author text} and \href{https://cs.uwaterloo.ca/journals/JIS/zeile.html}{correction}.
+
+\bibitem{FSU}
+L. Fishman, D. S. Simmons, and M. Urba\'nski, \emph{Diophantine approximation and the geometry of limit sets in Gromov hyperbolic metric spaces}. \href{https://arxiv.org/abs/1301.5630v11}{arXiv:1301.5630v11}, Appendix C.
+
+\bibitem{MT}
+R. A. Moser and G. Tardos, \emph{A constructive proof of the general Lov\'asz Local Lemma}, J. ACM 57 (2010), Article 11. \href{https://arxiv.org/abs/0903.0544}{arXiv:0903.0544}.
+
+\bibitem{PS}
+Y. Peres and W. Schlag,
+\emph{Two Erd\H{o}s problems on lacunary sequences: chromatic number and Diophantine approximation},
+Bull. Lond. Math. Soc. 42 (2010), 295--300.
+\href{https://doi.org/10.1112/blms/bdp126}{DOI}.
+\href{https://arxiv.org/abs/0706.0223}{Author version}.
+
+
+\end{thebibliography}
+
+\end{document}

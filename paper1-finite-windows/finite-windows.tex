@@ -1,0 +1,76 @@
+\section{Transfer from finite windows with few palindromes}
+\label{sec:few-palindromes}
+
+A word is \(r\)-free if it has no factor of length at least \(rp\) and period \(p\) for an integer \(p\ge1\). The notation \(r^+\)-free allows equality. A palindrome catalogue includes the empty word. For an infinite word, \(D_r(N)\) counts the distinct starting positions of factors of exponent at least \(r\) that lie wholly in the first \(N\) digits. Write \(R(N)\) for the greatest length of two disjoint equal blocks in that prefix. A period need not be the least period.
+
+\begin{lemma}\label{lem:pal-catalogue-cut}
+A one-sided word with at most \(P\) recurrent nonempty palindromes has a suffix with at most \(P+1\) distinct palindromes, including the empty word.
+\end{lemma}
+
+\begin{proof}
+If palindrome lengths were unbounded, one parity would occur with unbounded length. For every fixed smaller length of this parity one obtains palindromes at infinitely many distinct centers by symmetric trimming. The alphabet is finite, so at least one word of each such length recurs. This contradicts the bound \(P\). Once lengths are bounded, the finitely many nonrecurrent palindrome types can all be eliminated by taking a suffix past their last starts.
+\end{proof}
+
+\subsection{The ternary six-palindrome case}
+
+\begin{theorem}\label{thm:six-pal}
+A ternary \(9/4\)-free word of length \(L\ge64\), with at most six distinct palindromes, has a square of root length greater than \(L/128\). The root length can be chosen from
+\[
+                \ell_s=(4\cdot2^s-(-1)^s)/3,\qquad s\ge0.
+\]
+For each fixed \(s\), every sufficiently long word in this class has a square of root length \(\ell_s\).
+\end{theorem}
+
+\begin{proof}
+The finite certificate in Round~64 gives \(780\) admissible length-\(19\) words. Each uses all three letters and has exactly two distinct letter doubles. The search appends one letter at a time, rejects a periodic suffix of length \(\lceil9p/4\rceil\) for any tested period \(p\), and accumulates the new palindromic suffixes. Independent enumeration tests all factors of the survivors and verifies the same word list. Consequently any \(W\) as in the theorem has three single-letter palindromes, two doubles and the empty word. These exhaust its catalogue. Name the letter without a double \(2\). A factor over \(\{0,1\}\) has length at most four, since a run of length three is forbidden and three runs would enclose a palindrome of length three or four at their middle run. An interval between consecutive \(2\)'s must consist of two such runs. It is \(0^a1^c\) or \(1^a0^c\) for \(a,c\in\{1,2\}\). Changing direction at a \(2\) gives a length-three palindrome. Swap the names \(0,1\) if necessary.
+
+Discard at most five letters at each end, through the first and from the last \(2\). The remainder is \(E(v)\), where \(E\) inserts \(2\) into each pair \(10\) of a binary word and \(v\) is obtained by deleting the \(2\)'s. The pairs are disjoint, so \(n=|v|\ge2(L-10)/3\ge L/2\). Also \(v\) avoids \(000\) and \(111\). This comparison uses the insertion in the two-sided theorem of Dvo\v r\'akov\'a, Mol and Ochem \cite[Theorem~5]{DMO} with finite cuts.
+
+If \(v\) has a factor of exponent at least \(7/3\) and period \(p\), use its prefix \(xyxyx\) with \(|x|=\lceil p/3\rceil\), \(|y|=p-|x|\). Its image is \(XYXYX\) with \(X=E(x)\) and \(Y\) including the internal insertions and at most two boundary insertions, with at most one when \(y\) is empty. If \(|x|\ge7\), cutting \(x\) at pairs \(10\) gives pieces of length at most four. Thus
+\[
+ |X|\ge5|x|/4-1,\qquad |Y|\le3|y|/2+2
+                   \le3|x|+2<3|X|.
+\]
+The image has exponent greater than \(9/4\) at period \(|X|+|Y|\). For \(1\le|x|\le6\), the \(19{,}732\) choices of \(x,y\) satisfying \(|y|\le2|x|\) and giving \(xyxyx\) without constant triples are checked directly. In each image a factor has exponent at least \(9/4\). Of the nominal periods, \(53\) give equality and four pairs require finding a shorter-period factor. This proves that \(v\) is \(7/3\)-free.
+
+Let \(\tau(0)=01,\tau(1)=10\). The finite-word decomposition of Karhum\"aki and Shallit \cite[Theorem~6]{KS} cuts at most two symbols at each end to obtain \(\tau\) of another \(7/3\)-free word. After \(k\) steps the length is at least \((n+4)/2^k-4>0\) for \(2^k\le n/4\). Take the largest such \(k\), which is at least three. This places some \(\tau^k(d)\) in \(v\). Each \(\tau^3(d)\) contains \(11\), giving two adjacent copies of \(V=\tau^{k-3}(1)\) in \(v\). The first digit of \(V\) is \(1\), so no insertion occurs at their seam and \(E(VV)=E(V)^2\). Its root has length at least \(2^{k-3}>n/64\ge L/128\). At every fixed smaller depth \(s\) with \(s+3\le k\), a \(\tau^{s+3}\)-image supplies the root \(E(\tau^s(1))\). To compute its length, the number \(C_s\) of changes in \(\tau^s(1)\) satisfies \(C_0=0\) and \(C_s=2^s-1-C_{s-1}\). The first digit is \(1\), and the last digit is \(1\) at even \(s\) and \(0\) at odd \(s\). It follows that the number of \(10\) pairs is \((2^s-(-1)^s)/3\), yielding \(\ell_s\).
+\end{proof}
+
+Both assumptions at the threshold matter. Infinite ternary \(7/4^+\)-free words exist by Dejean's theorem \cite{Dejean}. Dvo\v r\'akov\'a, Mol and Ochem \cite[Theorem~3(b),(c)]{DMO} give uniform codes of widths \(4,25\) from ternary \(7/4^+\)-free words. They yield respectively \(2^+\)-free words with at most seven palindromes and \(9/4^+\)-free words with at most six. The codes are injective and a complete image in a juxtaposition of two images starts only at a genuine cut, as verified at all offsets. A square of root length \(p\ge2q\), where \(q\) is the code width, therefore has \(p=mq\). The \(2m-1\) or more full images in it decode to a source block of period \(m\), of exponent at least \(2-1/m\). The source condition gives \(m\le4\). The respective root bounds are \(16,100\).
+
+\subsection{Uniform exclusion of early disjoint matches}
+
+\begin{proposition}\label{prop:dyadic-match}
+For \(b=2,3\), a fixed real algebraic irrational \(\alpha\) and \(0<\epsilon<1/2\), the number of \(j\ge1\) for which \(R(2^j)\ge\epsilon 2^j\) is
+\[
+     O_{\alpha,b}\big(\epsilon^{-s}(1+\log\epsilon^{-1})^2\big).
+\]
+One may take \(s=3\) with the published theorem of Evertse and Ferretti, or \(s=2\) with the preprint interval theorem of Stephan.
+\end{proposition}
+
+\begin{proof}
+Take \(\alpha\in(0,1)\) by subtracting an integer. If the equal blocks start after \(u,v\) digits with \(0\le u<v\) and have length \(h\ge\epsilon 2^j\), then \(v-u\ge h\) and the integer \(P=\lfloor b^v\alpha\rfloor-\lfloor b^u\alpha\rfloor\) satisfies
+\[
+ |e|=|(b^v-b^u)\alpha-P|<b^{-h}.
+\]
+Use the vector \((b^v,b^u,P)\), the forms \(X_1,X_2,\alpha(X_1-X_2)-X_3\) at the real place, and the coordinate forms at the prime \(b\). With \(K=b^v\), the respective exponent rows are \((1,u/v,-h/v)\) and \((-1,-u/v,0)\). Their total is at most \(-\epsilon\). The determinants have absolute value one. A real exponent is one, another is nonpositive, and the finite exponents are nonpositive with a zero. Thus Stephan \cite[Theorem~4.2]{Stephan} gives a bounded number of proper rational subspaces and \(O_\alpha(\epsilon^{-2}(1+\log\epsilon^{-1}))\) intervals for log heights, with upper-to-lower endpoint ratios \(O_\alpha(\epsilon^{-1})\), beyond the lower threshold of that theorem. Since \(\epsilon 2^j\log b\le\log K\le2^j\log b\), each interval covers \(O_\alpha(1+\log\epsilon^{-1})\) values of \(j\), as do the log heights below the threshold.
+
+For a proper subspace take a plane \(aX_1+cX_2+dX_3=0\) containing it. If \(d=0\) then \(v-u\) is fixed, giving \(O(1+\log\epsilon^{-1})\) possible \(j\) by the same endpoint comparison. Otherwise the points \((b^{v-u},e/b^u)\) are collinear. Liouville's inequality gives a lower bound \(c_1b^{-C_1 2^j}\) on the absolute ordinate and the displayed error gives the upper bound \(b^{-\epsilon2^j}\). Partition the \(j\)'s into residue classes modulo \(\lceil C(1+\log\epsilon^{-1})\rceil\), with \(C\) fixed and sufficiently large. Successive points in each class have abscissa at least twice the previous one and absolute ordinate at most one quarter of the previous one, after excluding a bounded number of small \(j\)'s. Among three such points the second secant has at least the first horizontal increment and strictly smaller absolute vertical increment. Its slope cannot equal that of the first secant, even when the ordinates have different signs. Each plane therefore contributes \(O_\alpha(1+\log\epsilon^{-1})\) further scales.
+
+For the published result, divide by the common power \(b^\sigma\) of the three coordinates to make the vector primitive. Since \(\sigma\le u\), the new exponents \(u',v'\) have \(v'-u'=v-u\) and the new log height still lies between \(\epsilon2^j\log b\) and \(2^j\log b\). The error decreases. Set \(k=\lceil4/\epsilon\rceil\) and split \(u'/v'\) into intervals \([l/k,(l+1)/k]\). For each class the normalized real exponents can be taken as \(0,(l+1)/k-1,-1-\epsilon\), and the finite exponents as \(-1,-l/k,0\). They are nonpositive with sum \(-3-\epsilon+1/k\). Evertse and Ferretti \cite[Theorem~3.3]{EF} give the corresponding fixed-weight interval bound and a proper subspace. The plane argument is unchanged since the ratios and the plane equation are preserved by division. The \(O(\epsilon^{-1})\) weight choices yield \(s=3\).
+\end{proof}
+
+\subsection{From window results to square lengths and counts of starts}
+
+We record the counting argument once for the finite-window theorems used here. Suppose that every sufficiently long \(r\)-free window with the prescribed finite palindrome catalogue has two disjoint equal blocks of length \(>cL\), for a fixed \(c>0\). This holds if the window has a square of root length \(>cL\). Take the suffix supplied by Lemma~\ref{lem:pal-catalogue-cut}. In the first \(N\) digits, cut at each position counted by \(D_r(N)\), allowing a fixed initial cut at \(N_0\). The longest remaining consecutive window has length at least
+\[
+                    \frac{N-N_0-D_r(N)}{D_r(N)+1}.
+\]
+Each window is \(r\)-free. In a square-producing case, \(\liminf_ND_r(N)/N=0\) therefore forces actual unbounded square-root lengths, and each prescribed root supplied by arbitrarily long windows occurs arbitrarily late. If the square-root lengths are bounded, the theorem gives a fixed window length beyond which every late window has a full \(r\)-power. Disjoint windows then give \(D_r(N)\gg N\).
+
+Assume now that the digits are those of an algebraic irrational in base two or three. In the separate shells \((2^{j-1},2^j]\), use only \(r\)-powers fully contained in the shell, and cut at their starts. Each remaining piece has length at most \(\max(L_0,c^{-1}R(2^j))\) for a fixed \(L_0\). If \(R(2^j)<\epsilon 2^j\), this shell gives \(\gg\epsilon^{-1}\) distinct starts for large \(j\) and sufficiently small \(\epsilon\). Put \(J=\lfloor\log_2 N\rfloor\). With \(\epsilon=A((\log J)^2/J)^{1/s}\) for sufficiently large fixed \(A\), Proposition~\ref{prop:dyadic-match} leaves a positive proportion of \(J/2\le j\le J\). Summing in distinct shells yields
+\begin{equation}\label{eq:start-count}
+        D_r(N)\gg_{\alpha}
+        \frac{(\log N)^{1+1/s}}{(\log\log N)^{2/s}} .
+\end{equation}
+The implicit constant may also depend on the fixed combinatorial threshold. Using only \(R(N)=o(N)\) from the established long-repetition theorem \cite[Theorem~3.3]{Bilu}, every sufficiently late shell works for any fixed \(\epsilon>0\). Sending \(\epsilon\) to zero gives \(D_r(N)/\log N\to\infty\). Thus for at most five recurrent nonempty ternary palindromes, Theorem~\ref{thm:six-pal} yields \eqref{eq:start-count} with \(r=9/4\), as well as its unconditional symbolic implication from sparse starts. The next two sections give the other parameters.

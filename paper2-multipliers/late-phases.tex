@@ -1,0 +1,268 @@
+\section{Quantitative late phases}\label{sec:late-phases}
+
+Let \(F:\Z_{\ge0}\to[1,\infty)\) be nondecreasing, with
+\(F(J)\to\infty\) and
+\[
+ F(J)^2(1+\log F(J))^2=o(J).
+\]
+For \(h\ge1\) put \(j(h)=\lfloor\log_2h\rfloor\) and
+\(T(h)=\lfloor h F(j(h))\rfloor\). An exceptional set of dyadic
+indices will satisfy
+\begin{equation}\label{eq:bin-count}
+ \#\{j\le J:j\text{ is exceptional}\}
+       \ll F(J)^2(1+\log F(J))^2 .
+\end{equation}
+A conclusion holds on a retained index simultaneously for all integer
+\(h\in[2^j,2^{j+1})\). The corresponding retained integers have
+logarithmic density one, since each complete dyadic interval has
+harmonic weight \(\log 2+O(2^{-j})\).
+
+\subsection{A uniform denominator bound and separation of blocks}
+
+We use the common-weights interval theorem of Stephan
+\cite[Theorem~4.2]{Stephan}, in the setting of fixed algebraic real
+linear forms and coordinate forms at the primes dividing \(b\).
+It extends the interval framework of Evertse--Ferretti
+\cite{EF}. For a fixed system of \(n\) forms, suppose the exponents at the real
+place are at most \(1\), with one equal to \(1\) and one at most
+\(1-\delta/(2n)\). At each finite place they are nonpositive, with
+one zero, and the sum of all exponents is at most \(-\delta\).
+The inequality for each form is its absolute value bounded by the
+sup norm of the integer vector raised to the corresponding exponent,
+up to a fixed admissible real factor. Uniformly over the exponent
+tuples satisfying these conditions, the theorem confines the
+solutions with log height above \(O(\delta^{-1})\) to
+\(O(1)\) proper rational subspaces or to log-height intervals
+\([z,C\delta^{-1}z)\) of which there are
+\(O(\delta^{-2}(1+\log\delta^{-1}))\).
+All uses below have real factor \(1\) and real determinant of
+absolute value \(1\). This quantitative input is a preprint result.
+
+Suppose a counterexample at \(h\) has log height between
+\(c2^{j(h)}\) and \(C(1+F(J))2^{j(h)}\), for \(j(h)\le J\),
+with fixed \(c,C>0\). Use \(\delta=c_0/(1+F(J))\) for a
+sufficiently small constant \(c_0>0\). A given log-height interval
+allows a range of \(2^{j(h)}\) of ratio \(O((1+F(J))^2)\).
+It meets \(O(1+\log F(J))\) possible indices \(j(h)\).
+The height threshold accounts for \(O(1+\log F(J))\)
+additional indices. It follows that the height intervals
+contribute \eqref{eq:bin-count}. The points in proper subspaces
+will be treated directly.
+
+We will use the following elementary observation for the
+three-dimensional cases. Write \(F_J=1+F(J)\). Consider points
+\((b^\Delta,y)\) assigned to lengths \(h\) such that
+\begin{equation}\label{eq:secant-hyp}
+ c h\le\Delta\le C F_J h,\qquad
+ c' b^{-C' F_J h}\le |y|\le b^{-c''h}
+\end{equation}
+for fixed positive constants. A single real affine line contains
+such points with at most \(O(1+\log F(J))\) distinct dyadic indices.
+Indeed, partition the indices into residue classes modulo
+an integer \(O(1+\log F(J))\) so that lengths associated with
+increasing indices in a class grow by a factor at least \(K F_J\),
+with \(K\) sufficiently large. Except for a bounded number of small
+lengths, this makes the horizontal coordinates grow by a factor
+at least two and the absolute vertical coordinates fall by a factor
+at least four. For three successive such points the horizontal
+increment of the second secant is at least that of the first.
+The first vertical increment has magnitude at least
+\(3|y_1|/4\), while the second has magnitude at most \(5|y_1|/16\).
+The secant slopes cannot agree. There are at most two indices
+per class, which proves the observation.
+
+\begin{theorem}\label{thm:late-separation}
+For every fixed \(\xi>0\), outside a set of indices satisfying
+\eqref{eq:bin-count}, all the retained \(h\) satisfy
+\begin{equation}\label{eq:uniform-q}
+       q_\perp\|q\alpha\|>B^{-\xi}
+         \quad(1\le q\le b^{2T(h)}).
+\end{equation}
+In particular
+\(\|k b^m\alpha\|>B^{-\xi}/|k|\) whenever
+\(0\le m\le T(h)\) and \(0<|k|\le b^{T(h)}\).
+
+With a possibly enlarged exceptional set satisfying
+\eqref{eq:bin-count}, the first \(T(h)\) digits of the original
+\(\alpha\) have no two equal \(h\)-digit factors at distinct starts,
+with overlap allowed. In this prefix a square has root length less
+than \(h\), and two palindromes of different centers have
+intersection of length less than \(h\).
+\end{theorem}
+
+\begin{proof}
+Use the fractional part of \(\alpha\), so \(0<\alpha<1\).
+For a counterexample to \eqref{eq:uniform-q} let \(p\) be
+the nearest integer to \(q\alpha\), and reduce \(p/q\) to
+\(p'/q'\). Its error and its base-external factor have
+both decreased, so \(q'_\perp |q'\alpha-p'|\le B^{-\xi}\).
+The vector \((q',p')\) is primitive and has norm \(q'\).
+Liouville's inequality gives
+\(|q'\alpha-p'|\gg (q')^{-(\deg\alpha-1)}\), so the log height
+is \(\gg h\), and it is at most \(2T(h)\log b\).
+At the real place use \(X_1,\alpha X_1-X_2\) and exponents
+\(1,\log|q'\alpha-p'|/\log q'\).
+At \(p_0\mid b\) use exponents
+\(\log|q'|_{p_0}/\log q',0\). Their total is
+\(\log(q'_\perp|q'\alpha-p'|)/\log q'\), which is at most
+\(-\delta\) for \(c_0>0\) small in terms of \(\xi\).
+Each proper rational line contains at most one primitive
+integer vector with positive first coordinate. Its height
+can correspond to \(O(1+\log F(J))\) indices by the two height
+bounds. The interval estimate then proves \eqref{eq:uniform-q}.
+Use \(q=|k|b^m\) for its displayed consequence.
+
+For the repeat assertion fix \(0<\xi<1/4\) in
+\eqref{eq:uniform-q}. Let two length-\(h\) factors start after
+\(m,n\) places, with \(m<n\) and \(n+h\le T(h)\).
+Equality of their labels implies an integer \(p\) with
+\[
+ |e|=|\alpha(b^n-b^m)-p|<B^{-1}.
+\]
+If \(\Delta=n-m\le h/2\), the consequence of \eqref{eq:uniform-q}
+with \(k=b^\Delta-1\) makes this impossible. Thus \(h/2<\Delta\le
+T(h)\). The norm of \((b^n,b^m,p)\) is \(b^n\).
+For the real forms
+\(X_1,X_2,\alpha(X_1-X_2)-X_3\) use exponents
+\(1,m/n,-h/n\). At \(p_0\mid b\) the exponents are
+\(\log|b^n|_{p_0}/(n\log b),\,\log|b^m|_{p_0}/(n\log b),\,0\).
+The total is \(-h/n\) and the log height
+\(n\log b\) is between \(h(\log b)/2\) and \(T(h)\log b\).
+Apply the interval estimate. A containing rational plane
+\(uX_1+vX_2+wX_3=0\) with \(w=0\) fixes \(\Delta\), leaving
+\(O(1+\log F(J))\) possible indices by \(h/2<\Delta\le T(h)\).
+When \(w\ne0\), division by \(b^m\) puts
+\((b^\Delta,e/b^m)\) on the line
+\[
+ y=(u/w+\alpha)x+(v/w-\alpha).
+\]
+Liouville's inequality with denominator \(b^n-b^m\) and the small
+error bound give \eqref{eq:secant-hyp}, including constants
+independent of the plane. Thus the number of exceptional indices
+from the subspaces also satisfies \eqref{eq:bin-count}.
+
+When a square of root length at least \(h\) is wholly in the
+prefix, the first \(h\) digits of each copy are such a repeat.
+If two palindromes of distinct centers intersect in at least \(h\)
+digits, reflect a common \(h\)-digit factor about each center.
+Its two reflections are equal factors at distinct starts in the
+prefix. This proves the last assertions.
+\end{proof}
+
+For example, for any \(\nu>0\) one can take a nondecreasing
+modification of
+\[
+ F(j)=\frac{\sqrt{1+j}}{(1+\log(1+j))^{1+\nu}}.
+\]
+Then \(T(h)\asymp h\sqrt{\log h}/(\log\log h)^{1+\nu}\), and
+the bound \eqref{eq:bin-count} is \(O(J/(1+\log J)^{2\nu})\).
+The absence of repeats is a scale-specific quantitative restriction
+related to the fixed-positive-proportion exclusion of
+Adamczewski--Bugeaud--Luca \cite[Theorem~3.3]{Bilu}.
+
+\subsection{Selectable late phases and growing powers}
+
+\begin{theorem}\label{thm:growing-power}
+Fix \(0<\gamma<1/2\). Outside an exceptional set satisfying
+\eqref{eq:bin-count}, the following assertions hold.
+For fixed \(s\ge2\) and \(0<\theta_0<1\), the counts and seam
+construction in Theorem~\ref{thm:selectable-counts} and
+Corollary~\ref{cor:phase-palindrome} hold at runs of phases in
+\[
+ [\,\lfloor\theta_0T(h)\rfloor,\,
+       \lfloor\theta_0T(h)\rfloor+(2s+16)h\,].
+\]
+One may also prescribe any integer \(s=s(h)\) in the range
+\(2\le s\le F(j(h))/8\). There is a phase
+\begin{equation}\label{eq:growing-phase-window}
+ m\in[\,\lfloor T(h)/4\rfloor,\,\lfloor T(h)/4\rfloor+(2s+16)h\,]
+\end{equation}
+and a positive \(a\equiv1\bmod b\) with
+\(a=o(B^{s-\gamma})\) for which \(a\alpha\) has an actual
+\(V^s\) of least period \(h\) after \(m\) digits.
+The little-oh is uniform for this range of \(s\).
+\end{theorem}
+
+\begin{proof}
+Choose \(\xi>0\) small, and use the retained indices of
+Theorem~\ref{thm:late-separation}. The proof of
+Lemma~\ref{lem:phase-residue} uses the Ridout estimate for
+\eqref{eq:phase-range} and the bound on \(|U+V\alpha_0|\).
+For all the indicated phase windows \(m\le T(h)\). When
+\(s\le F(j(h))/8\), the frequencies involved, including \(V\),
+satisfy \(|k|,|V|\le b^{T(h)}\) for large \(h\).
+The consequence of \eqref{eq:uniform-q} gives both inputs,
+with \(\xi<\sigma/4\), and replaces the Ridout constants by uniform
+bounds. The parameters \(G,H,\Lambda\) and the determinant
+comparisons are independent of \(s\). The final segment
+\(j\ge(s+5)h\) still suffices to compare the \(k_j/r_j\).
+For fixed \(s\) the Fourier proof above applies directly.
+Distinct multipliers of size \(O(A)\) have circle distance
+greater than \(1/M\) by the same consequence of \eqref{eq:uniform-q},
+using \(\xi<\gamma\).
+
+For growing \(s\), we give the uniform Fourier estimates.
+Let \(0<\varepsilon_0<1/100\) be fixed. Convolve a bounded
+interval indicator with the \(p\)-fold convolution of the
+uniform probability density on
+\([-\varepsilon_0/p,\varepsilon_0/p]\).
+The resulting smoothings have support in the fixed
+\(\varepsilon_0\)-enlargement and total variation at most \(2\).
+For derivative order \(k<p\) their \(L^1\) and \(L^\infty\)
+derivative bounds are \(O((C p)^k)\). This follows by
+differentiating \(k\) distinct factors of the convolution, each
+becoming a signed measure of total variation \(p/\varepsilon_0\).
+Their Fourier transforms therefore satisfy
+\[
+ |\widehat f(t)|\ll \min(1,(Cp/|t|)^k).
+\]
+Finite differences with sampling scale \(A'\) give
+\[
+ \left|\sum_n f((n+\zeta)/A')e(nt)\right|
+   \ll A'\min(1,(Cp/(A'\|t\|))^k)
+\]
+uniformly in the sampling shift \(\zeta\) if \(k=o(A')\).
+In fact the \(k\)-th difference has magnitude
+\(O((Cp/A')^k)\) and only \(O(A'+k)\) sampled terms.
+The bounded variation gives \(O(1)\) Riemann-sum error.
+
+Fix \(c_1>0\), and choose \(g_p,\psi_p\) of this form
+supported in \((0,c_1)\) and \((-1/12,1/12)\), respectively,
+with fixed positive integrals. For \(g_p\) choose its smoothing
+width small in terms of \(c_1\). Put \(P(x)=1/2-\cos(2\pi x)\).
+If \(P(x)\sum_{j}\psi_p(L(Dx+j))>0\), then
+\(1/6<x<5/6\) and \(|L\langle Dx\rangle|<1/12\).
+Thus \eqref{eq:target-centred} gives a true hit.
+Sum over \(a=bn+1\) with weight \(g_p(a/A)\).
+At the chosen phases with \(\gamma_0=\gamma+\lambda\), the
+nonzero frequencies \(u+vD\) with \(|u|\le1\) and
+\(|v|\le LB^{\kappa/2}\) have
+\((A/b)\|b(u+vD)\beta\|\gg B^\lambda\), as before.
+The zero term is asymptotic to a positive constant times \(A/L\).
+The sum \(L^{-1}\sum_v|\widehat\psi_p(v/L)|\) is \(O(p)\)
+by the Fourier bound, splitting at a fixed multiple of \(pL\).
+The internal error is \(O(Ap(Cp)^k B^{-k\lambda})\).
+The tail is \(O(A(Cp)^k B^{-(k-1)\kappa/2})\),
+by summing the power decay. Choose
+\(k=\lceil C_1(s+1)\rceil\) with \(C_1\) sufficiently large, and
+\(p=k+2\). Since \(\log p=o(h)\), both errors are \(o(A/L)\)
+uniformly over the stated range of \(s\).
+
+All weights are bounded, so there are \(\gg_{c_1} A/L\)
+positive contributions. The hits use distinct root cylinders by
+the circle distance bound just proved. Since \(A/L\asymp
+B^{1-\gamma}\), one can discard every root with a period
+at most \(h/2\), leaving powers of least period \(h\)
+by the cyclic-shift argument of Corollary~\ref{cor:phase-palindrome}.
+For every fixed \(c_1>0\) there is such a hit with \(0<a<c_1A\).
+Taking the minimum proves the uniform little-oh statement.
+\end{proof}
+
+For \(s=\lfloor F(j(h))/8\rfloor\) the number of copies is unbounded
+and \(sh\) is comparable to \(T(h)\). In \eqref{eq:growing-phase-window}
+the complete block lies in the first \(T(h)\) digits for sufficiently
+large \(h\). Theorem~\ref{thm:late-separation} excludes the same
+root length in the original digits within that window on the retained
+indices. The two results identify where a transfer from changing
+multipliers needs additional information.
+

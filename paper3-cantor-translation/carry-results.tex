@@ -1,0 +1,66 @@
+\section{Exact digit comparisons and rational translations}\label{sec:geometric}
+
+\subsection{When a circle return is a square}
+Let $B=b^h$, $X=\{b^nx\}$, and $Y=\{BX\}$. A square of root length $h$ starting after $n$ digits occurs precisely when $X$ and $Y$ belong to a common half-open cell $[a/B,(a+1)/B)$. For example, if $X=(a+v)/B$ with $0\le v<1$, then $Y=v$, so the second block has value $a$ exactly when $a/B\le v<(a+1)/B$. This cell condition gives both of the following consequences.
+
+\begin{proposition}\label{prop:circle}
+Let $q\ge2$ be coprime to $b$ and $g=\gcd(q,b^h-1)\ge2$. If
+\[
+ \dist{(b^{n+h}-b^n)x}< (1-1/g)b^{-h},
+\]
+then some $x+k/q$, with $0\le k<q$, has a root-$h$ square starting after $n$ digits.
+
+Suppose instead that an irrational $x$ has a tail over a digit set $D$ of size at least two. Put
+\[
+ \omega=\frac{\max D-\min D}{b-1},
+ \qquad j_D=\min_{\substack{a,a'\in D\\a\ne a'}}|a-a'|.
+\]
+If $j_D\ge2\omega$, then $\mathsf S_b(x)$ is equivalent to the existence, for unbounded $h$, of some $n$ in that tail with
+\[
+ \dist{(b^{n+h}-b^n)x}<(j_D-\omega)b^{-h}.
+\]
+For $D=\{0,2\}$ and $b=3$ the threshold is $3^{-h}$.
+\end{proposition}
+
+\begin{proof}
+For the first assertion, take only $k$ divisible by $q/g$. Each such translation rotates both $X,Y$ by the same angle, and the possible angles form the equally spaced $g$-grid. Multiplying the circle cut phases by $B$ still permutes the grid because $\gcd(B,g)=1$. The shorter arc between $X$ and $Y$ has length less than $(1-1/g)/B$, so after scaling by $B$ it cannot cover every cut phase. For a missed phase, $X,Y$ land in one cell. If the two points coincide, all rotations work.
+
+For the second assertion, distinct length-$h$ integers over $D$ differ by at least $j_D$. This follows by taking the first differing digit and bounding all subsequent digits by the full base range. The remainder tails range over an interval of width $\omega$. In ordinary distance, unequal blocks are therefore at least $(j_D-\omega)/B$ apart. If $\omega<1$, a short arc through zero is ruled out for all sufficiently large $h$. If $\omega=1$, a return through zero below the threshold forces the first blocks to be the two extreme constant blocks. Indeed a nonextreme block is at least $j_D/B$ from the relevant endpoint even before adding the nonnegative distance from the other point. The constant words of length $h$ then contain squares of root length $\lfloor h/2\rfloor$. Conversely, matching first blocks leave a distance strictly less than $\omega/B$, since an irrational tail never attains either endpoint. This gives the inequality as $j_D\ge2\omega$.
+\end{proof}
+
+The finite-grid constant is sharp along any unbounded sequence of $h$ with fixed $g\ge2$. In fact, take $d=(1-1/g+\epsilon)/B$, with $0<\epsilon<1/g$, and $X_i=(i+d)/(B-1)$ for $0\le i<B-1$. Then $\{BX_i\}=\{X_i+d\}$. The phases of $BX_i$ form a $(B-1)$-grid up to a fixed rotation. For large $B$, choose a phase so the scaled arc contains every cut phase. The nonaligned translations have relative rotation at least $1/q$, so cannot give one cell for large $B$. These examples are at individual finite scales.
+
+\subsection{A rational translation of the middle-third Cantor set}
+Let $C_3$ be the classical middle-third Cantor set. Every point admits a ternary representation with digits $0,2$. For the arithmetic consequence it suffices to work with irrational points, which have no endpoint ambiguity.
+
+\begin{theorem}\label{thm:cantor}
+There is one rational $\tau$ such that all irrational $x\in C_3$ have ternary palindrome length at most $145$ in $x+\tau$. There is also a direct, non-search construction with bound $847$. In particular, the positive answer to $\mathsf P_3$ for all algebraic irrationals implies the conjecture that $C_3$ contains no algebraic irrational.
+\end{theorem}
+
+\begin{proof}
+Use (ordinary) addition in base three. At each digit let $u$ be the digit of the addend, $a\in\{0,2\}$ the input and $c\in\{0,1\}$ the incoming carry. The output is $a+u+c$ modulo $3$, with outgoing carry $\lfloor(a+u+c)/3\rfloor$. Scanning a palindrome inward uses a pair state $(L,R)$, consisting of the outgoing carry at the left column and the incoming carry at the right column. A transition to $(L',R')$ requires equal output digits from the columns with input carries $L',R$. This checks all possible actual left and right carries.
+
+Use column pairs $A=(0,2)$, $B=(2,0)$, $C=(0,1)$. Directly applying the digit equation, the sequence $A,B,C,A,B$ takes the full state set through
+\[
+ \{00,01,10,11\}\longrightarrow\{00,01,11\}
+ \longrightarrow\{00,11\}\longrightarrow\{01,10\}
+ \longrightarrow\{01\}\longrightarrow\varnothing .
+\]
+Thus the left word $U=02002$ and the reflected right word $V^{\rm rev}=02102$ cannot match, whatever the carries. Pack this pair in a periodic addend as follows. Write $\ell=5$, $P=\ell(\ell+1)$, $W=2(P+\ell)$, and use six macroblocks of width $W$ with colors $001011$. In color zero take the first $W$ letters of $U^\omega$. In color one take the first $W$ letters of $(V^{\rm rev}0)^\omega$. Every reflection of the six colors pairs unequal colors. For a reflection of the whole period, write the reflection sum as $aW+r$. On the two coordinate ranges $i\le r$ and $i>r$, the macroblock reflection sums are $a$ and $a-1$ respectively. The longer range has length at least $P+\ell$. It therefore contains an entire occurrence of $V^{\rm rev}$ starting at a prescribed residue modulo $\ell$, since the possible starts advance by $\ell+1$ and run through every residue over $P$ positions. Choose the residue so its reflected start is a multiple of $\ell$ in the opposite macroblock. This gives the bad pair at a phase for every reflection. A left half of length at least $6W+\ell-1$ contains the necessary full block at that phase. Consequently one cannot have a palindrome of length at least $2(6W+\ell-1)$. This is the bound $847$.
+
+For the smaller constant, let $T$ be the concatenation of the following two rows and use $\tau=[T]_3/(3^{142}-1)$.
+\begin{center}
+\footnotesize\ttfamily
+211020102120122112001122021201202221201220122210201021112002210211021110\\
+2011202022220101212211222020202211212021211020021002202120202022211000
+\end{center}
+For each of the $142$ phases and each parity, start from all four states and iterate the column rule. For the even test use $62$ columns on each side and require equal carries at the center. For the odd test use $73$ on each side and require an allowed central digit. The verifier reproduces all $284$ rejections. Hence there is no even palindrome of length $124$ and no odd one of length $147$. Taking central factors gives the stated bound. Rational translation preserves algebraicity and irrationality, so any algebraic irrational in $C_3$ produces a counterexample to the ternary palindrome assertion.
+\end{proof}
+
+The same five-column calculation applies to any nonadjacent digit set containing the two extreme digits, with $2$ replaced by $b-1$. For a nonadjacent set omitting the top digit after normalization, the column sequence $(0,0),(0,0),(b-1,0)$ suffices. An affine normalization followed by doubling also covers a digit interval of half the full width. The supplemental carry graphs handle some larger digit sets conditionally upon square avoidance. Their role is to force a periodic input along any sufficiently long attempted palindrome path.
+
+One further consequence concerns entropy. If a base-$b$ word has factor count $p(n)$ and $\lim_n n^{-1}\log p(n)<\frac12\log b$, choose a random length-$n$ periodic addend. For each fixed factor of length $n$ or $n-1$ and each phase, the shifted block is uniform for either prescribed incoming carry. The number of palindromes of length $j$ is $b^{\lceil j/2\rceil}$. The union cost for both lengths is at most
+\[
+ 2n\bigl(p(n)b^{-\lfloor n/2\rfloor}+p(n-1)b^{-\lfloor(n-1)/2\rfloor}\bigr),
+\]
+which tends to zero. Some rational translation thus has bounded palindromes. If the palindrome assertion were true in base $b$ for all algebraic irrationals, each such number would have factor entropy at least $\frac12\log b$.

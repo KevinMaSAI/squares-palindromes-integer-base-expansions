@@ -1,0 +1,113 @@
+\section{A four-letter descent for ternary windows}
+\label{sec:ternary-descent}
+
+We use the morphisms of Dvo\v r\'akov\'a, Mol and Ochem \cite[Section~6]{DMO}.
+\[
+\begin{array}{c|l|l}
+a&\eta(a)&\gamma(a)\\\hline
+0&010203&012021201210120102\\
+1&2013&012101202120102\\
+2&0132&012021201020121\\
+3&0102013203&012021201210120212010201210120102
+\end{array}
+\]
+Put \(u=\eta^\omega(0)\), \(v=\gamma(u)\), and let \(F_\eta\) consist of
+\[
+\begin{gathered}
+ 12,\ 21,\ 23,\ 31,\ 103,\ 302,\ 303,\ 132013,\ 320132,\\
+ 2010201,\ 2013201,\ 3013203,\ 030102030.
+\end{gathered}
+\]
+A four-letter word is \(\eta\)-legal if it is square-free and avoids this list. A ternary word is called \(16\)-good if it is \(52/27\)-free and has at most \(16\) palindromes, and \(17\)-good if it is \(25/13\)-free and has at most \(17\). This section uses the stated strict thresholds.
+
+\begin{lemma}\label{lem:first-gamma}
+Every \(16\)-good or \(17\)-good word \(W\) of length \(L\ge4300\) contains, up to relabeling and reversal, a contiguous \(\gamma(z_0)\) with \(z_0\) \(\eta\)-legal and \(|z_0|\ge L/132\).
+\end{lemma}
+
+\begin{proof}
+The first length for which no \(17\)-good word avoids \(010\) is \(132\), by complete enumeration. After relabeling this holds for every \(aba\) with \(a\ne b\). For \(L\ge134\), the interior of \(W\) has all six. Each is enclosed by the third letter \(c\) on both sides, as extending by \(a\) gives a double and extending by \(b\) gives an alternating square. Thus all six \(cabac\) occur. Together with the empty word and the single letters these account for \(16\) palindromes. Even palindromes are excluded by square-freeness. A palindrome of length at least nine would add two new lengths, seven and nine. In a length-seven palindrome the additional outer letter for the center \(cabac\) must be \(b\): \(c\) gives a double and \(a\) gives a relabeling of \(0102010\), which cannot be extended even by one letter while staying square-free. If the extra palindrome exists it can be named \(0120210\). Call the resulting prescribed catalogue the normalized \(17\)-good catalogue.
+
+To give the finite checks a precise meaning, for each class and each window size \(d\) record all central length-\(d\) factors of admissible length-\(3d\) words. Treat these factors as edges with their length-\((d-1)\) prefix and suffix as vertices. After deleting \(d\) letters at both ends of an original word, its consecutive \(d\)-windows form a path in the graph. The reference language of \(v\) is computed exactly. Determine the source pairs of \(u\) by iteration until the rule taking internal \(\eta\)-pairs and seams of all current pairs stabilizes. Every letter occurs, so stability proves completeness. Once \(\min_a|\gamma\eta^k(a)|\ge d\), a reference \(d\)-window meets at most two adjacent images. Enumerating the factors of images of the allowed pairs gives precisely the reference set.
+
+The checked graph for \(16\)-good words at \(d=36\) has \(318\) edges in two components of \(159\) each. Their labels are the \(36\)-factors of \(v\) and their reversals. The normalized \(17\)-good graph at \(d=36\) has \(884\) edges and \(518\) components, with \(566\) edges between components. The only internal edges give the same two label sets as in the \(16\)-good graph. A path can cross at most \(517\) times and traverse at most two stretches of internal edges. There are \(L-107\) windows after the end cuts. Hence there is a contiguous word \(U\) of length at least \((L-624)/2\), all of whose \(36\)-windows belong to one reference direction. There is no length-seven palindrome in those reference windows. Thus \(U\) is \(16\)-good, since \(25/13<52/27\). In the original \(16\)-good case take \(U=W\).
+
+For \(16\)-good words at \(d=186\), the \(42{,}096\) admissible length-\(558\) words give \(1{,}776\) central words, exactly the \(888\) factors of \(v\) and their reversals. The corresponding vertex sets are disjoint. Delete \(186\) letters at each end of \(U\) and choose the reference direction by reversing if necessary. The marker \(M=\gamma(0)\) appears in each reference length-\(185\) word, and in \(v\) it occurs only at physical \(0\)-image starts. The latter assertion is checked on images of the \(12\) allowed source triples. The six first-return words to \(0\) in \(u\), with the next \(0\) excluded, are \(01,02,03,013,032,0132\), and their \(\gamma\)-images are distinct. These follow from the reference factors through length \(20\), since each reference \(19\)-window contains \(0\).
+
+Select the first and last complete marker. Each consecutive marker pair together with the right marker fits in \(186\) positions and occurs in the reference. Indeed the \(185\)-window starting one digit after the left marker contains another complete marker whenever it fits. At the right boundary the claim is automatic from the remaining length. Thus the interval between the first and last marker starts parses into \(\gamma\)-images of source returns. Compared to \(U\), this trims at most \(372\) at each end. A square in the preimage would survive through the nonerasing map \(\gamma\), contradicting square-freeness of the window. Each \(\gamma(f)\) with \(f\in F_\eta\) has length at most \(186\) and has no occurrence, aligned or otherwise, in the reference language, by the same exact table. Hence the preimage is \(\eta\)-legal, and
+\[
+              |z_0|\ge (|U|-744)/33\ge(L-2112)/66\ge L/132 .
+\]
+\end{proof}
+
+The stronger \(16\)-good input in the last step matters. Under just square-freeness and the displayed lists \(F_\eta,F_\gamma\) in \cite[Lemmas~6--7]{DMO}, the claimed central-word equalities fail. The exhaustive length-\(174\) and length-\(558\) enumerations respectively give \(5{,}548\) and \(1{,}446\) distinct centers, compared with \(274\) and \(888\) in the respective reference languages. For each discrepancy the supplement provides a concrete witness tested at all positions and a check of its nonmembership in the complete reference language. Lemma~\ref{lem:first-gamma} uses different hypotheses and establishes the first descent. A separate condition is needed for further descent.
+
+\begin{theorem}\label{thm:ternary-linear-match}
+A \(16\)-good or \(17\)-good ternary word of length \(L\ge40000\) has two disjoint equal blocks of length greater than \(L/12000\).
+\end{theorem}
+
+\begin{proof}
+Write \(\Phi_k=\gamma\eta^k\). The factor \(\Phi_0(z_0)\) from Lemma~\ref{lem:first-gamma} is \(52/27\)-free. We maintain the pair of properties that \(z_k\) is \(\eta\)-legal and \(\Phi_k(z_k)\) is \(52/27\)-free.
+
+Consider two symbol cuts \(s<t\) of \(z_k\), each with a next symbol, and let \(T_k=|\Phi_k(z_k[s:t])|\), with the right index excluded. Match leftwards from the cuts to the longest common suffix of their left contexts, and rightwards just through the common prefix of the images of the respective next letters. If these comparisons yield total matching length \(M_k\), then their union with the gap gives a factor of period \(T_k\) and length \(T_k+M_k\). Thus
+\begin{equation}\label{eq:cut-ratio}27M_k<25T_k.\end{equation}
+When the cuts are tested after appending a rightmost letter, all whole equal letters on the left contribute full image lengths. A first unequal pair contributes its image common suffix. No further matching is needed. For left extensions use the reverse procedure.
+
+Extend the letter functions \(\lambda=(3,2,2,5)\), \(d=(-1,1,1,0)\) additively. Directly from the morphisms,
+\[
+\begin{gathered}
+ \lambda(\eta(a))=6\lambda(a),\qquad d(\eta(a))=d(a),\\
+ |\Phi_k(w)|=C_k\lambda(w)+(9/5)d(w),\qquad C_k=(33/5)6^k .
+\end{gathered}
+\]
+The relative error from \(C_k\lambda(w)\) is at most \(\delta_k=3/(22\cdot6^k)\). Both tables of images are prefix and suffix codes in the sense that no image of one letter contains another image as a prefix or suffix. The property is preserved by composition. For distinct letters \(a,b\), denote the normalized limiting common prefix and suffix by \(P(a,b),S(a,b)\). If the corresponding common end of \(\eta(a),\eta(b)\) is \(J\), followed in the direction of the comparison by distinct \(a',b'\), the recurrence is \(6P(a,b)=\lambda(J)+P(a',b')\), with the analogous equation for \(S\). This gives
+\[
+\begin{array}{c|rrrrrr}
+(a,b)&01&02&03&12&13&23\\\hline
+ 5P&1&6&11&1&1&6\\
+ 5S&5&0&10&0&5&0
+\end{array}
+\]
+and the error after normalization by \(C_k\) is at most \(E_k=(5+2k)6^{-k}\). To see the bound, the actual comparison equals the full image of \(J\) plus the previous-level comparison at the unequal pair. After multiplication by \(6^k\), the error increases at most \(9|d(J)|/33\le2\) per step and initially is at most \(5\).
+
+In the limiting comparison, let \(T\) sum the weights \(\lambda\) between cuts, and \(M\) sum those weights for full matching images and \(P,S\) for partial ones. If \(100M\ge93T\), then for \(k\ge6\)
+\[
+ \frac{M_k}{T_k}\ge
+ \frac{(93/100)(1-\delta_k)-E_k}{1+\delta_k}>\frac{25}{27}.
+\]
+There are at most two partial comparisons and \(T\ge2\), which gives the error term \(E_k\) in the ratio. The last inequality holds at \(k=6\) by exact arithmetic and persists as the errors decrease. Hence later layers need only the necessary test \(100M<93T\). The first six layers use \eqref{eq:cut-ratio} exactly.
+
+The finite descent certificate implements these seven versions of the test, on \(\eta\)-legal words. The longest legal word missing \(M_0=\eta(0)=010203\) has length \(31\). Consecutive complete markers together with the right marker thus fit in \(33\) symbols. The marker is unbordered. For each test the exhaustive enumeration of such intervals gives the same seven possible left-inclusive, right-exclusive return intervals. Six are the \(\eta\)-images of \(01,02,03,013,032,0132\), and the extra one is \(0102032\). Its interval followed by the right marker, and every \(\eta(f)\) for \(f\in F_\eta\) that passes the necessary test on its own, are the seeds for the next enumeration. Each test leaves six seeds of the latter kind. None of the seven seeds for any test extends by \(58\) symbols on \emph{both} sides while passing the test and the legality checks. This exhaustive assertion is implemented by extending right, then extending the reverse using the reversed forbidden list and interchanged prefix and suffix tables. The middle word, both surrounding parts and all inequalities are checked in the extended word.
+
+If \(|z_k|\ge300\), choose full markers within the length-\(32\) bands starting \(58\) positions in from each end. Consecutive markers between the chosen two have the required two-sided padding, so only the six decodable intervals occur. This gives
+\[
+     z_k=P_k\eta(z_{k+1})Q_k,\qquad |P_k|,|Q_k|\le90 .
+\]
+The adjacent marker comparisons have genuine source returns. If \(z_{k+1}\) had a square, its nonerasing \(\eta\)-image would give a square in \(z_k\). If it contained \(f\in F_\eta\), the word \(\eta(f)\) would have \(58\) positions of padding on both sides in \(z_k\), which the seed test excludes. Hence \(z_{k+1}\) is legal. Its physical image \(\Phi_{k+1}(z_{k+1})=\Phi_k(\eta(z_{k+1}))\) is a factor of \(\Phi_k(z_k)\), giving the second maintained condition at the next layer.
+
+Stop at \(12\le|z_k|\le299\). The lower bound follows from the last stage since the largest single \(\eta\)-image has length ten. Termination follows from minimum image length four. Write \(B_i=\Phi_i(z_i)\). As \(10\cdot6^i\le|\Phi_i(a)|\le35\cdot6^i\), the physical losses obey
+\[
+ |B_0|\le 299\cdot35\,6^k+180\cdot35\,\frac{6^k-1}{5}
+ \le11725\,6^k .
+\]
+The first five source symbols include an equal pair. Their two complete images in \(B_k\) are disjoint and have length at least \(10\cdot6^k\). Since \(|B_0|\ge15L/132\), this length is greater than \(L/12000\). Undoing the comparison symmetries returns the two equal blocks to the original window.
+\end{proof}
+
+This descent also recovers the ternary language assertion in \cite[Theorem~8(b),(c)]{DMO}. On a two-sided \(16\)-good word, the first decoding and all subsequent levels have full padding. The allowed adjacent pairs at each level are in \(\mathcal L_2(u)=\{01,02,03,10,13,20,30,32\}\), as follows from the length-two forbidden words and square-freeness. At a large depth each fixed window crosses at most two source images, so it belongs to the language of \(v\). Conversely all reference factors occur, since every \(\eta\)-image contains \(0\), so each reference factor occurs in every sufficiently deep image. In a one-sided \(17\)-good word the \(36\)-graph path eventually stays in one reference component. Taking two-sided limits about occurrences arbitrarily far to the right identifies its recurrent language with the corresponding reference language. Here the original word need not be recurrent.
+
+For a fixed algebraic irrational with at most \(15\) recurrent nonempty ternary palindromes use \(r=52/27\) in \eqref{eq:start-count}, and with at most \(16\) use \(r=25/13\). The result counts starts of powers with a threshold less than two. Under the latter palindrome bound there are also at least \(\lfloor(N-N_0)/450\rfloor\) starts of complete \(41/22\)-powers in the first \(N\) digits. This is a consequence of the published maximum \(449\) for \(41/22\)-free words with \(17\) palindromes \cite[Theorem~1(d)]{DMO}, also verified by the finite program. The two long equal blocks in Theorem~\ref{thm:ternary-linear-match} may be separated.
+
+\subsection{A two-sided witness for the displayed four-letter condition}
+
+For the Hall--Thue word \(T=\theta^\omega(0)\), with \(\theta=(012,02,1)\), use the nonerasing morphism
+\[
+\begin{array}{c|l}
+0&0102030102013\\
+1&010203201301020132030132\\
+2&0102032013010201320301020130102030132 .
+\end{array}
+\]
+Denote it by \(J\). The difference identity \(T_i=1+t_i-t_{i+1}\) for the binary Thue--Morse word \(t\) follows by comparing its four two-letter factors and placing \(\theta\)-cuts at \(2i+t_i\). In particular \(T\) avoids \(010\) and \(212\). A square in this difference word would give two matching binary difference blocks, so the corresponding two length-\((p+1)\) binary blocks differ everywhere by a constant, where \(p\) is the root length. Their shared endpoint forces the constant to be zero, giving an overlap in Thue--Morse, which is overlap-free \cite{KS}. This also proves square-freeness of \(T\).
+
+The exact Hall--Thue language has \(24\) length-eight words. Every image of one of them under \(J\) is square-free, which suffices for square-freeness of \(J(T)\) by Currie's finite test \cite{CurrieTest}. Each checked image avoids \(F_\eta\), whose longest member has length nine, and the shortest \(J\)-image has length thirteen. Hence the checks also capture every possible occurrence of a forbidden factor. The word \(0102030102013010203\) appears in \(J(01)\) and is absent from the length-\(19\) reference language of \(u\). Primitivity of \(\theta\) ensures uniform recurrence of \(T\), and nonerasing \(J\) preserves it. Taking a two-sided limit about occurrences of the witness gives an \(\eta\)-legal two-sided word with a factor absent from \(u\). This contradicts the four-letter language assertion of the displayed Lemma~6 in \cite{DMO}.
+
+The physical exponent constraint in the descent excludes this example. Thue--Morse contains squares \(VV\) with unbounded \(|V|\), by iterating \(\tau\) on \(11\). In the difference word they give \(ZaZ\), with \(|Z|=|V|-1\) and \(a\) the seam symbol. Under any fixed nonerasing morphism \(Q\), the exponents at the displayed period are at least \(1+|Q(Z)|/(|Q(Z)|+|Q(a)|)\to2\). Taking \(Q=\gamma\eta^k J\) works for every fixed \(k\), so this witness does not satisfy the inherited \(52/27\)-free condition.

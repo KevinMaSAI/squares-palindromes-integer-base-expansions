@@ -1,0 +1,61 @@
+\subsection{Finite avoidance and a count of starts}\label{sec:finite}
+Let $H(N)$ be the greatest length of a square-free factor of the first $N$ ternary digits that contains at most four of the six words in Theorem~T. Set $H(N)=0$ if the maximum is over the empty family. We record the finite-word input in a form that gives the loss estimates used below.
+
+\begin{lemma}[Finite repeated factors]\label{lem:finite}
+A square-free ternary word $W$ of length at least $1000$ that misses two of the six words has two equal length-$r$ factors at distance $d$, with
+\[
+ r\ge |W|/217600,\qquad r<d\le2560r .
+\]
+\end{lemma}
+
+\begin{proof}
+Associate the word $aba$ with the directed edge $a\to b$. The four types of pairs are a common endpoint, a common starting point, two opposite directions, and a directed path. Representatives are $\{010,212\}$, $\{010,020\}$, $\{121,212\}$, and $\{010,121\}$. The last class has an empty legal length-$24$ layer. For the first type use Hall desubstitution. For the middle two use the outer morphisms of the preceding section and then $f=f_5$. The finite-window verifier in the supplement gives the following local deconcatenation input, with legal preimages and both ends retained as losses. The outer cut has total loss at most $47$, with nonempty outer image lengths between $1$ and $8$. Above length $79$, each Hall or five-letter step strictly decreases the legal preimage length, keeps at least seven letters, and leaves two end words of total length at most $67$. The supplied proof verifies synchronization at both ends. The Hall fixed point is the one for $(012,02,1)$ \cite{Hall}.
+
+For the inner morphism $\phi$, let $L_j$ and $m_j$ be the greatest and least lengths of the images of letters under $\phi^j$. The bounded windows are used only to establish the deconcatenation rules. The iteration is justified because each preimage remains legal. For $f$, the word $f^6(a)$ contains every letter and has length at most $64$, and all $f^3(a)$ have length at least $2$. For Hall the same statements hold with $3$ in place of $6$ and upper bound $27$ in the first assertion. Thus $L_j\le64m_j$, $L_{j+3}\ge2L_j$, and $\sum_{j<k}L_j\le5L_k$. Edge cases before the full incidence powers satisfy the same bounds by the image length estimates.
+
+Stop when the inner word has length between $7$ and $79$. Iterating the upper bounds for the two end words gives
+\[
+ |W|\le47+8(67\cdot5+79)L_k\le3400L_k.
+\]
+Among its first six inner letters two coincide. Their original images have length at least $m_k$ and distance at most $40L_k$. A match at distance $d\le r$ would already contain a square with root length $d$. Permuting letters back preserves these lengths and positions.
+\end{proof}
+
+\begin{theorem}[Quantitative ternary windows]\label{thm:window}
+For a real algebraic irrational $\alpha$, the function $H$ satisfies $H(N)=o(N)$. For $0<\eta\le1$ there is also the bound
+\begin{equation}\label{eq:dyadic}
+ \#\{j\ge1:H(2^j)\ge\eta2^j\}
+ \ll_\alpha \eta^{-2}(1+\log(1/\eta))^2 .
+\end{equation}
+For any two of the six distinct words $P,Q$, the number of positions among the first $N$ that start a square, $P$, or $Q$ is
+$\gg_\alpha(\log N)^{3/2}/\log\log N$ for sufficiently large $N$.
+\end{theorem}
+
+\begin{proof}
+If $H(N)\ge\eta N$ for unbounded $N$ and fixed $\eta>0$, Lemma~\ref{lem:finite} produces two disjoint equal blocks of length at least $\eta N/217600$ in the first $N$ actual digits. The known long-repetition criterion \cite[Theorem~3.3]{Bilu} gives the contradiction. This deduction uses the finite desubstitution lemma to force the two blocks. The extra bound $d\le2560r$ in that lemma controls the exponent budget in the quantitative proof.
+
+Here are the steps for \eqref{eq:dyadic}. Write $C=217600$, $K=2560$, and let $L\ge\eta N$ be the length of a bad factor, with $N=2^j$ and $L\ge4000$. Apply the lemma to its last $\lfloor L/3\rfloor$ letters and extend the two equal words leftward as far as their equality permits. They cannot extend to length $d$ inside the bad factor. Their preceding digits exist and differ, since their extension is shorter than $L/3$ and they started in the last third. If the first start is after $u$ digits, the second after $t=u+d$, and the new matching length is $\ell$, then
+\[
+ u\ge L/3,\quad d\ge L/(4C),\quad t\le N,\quad \ell\ge d/K .
+\]
+Let $p/(3^t-3^u)$ be obtained by extending that period forever after the first $u$ digits of $\alpha$'s fractional part. Then
+\[
+ |(3^t-3^u)\{\alpha\}-p|\le3^{-\ell},\qquad 3\nmid p .
+\]
+The divisibility assertion follows by comparing the unequal preceding digits of the two equal words. The height of $(3^t,3^u,p)$ is $3^t$.
+
+Let $\theta=d/t$, split its possible range into dyadic bands $[s,2s]$, and split each band into $2K$ intervals. On one interval $[a,a']$, the normalized exponents for the real forms $X_1,X_2,\{\alpha\}(X_1-X_2)-X_3$ and the three coordinate forms at $3$ are bounded by
+\[
+ (0,-a,-1-a/K)\quad\hbox{and}\quad(-1,-1+a',0).
+\]
+The sum is $-3-\delta$, with $\delta=a/K-(a'-a)\ge s/(2K)$. The determinants have absolute value $1$. The interval form of the quantitative Subspace Theorem \cite[Theorem 3.3]{EF} gives one exceptional proper subspace and $O_\alpha(\delta^{-2}(1+\log(1/\delta)))$ height intervals. The large intervals have the form $[D,D^\omega)$ with $\omega\ll_\alpha\delta^{-1}$, and the remaining low height bound has $\log D_0\ll_\alpha1+\delta^{-1}$. Since $\eta2^j/3\le t\le2^j$, each large interval contains at most $O_\alpha(1+\log(1/\eta))$ of the selected dyadic indices. Summing over the bands, starting at $s\ge\eta/(8C)$, gives the right-hand side of \eqref{eq:dyadic}. Small $L$ and the low height range add at most logarithmically many indices.
+
+For the exceptional subspace, split the dyadic indices modulo
+\[
+ g=\left\lceil\log_2(8C/\eta)\right\rceil .
+\]
+Along one class the selected $u,d$ both strictly increase. Three vectors are independent. Divide each row of their determinant by $3^u$. The two resulting product terms have distinct $3$-adic valuations $d_1-u_3$ and $d_1-u_2$, since $3\nmid p$. Each exceptional subspace thus contains at most two vectors per residue class, which contributes a smaller term.
+
+Finally set $\eta=A\log J/\sqrt J$, for a sufficiently large fixed $A$. By \eqref{eq:dyadic}, a positive proportion of $j$ in $[J/2,J]$ satisfy $H(2^j)<\eta2^j$. In each good dyadic annulus take disjoint blocks of length $\lfloor\eta2^j\rfloor+1$. In each block there is a square or at least five of the designated three-letter words. In the latter case one of $P,Q$ occurs. The number of starts is $\gg J/\eta$. Taking $J=\lfloor\log_2 N\rfloor$ completes the count.
+\end{proof}
+
+The supplement gives the composite-base height normalization for factors using only three actual digits. It also gives the binary variants based on the Karhum\"aki--Shallit desubstitution and on the Badkobeh--Ochem short-square catalogues. These count occurrences, including finite root ranges in specified subclasses. The count does not improve to unbounded root lengths by a change of quantifiers. One elementary obstruction is to double each letter of a ternary square-free word. It has no $aba$ with $a\ne b$, and every square has root length $1$. An odd root of length at least $3$ would move a change of letter to the wrong parity, and an even root would give a square in the undoubled word.

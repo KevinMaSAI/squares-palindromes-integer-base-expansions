@@ -1,0 +1,84 @@
+\section{Bounded avoidance and affine separation}\label{sec:construct}
+
+\subsection{Avoiding examples and an exact algebraic identity}
+Several supplemental constructions are useful for testing the quantifiers. In binary, the separate minimum caps are root length $2$ and palindrome length $5$. Dassow, Manea, Merca\c{s}, and M\"uller already obtained both caps in the same infinite binary word, and the caps $1,2$ in ternary \cite[Theorems 4 and 5]{DMMM}. A different synchronized ternary-to-binary code in the supplement attains the binary caps and has independent alternatives of fixed widths $605$, $619$, and $630$. It uses the Brinkhuis choices of Ekhad and Zeilberger with their correction \cite{EZ}. The finite verification checks the choice lengths and synchronization. The infinite proof transfers a long synchronized square to a square in a square-free source. A separate absolute-game construction works simultaneously for all integer bases and all fixed nonconstant algebraic-coefficient rational functions on their domains. It yields bounded palindrome and square lengths compatible with ordinary irrationality exponent $2$ and the stated restricted-denominator and repetition conditions. The supporting results use the potential-game equivalence and countable intersection properties \cite{FSU,BNY}.
+
+The digit series also has an exact arithmetic constraint. Write $F(z)=\sum_{i\ge1}a_i z^i$ for the fractional digits in a base $b$. For an integer polynomial $P$, let $c_i=[z^i]P(F(z))$. If $P(F(1/b))=0$, then
+\[
+ R_m=\sum_{i>m}c_i b^{m-i}=-\sum_{i\le m}c_i b^{m-i}\in\Z,
+ \qquad b R_{m-1}=c_m+R_m .
+\]
+This is the tail integrality used in \cite{BBCP}. In the supplemental constructions with isolated convolution coefficients, two long zero buffers and a nonzero intervening block put one such integer strictly between consecutive integers. The buffers dominate the polynomial coefficient growth. A multiscale choice of supports handles a fixed degree $d$, including mixed sums of old and new positions. The construction excludes every algebraic point of degree at most $d$ in an explicit positive-dimensional compact set. A degree-varying schedule gives an all-transcendental compact set with dimension zero in the Hausdorff sense and full packing dimension relative to its chosen two-symbol digit system. These are specific constructions. An arbitrary square or palindrome cap has not been shown to impose convolution buffers.
+
+\subsection{Testing the early congruence criterion}
+The independent code choices give two contrasting arithmetic families within the same bounded avoidance class. We describe these separately because neither statement assumes that a generic digit behavior holds for algebraic numbers.
+
+\begin{proposition}\label{prop:modtest}
+In every base $b\ge2$ there are uncountably many simultaneous avoiders, with square roots of length at most $2$ and palindrome lengths at most $5$, that satisfy the pairwise congruence exclusion of Corollary~\ref{cor:modular} for all fixed $p,A,c$. There is also an explicit compact class with the same caps and with
+\[
+ \dim_{\mathrm H}\ge (\log_b 2)/(14\cdot630)
+\]
+in which every point violates that exclusion at unbounded lengths and is therefore transcendental. All these constructions use the two digits $0,b-1$.
+\end{proposition}
+
+\begin{proof}
+For the first statement sample the independent choices in the width-bounded code. Place the binary labels at $0,b-1$. The outcome has no six identical consecutive digits, so every tail stays at least $b^{-6}$ from each endpoint. If two length-$\ell$ block integers differ by at most $b^{(1-\varepsilon)\ell}$, their actual tails agree for the first $\lfloor\varepsilon\ell/2\rfloor$ digits for all large $\ell$. Indeed two distinct cells of this shorter depth have an inward margin of $b^{-6}$ times their width on both sides. Equal sufficiently long words in this code cannot overlap because an overlap would make a square of root length beyond $2$. Condition on all variables other than the complete tiles of the first word. The second word is fixed, which gives an exponentially small probability of an early numerical difference that small.
+
+Next fix $p$ and a modulus $M=p^k\ge b^{\varepsilon\ell}$. Let $h$ be the lag of the compared blocks and $T=\lfloor\varepsilon\ell/4\rfloor$. For $h\ge T$ use the final $T$ digits of the later block, which are outside the earlier block. For $h<T$ use the final $T$ digits of the earlier block, which lie in the overlap. Varying complete tile choices inside the selected window changes the block difference by a change of window integer, or by $(b^h-1)$ times that change respectively. Its range in either case is smaller than $b^{2T}<M$, and distinct assignments give distinct values. Hence the chance of divisibility by $M$ is at most $2^{-\lfloor T/630\rfloor+2}$. Among starts at most $A\ell$, both bad-event probabilities are summable after the quadratic pair count. The Borel--Cantelli lemma and a countable intersection over parameters prove the first statement for almost every choice. The coding measure is atomless.
+
+For the second statement start with the Hall--Thue fixed word for $\theta=(012,02,1)$. It begins in $0120210$. Its fourth and seventh letters give two copies of $\theta^k(0)$ after applying $\theta^k$. If $m=|\theta^k(0)|$, these disjoint source intervals begin after at least $m$ source letters and end before or at $7m$. This follows from the length recursion $(a,b,c)\mapsto(a+b+c,a+c,b)$ and the fact that $a$ is the largest. Choose successive $m$ increasing by factors at least $14$. The two copies have a common encoded length $\ell\in[605m,630m]$, and each admits $2^m$ different digit words. Fix $p\nmid b$ and take the largest $p$-power at most $2^{\lfloor m/2\rfloor}$. A residue class contains at least $2^{m/2}$ code words. A Hamming ball of radius $\lfloor m/16\rfloor$ in the $m$ choices has size at most
+\[
+ ((9/8)2^{3/16})^m<2^{m/2}.
+\]
+Choose two sufficiently distant words in one residue class and fix them in the two source intervals. The digit starts are below $8\ell$, the two words differ, and their modulus is at least $b^{(\log_b2)\ell/2520}$ for large $m$. This violates Corollary~\ref{cor:modular} on every point of the fixed class. Eventual periodicity is excluded by the square cap, so the points are transcendental. In particular these demonstrated collisions concern two words differing at a positive proportion of digit positions.
+
+At most two length-$m$ source intervals are fixed at each stage. At least $m/2$ free source positions precede the first of its intervals, since the previous stage ends before or at $m/2$. The stage ends before or at $7m$. Thus every prefix has at least a $1/14$ free fraction, and a depth-$k$ digit cylinder has at least $\lfloor k/630\rfloor$ complete tiles. The product measure on the free choices gives the claimed dimension by the mass distribution bound.
+\end{proof}
+
+\subsection{Separating the two properties under affine maps}
+The following two statements control a finite prescribed menu of slopes for occurrence and the entire rational affine family for avoidance. An affine map always has nonzero slope.
+
+\begin{theorem}\label{thm:affine}
+Fix $b\ge2$ and a finite set $\mathcal L\subset\Q\setminus\{0\}$. There are uncountably many irrational $x$ of each of the following types.
+\begin{enumerate}
+\item For every $\lambda\in\mathcal L$ and $t\in\Q$, $\lambda x+t$ has unbounded palindromes of each parity in base $b$. Every rational affine image of $x$ excludes arbitrary large periods $m$ of factors of length at least $wm$, for each fixed $w>1$.
+\item For every $\lambda\in\mathcal L$, $t\in\Q$, and $s\ge1$, $\lambda x+t$ has unbounded square-root lengths in base $b^s$. Every rational affine image of $x$ has bounded palindrome lengths in each base $b^s$.
+\end{enumerate}
+Each set has an uncountable subset of transcendental numbers.
+\end{theorem}
+
+\begin{proof}
+Take positive slopes first and include $1$ in the finite target menu. Write a rational affine map $f$ as $Q_f f(x)=A_f x+r_f$ with positive integer $A_f,Q_f$. Its carry
+\[
+ C_j=Q_f\{b^jf(x)\}-A_f\{b^jx\}-\{b^jr_f\}
+\]
+is an integer with $|C_j|\le A_f+Q_f+1$. For a cell of $d$ digits, \eqref{eq:digitblock} gives
+\[
+ Q_fD_{i,d}(f(x))\equiv A_fD_{i,d}(x)+D_{i,d}(r_f)-C_{i+d}\pmod{b^d}.
+\]
+Eliminate the original block from this congruence for $f$ and a map $g$ whose patterns will be avoided. The resulting congruence between the two image block integers has nonzero bounded coefficients and bounded unknown carry. With $g$ fixed the bounds are uniform over all target maps $f$ because their slope menu is finite. The rational part $r_f$ contributes only a specified block. A congruence in one unknown has at most the absolute value of its coefficient solutions modulo $b^d$. Hence, for a pair of cells, requiring the two $g$-blocks to be related by a prescribed bijection gives at most $T_g$ choices of the right target block for every left target block, for a constant independent of $d$ and of the target translations. This holds for the identity bijection as well as any prescribed reversal of groups.
+
+To realize target windows in one real number, fix an even guard $G$ with $b^G\lambda>4$ and $b^G/\lambda>4$ for every target slope. At a stage with a closed base-$b$ input cylinder of depth $N$, leave $G$ digits before and after the target window. The image contains a complete depth-$N+G$ closed output cylinder in its interior. Appending any target word $Y$ to that output prefix yields an open cylinder whose inverse image contains a complete closed input cylinder of depth $N+2G+|Y|$ strictly inside it. This defines nested nonempty closed cylinders. The unique limit realizes all specified target windows exactly, independently of how the finite cylinders are selected.
+
+For the first type enumerate and repeatedly use all prescribed $(\lambda,t,\text{parity})$, with lengths tending to infinity, and plant a palindrome at each window. For the second enumerate prescribed $(\lambda,t,s)$ and plant a square whose root length is a multiple of $s$. To align its start modulo $s$, precede it by an auxiliary square in the identity image. All offsets are even. The auxiliary root length can be chosen in a suitable residue class modulo $s$ so the next start is a multiple of $2s$. Guards stay fixed.
+
+Give each reflected pair in a palindrome template, or each pair of positions at corresponding places in a templated square, an independent uniform base-$b$ digit. There are at most two positions per variable. One class per window can be fixed in advance to zero or one. We show that the unfixed digits can be chosen to avoid all unwanted long comparisons.
+
+For the first type the comparisons are forward matches of length $k=\lfloor m/h\rfloor$ at lag $m$, for every comparison map $g_\nu$ and integer $h\ge1$. The two windows are disjoint. For the second type the comparisons are two flanks of length $k$ in base-$b$ digits, in reverse order of their $s$-digit groups. The center has width $0$ or $s$. Enumerate the comparison map, $s$, and parity jointly in $\nu$. Choose $d=d_\nu>2G$ with $T_{g_\nu}\le b^{d/2}$, and in the second type with $s\mid d$. Partition paired flanks into matching cells of width $d$ from the appropriate ends. Each match is a fixed bijection of the cell digits.
+
+Discard cells meeting a guard, a predetermined digit, or a repeated variable in their own pair. For completeness, discard also all pairs touching a fixed initial region of length $B_\nu$ until all later planted windows have length at least $1000d$. The number of later windows touched, counted separately on each side, is at most $r=2k/(1000d)+4$. Intervening guards lose at most $4(r+4)$ pairs, and prescribed classes at most $2r$. When planted words are palindromes and the comparison is forward, internal mirror collisions require a center in the cell. A collision across a pair requires a fixed sum of the two positions, and the sums in successive cell pairs occupy disjoint ranges. When planted words are squares and the comparison is backward, an internal collision is impossible because the planted root is at least $500d$. The crosses instead require a fixed difference in disjoint ranges. In either orientation these collisions cost at most $3r$ more pairs. The early region costs at most $2B_\nu/d+4$. For $k\ge1000(B_\nu+d)$ this leaves at least $k/(2d)$ pairs with all their internal variables distinct.
+
+Within either planted template the partners of a cell occupy at most two intervals of length at most $d$. Each interval meets at most two cells on each flank. A pair can therefore share variables with at most sixteen other pairs. Greedily retain at least $k/(34d)$ independent pairs. The probability that all of these meet the necessary congruence constraints for a genuine comparison is at most $b^{-k/68}$. This defines a finite bad event without reference to the unknown input digits.
+
+Set $\rho=999/1000$. Impose additionally $k\ge100000+\nu+h$, with $h=1$ for the second type. Assign each event weight $\rho^k$. An event uses at most $2k$ variable classes, involving at most $4k$ positions in the whole template. For each such position, at most $2k'$ starts of a specified comparison of length $k'$ and lag qualify. In the first type the lag has at most $h'$ values for that length. Thus the neighbor weight is at most
+\[
+ 8k\sum_{j\ge100000}(j+1)^4\rho^j<k/2000 .
+\]
+The inequality follows from $\rho^{1000}<1/2$ and a consecutive-term ratio below $1999/2000$ in this tail. Every event weight is at most $1/2$, and its bad probability is at most $\rho^{2k}$ since $\rho^{136}>1/2$. The product of one minus the neighboring weights is at least $\exp(-k/1000)\ge\rho^k$. The asymmetric Lov\'asz Local Lemma applies to every finite subfamily \cite[Theorem 1.2]{MT}. Compactness gives one assignment avoiding all bad events, and the nested cylinders realize it. Every actual long forbidden comparison would trigger its necessary bad event.
+
+Taking $h$ with $1/h\le w-1$ enforces the first repetition bound. The reversed comparison enforces the second palindrome bound in its specified grouped base. A rational $x$ would violate the first type's square bound in the identity image, or the second type's palindrome bound after translating by $-x$. Thus the constructed points are irrational. For an irrational, changing sign complements the digits, which preserves all the asserted properties. Different choices of the predetermined class in each target window specify different real numbers, since that digit is fixed in the actual target image. This gives uncountability, and removing the countably many algebraic numbers gives the last assertion.
+\end{proof}
+
+\begin{remark}
+Even palindromes behave differently under grouping from odd ones. For any real $x$, one even palindrome in base $b^s$ gives a square of root length $s$ in base $b$ by comparing its two central base-$b^s$ digits. If such even palindromes occur for unbounded $s$, then $\mathsf S_b(x)$ holds. An odd palindrome supplies the central relation $UVU$ with $|U|=|V|=s$, which gives a period-$2s$ factor of length $3s$. The original palindrome question does not stipulate parity.
+\end{remark}

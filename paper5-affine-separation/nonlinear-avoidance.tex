@@ -1,0 +1,69 @@
+\section{Nonlinear rational maps and an intrinsic transcendental family}
+\label{sec:nonlinear}
+
+The integer and affine constraints in Section~\ref{sec:sparse-arithmetic} permit a common one-sided probability estimate. The same estimate survives restriction to a dyadic interval on which a nonlinear map has bounded distortion. The absolute-game argument of R5 already gives simultaneous avoidance for every algebraic-coefficient rational map. The proof below gives a direct compact construction, an effective separation for a specified algebraic input, and uniform control for prescribed moving families.
+
+\begin{theorem}\label{thm:nonlinear}
+Let $\mathcal K$ be the set of real numbers $x\in[0,1]$ with the following property. For every nonconstant $f\in\mathbb Q(X)$, the value $f(x)$ is defined and its digit expansion in every integer base has bounded square-root lengths and bounded palindrome lengths. Then $\dim_{\rm H}\mathcal K=1$, and every element of $\mathcal K$ is transcendental. For every $s<1$ the construction gives a compact subset of $\mathcal K$ of dimension at least $s$.
+\end{theorem}
+
+\begin{proof}
+Use fair binary digits as the common probability space. Let $f\in\mathbb Q(X)$ be nonconstant. A point $x$ is regular for $f$ when $f$ is defined on a neighborhood of $x$ and $f'(x)\ne0$. For every binary representation of a regular point there is a closed prefix interval $J$ of depth $r$ on which $f$ has no pole, is monotone, and
+\begin{equation}\label{eq:derivative-tube}
+                         d\le |f'|\le 4d,\qquad d=2^k,\quad k\in\mathbb Z.
+\end{equation}
+Continuity permits the ratio of the maximum and minimum derivatives to be made less than $2$ by taking a sufficiently short interval. Choosing the largest dyadic power at most the minimum proves the assertion. Include in one countable list every tuple $(b,f,J,d)$ satisfying \eqref{eq:derivative-tube}, where $b\ge2$ is an integer. Different representations at a dyadic endpoint can use different intervals in this list.
+
+Fix one tuple. Let $F_{b,h}$ be the union of the closed digit cylinders for squares of root length $h$ and palindromes of lengths $2h$ and $2h+1$. It consists of at most $(b+2)b^h$ closed arcs with total length at most $3b^{-h}$. For a shift $m$ put
+\[
+ q=b^m,\qquad u=\lfloor\log_2(qd)\rfloor,\qquad
+ v_h=3+\lceil(2h+2)\log_2 b\rceil,\qquad \ell=u+v_h.
+\]
+Keep all $m$ for which $u\ge r$. The forbidden event is the union of binary cylinders of length $\ell$ with prefix $J$ whose closed real images meet
+\[
+       \{x\in J:q f(x)\bmod 1\in F_{b,h}\}.
+\]
+Its probability conditional on any binary $u$-cylinder is at most $30b^{-h}$. Indeed a $u$-cylinder either has prefix $J$ or contributes no symbolic event. On one with prefix $J$, passage to the whole covering cylinder moves $qf(x)$ by at most
+$q(4d)2^{-\ell}<8\cdot2^{-v_h}\le b^{-2h-2}$. The resulting enlargement of $F_{b,h}$ has length at most $5b^{-h}$. The real interval $qf(I)$ for a binary $u$-cylinder $I$ has length between $qd|I|$ and $4qd|I|$. It meets at most $4qd|I|+2$ unit intervals, and $qd|I|\ge1$. The inverse branch has derivative bounded by $(qd)^{-1}$. The conditional probability is at most $6\cdot5b^{-h}$ as claimed. This argument uses actual real cylinders and their images. At endpoints the symbolic prefix specifies the side.
+
+Fix $0<4\sigma<\log 2$. If the tuple has index $i$, choose an integer $H_i\ge i$ so large that
+\[
+       \sum_{h\ge H_i}30 b^{-h}\exp(2v_h\sigma)
+                              <\sigma 2^{-i-1}.
+\]
+The choice is possible since $v_h\le4+(2h+2)\log_2 b$. Use the summand as the weight of the event at $(m,h)$. For each closing level $\ell$ and each $(i,h)$ at most one $m$ occurs, because $u$ increases by at least one at each step. For fixed $\ell$ only finitely many indices occur since $H_i\ge i$. The weight sum at each closing level is at most $\sigma/2$. Each event with conditional upper bound $p_i$ and weight $x_i$ satisfies $p_i\le x_i\exp(-2(\ell_i-u_i)\sigma)$. Lemma~\ref{lem:ordered-cylinders} supplies a compact set of binary sequences avoiding every event, and the covering argument of Lemma~\ref{lem:dimension-by-coverage} gives dimension at least $1-2\sigma/\log2$ for its real image.
+
+At any point of this compact set and for any map regular there, choose a tuple using the point's binary coding. The base-$b$ tail of $f(x)$ after the finite minimum shift for that tuple avoids every target at scales $h\ge H_i$. Finite initial deletions preserve boundedness of both lengths, as shown in Section~\ref{sec:intro}. If $x$ were algebraic, its minimal polynomial would be a rational-coefficient map with a simple zero at $x$. It is regular there and has value zero. The all-zero expansion hits every target at every shift, so $x$ cannot belong to the compact set. Conversely a rational function with rational coefficients has poles or critical points only at algebraic numbers. Therefore all the maps are defined and regular at every constructed point. Letting $\sigma$ decrease proves the dimension statement.
+\end{proof}
+
+The construction gives a distance estimate for each algebraic irrational $\alpha\in(0,1)$ and each of the chosen compact sets. Use the tuple $(b,P_\alpha,J,d)$ for the minimal polynomial, with $\alpha$ in the interior of $J$. If $m_0$ is the first allowed shift and $H_i$ the scale cutoff, then every $x$ of the compact set within the interior of $J$ satisfies
+\[
+ \|b^{m_0}P_\alpha(x)\|>b^{-2H_i},
+ \qquad
+ |x-\alpha|> (4d)^{-1}b^{-m_0-2H_i}.
+\]
+The two end cylinders of length $b^{-2H_i}$ are among the closed square cylinders, and the mean value theorem gives the second inequality. Points outside the interior of $J$ have distance at least $\operatorname{dist}(\alpha,\partial J)$. This estimate concerns an explicitly constrained class with many polynomial conditions. For rational-coefficient maps the relevant interval tests are effective. Enumerate the charts with rational data and strict derivative bounds, decidable by polynomial sign tests on compact rational intervals. The events at each depth are finite and computable by evaluating on the two rational endpoints of each monotone cylinder. The cutoffs can be chosen by a computable geometric-series bound. Thus the separation constant is computable from the minimal polynomial, its root isolation data and the chosen construction.
+
+
+\begin{theorem}[Moving families of nonlinear maps]\label{thm:moving-maps}
+Fix $b\ge2$, $0\le\tau<1$ and $C_0\ge1$, and a closed binary cylinder $J$ of depth $r$. At each scale $h$ prescribe any family $\mathcal F_h$ of at most $C_0 b^{\tau h}$ real $C^1$ functions on $J$. Suppose each $f\in\mathcal F_h$ satisfies $d_f\le|f'|\le4d_f$ on $J$ for some dyadic power $d_f>0$. For all sufficiently large $H$ there is a compact $K_H\subset J$ with
+\[
+           \dim_{\rm H}K_H\ge 1-C_{b,\tau,C_0}b^{-(1-\tau)H}
+\]
+such that for every $x\in K_H$, every $h\ge H$ and every $f\in\mathcal F_h$, the expansion of $f(x)$ avoids the three targets of scale $h$ at all offsets $m\ge0$ with $b^m d_f\ge2^r$. In particular the avoidance covers every offset for maps with $d_f\ge2^r$.
+\end{theorem}
+
+\begin{proof}
+Use fair binary suffixes after the prefix $J$, so the coarse and closing levels become $u-r$ and $\ell-r$. Their difference remains $v_h$, and the preceding probability bound remains $30b^{-h}$ on each coarse cylinder. A fixed map and scale contribute at most one event per closing level. Write $\lambda=(1-\tau)\log b$ and
+\[
+ S_H=\frac{60C_0 e^{-\lambda H}}{1-e^{-\lambda}},
+ \qquad x_h=30b^{-h}e^{2v_hS_H}.
+\]
+Since $v_h\le4+(2h+2)\log_2 b$, the ratio to $S_H$ of the total per-level weight upper bound
+\[
+      30C_0\sum_{h\ge H}e^{-\lambda h+2v_hS_H}
+\]
+has limit at most $1/2$. This follows by summing the geometric series with rate $\lambda-4S_H\log_2 b$ and using $HS_H\to0$. For large $H$ all hypotheses of Lemmas~\ref{lem:ordered-cylinders} and \ref{lem:dimension-by-coverage} hold with slack. The real projection of the suffix space is rescaled by the length of $J$, which preserves Hausdorff dimension.
+\end{proof}
+
+Theorem~\ref{thm:moving-maps} differs from a fixed countable intersection in that one cutoff applies to the whole prescribed sequence of families. It requires no bound on the sizes of the derivatives beyond their within-map distortion, and works with functions of arbitrary complexity subject to this local hypothesis. These joint avoidance and separation statements furnish no transfer of an exact polynomial zero back to a repeat in the original digits.

@@ -1,0 +1,237 @@
+\documentclass[11pt,reqno,a4paper]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+\allowdisplaybreaks[2]
+\raggedbottom
+\setlength{\emergencystretch}{1.8em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{theoremT}{Theorem T}
+
+\newcommand{\Fac}{\operatorname{Fac}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\Y}{\mathcal Y}
+\newcommand{\tern}[1]{\mathtt{#1}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\dist}[1]{\lVert#1\rVert}
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\word}[1]{\mathtt{#1}}
+\newcommand{\HH}{\mathcal H}
+
+\title[Squares and disjoint repeats in finite windows]
+{Squares and disjoint repeats in finite windows with few palindromes}
+\newsavebox{\affilbox}
+\address{School of Artificial Intelligence, Shanghai Jiao Tong University, Shanghai, China}
+\email{mqyqwerty@sjtu.edu.cn}
+\date{}
+\subjclass[2020]{11J68, 11J86, 68R15}
+\keywords{Algebraic irrational numbers, integer-base expansions, squares, palindromes, combinatorics on words, critical exponent}
+\hypersetup{pdfauthor={Qiyuan Ma},pdftitle={Squares and disjoint repeats in finite windows with few palindromes},pdfdisplaydoctitle=true}
+
+\begin{document}
+\sbox{\affilbox}{%
+  \begin{minipage}{0.92\textwidth}
+    \centering\normalfont\normalsize
+    School of Artificial Intelligence,\\
+    Shanghai Jiao Tong University, Shanghai, China\\
+    ORCID: \href{https://orcid.org/0009-0000-9532-0821}{0009-0000-9532-0821}\\
+    \href{mailto:mqyqwerty@sjtu.edu.cn}{mqyqwerty@sjtu.edu.cn}
+  \end{minipage}}
+\author[Qiyuan Ma]{Qiyuan Ma\\[6pt]\protect\usebox{\affilbox}}
+
+\begin{abstract}
+Bugeaud's Problem~10.42 asks whether every real algebraic irrational has, in every integer base, squares of unbounded root length and palindromes of unbounded length. We prove finite-window tests under palindrome restrictions. A ternary $9/4$-free word of length at least $64$ with at most six distinct palindromes contains a square whose root length is greater than $L/128$ and may be taken from an explicit sequence. Sufficiently long $16$-good or $17$-good ternary windows contain two disjoint equal blocks of length greater than $L/12000$. In base two, sufficiently long windows that are $13/5$-free with at most $18$ palindromes, or $28/11$-free with at most $20$ palindromes, contain a square of root length greater than $L/200000$. These combinatorial statements yield quantitative bounds on exceptional dyadic scales in a fixed algebraic expansion. We also record a ternary dichotomy for square starting positions, together with a local-frequency criterion that forces unbounded lengths when every maximizing component is a simple cycle. A branching construction shows that many square starts and a sublinear disjoint-repeat function need not force unbounded roots or palindromes. The two unbounded-length questions of Problem~10.42 remain open.
+\end{abstract}
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+For an integer $b\ge2$ and a real number $x$, write $\{x\}=x-\lfloor x\rfloor$ and $\dist{x}=\min_{n\in\Z}|x-n|$. Let $\mathsf S_b(x)$ mean that the canonical base-$b$ expansion of the fractional part of $x$ contains factors $VV$ with $|V|$ unbounded. Let $\mathsf P_b(x)$ mean that it contains palindromes of unbounded length. Bugeaud's Problem~10.42 asks whether each property holds for every real algebraic irrational $x$ and every integer $b\ge2$ \cite[p.~220]{Bugeaud}. Adamczewski and Rampersad posed the corresponding questions in base two \cite{AR}.
+
+The digit block starting after $i$ places and of length $d$ has integer value
+\begin{equation}\label{eq:digitblock}
+ D_{i,d}(x)=\lfloor b^{i+d}x\rfloor-b^d\lfloor b^i x\rfloor.
+\end{equation}
+Leading zeros are included. For a word $W$ let $[W]_b$ denote its integer value. Deleting any fixed prefix preserves both $\mathsf S_b$ and $\mathsf P_b$. A long palindrome can be trimmed symmetrically. If all unbounded squares began in a finite set of starts, one start would have unbounded roots. The second half of a sufficiently large square at that start contains each earlier given square at the same start, and moves that square beyond the deleted segment.
+
+The long-repetition criterion of Adamczewski--Bugeaud--Luca, as stated by Bilu \cite[Theorem~3.3, p.~8]{Bilu}, implies that the greatest length of two disjoint equal factors among the first $N$ digits of a fixed real algebraic irrational is $o(N)$. The corresponding length $L_b(N)$ with distinct starts and possible overlap also satisfies
+\begin{equation}\label{eq:known-early}
+ L_b(N)=o(N).
+\end{equation}
+Indeed, overlapping matches of length $\ell$ at distance $d<\ell$ give a period-$d$ segment of length $\ell+d$. It contains $\lfloor\ell/d\rfloor+1$ adjacent copies of a length-$d$ word. Splitting them into two equal groups gives a disjoint match of length at least $\ell/3$, as in \cite[Lemma~3.4]{Bilu}.
+
+Starting positions, distinct words and lengths are different quantities. Over a finite alphabet, unbounded square-root lengths are equivalent to infinitely many distinct squares. Infinitely many starts alone give less. Every infinite binary word has infinitely many square starts, because every length-four factor contains a square. The constructions of \cite{RSW,BC} can have a finite square catalogue. A recurrent palindrome of a prescribed length supplies information only at that length.
+
+Adamczewski and Rampersad \cite[Theorem~3.1]{AR} proved that an algebraic ternary expansion has infinitely many square occurrences, or that $010$ or $02120$ is recurrent. The dichotomy recorded in Section~\ref{sec:ternary} concerns square starting positions and the recurrence of six specified words of length three. It is derived from established avoidance and transcendence results, using two explicit one-sided transfer lemmas; it gives no unbounded-length conclusion for square roots or palindromes.
+
+The main results of the paper concern finite windows of the original digit string. The classification of infinite words with few distinct palindromes, due to Dvo\v r\'akov\'a, Mol and Ochem in the ternary case \cite{DMO} and to Dvo\v r\'akov\'a, Ochem and Opo\v censk\'a in the binary case \cite{DOO}, controls critical exponents of infinite words rather than proportional patterns in finite windows. Under explicit low-palindrome and power-free hypotheses, we show that a sufficiently long finite window contains a square or a pair of disjoint equal blocks whose length is a positive proportion of the window. Theorem~\ref{thm:six-pal} treats ternary $9/4$-free windows with at most six palindromes. Theorem~\ref{thm:ternary-linear-match} treats a broader class of $16$-good and $17$-good ternary windows, yielding a proportional disjoint repeat. Theorem~\ref{thm:binary-linear-square} gives the corresponding adjacent-square statement in base two. From these finite theorems we deduce bounds on the number of exceptional dyadic scales in a fixed algebraic expansion (Proposition~\ref{prop:dyadic-match}). The exceptional-scale count may be taken with exponent $3$ from the published quantitative Subspace Theorem of Evertse and Ferretti \cite{EF}, or with exponent $2$ from a $2026$ preprint interval form of that theorem \cite{Stephan}; both bounds are recorded.
+
+Section~\ref{sec:frequency} gives exact criteria for an extremal local frequency to force unbounded lengths, together with a quantitative arithmetic deficit for algebraic paths, and branching constructions that delimit the criterion. In particular, Theorem~\ref{thm:branching-frequency} produces a positive-dimensional set of expansions for which the maximal disjoint equal-block length satisfies $R(N)=o(N)$, the quantity $D_n$ remains bounded, and both square-root lengths and palindrome lengths are bounded. Thus a large supply of square starts, even when combined with the known algebraic exclusion \eqref{eq:known-early}, does not by itself force the unbounded-length conclusions of Problem~10.42.
+
+Both general questions---unbounded square-root lengths and unbounded palindrome lengths for every real algebraic irrational in every integer base---remain open.
+
+\section{A ternary dichotomy from one-sided transfer}\label{sec:ternary}
+The cuts prior to the five-letter iteration are finite prefix deletions.
+\input{ternary-proof}
+\input{finite-counts}
+\input{finite-windows}
+\input{ternary-descent}
+\input{binary-descent}
+\input{frequency-cycles}
+
+\clearpage
+\section*{Numbering correspondence}
+For ease of cross-reference, the following table records the numbering of the principal statements as they appeared in an unpublished extended account of related results dated 26~November~2026.
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+This paper & Extended account \\
+\midrule
+Theorem~T & Theorem~T \\
+Lemma~\ref{lem:ternary} & Lemma~2.1 \\
+Lemma~\ref{lem:five} & Lemma~2.2 \\
+Lemma~\ref{lem:finite} & Lemma~2.3 \\
+Theorem~\ref{thm:window} & Theorem~2.4 \\
+Lemma~\ref{lem:pal-catalogue-cut} & Lemma~16.1 \\
+Theorem~\ref{thm:six-pal} & Theorem~16.2 \\
+Proposition~\ref{prop:dyadic-match} & Proposition~16.3 \\
+Lemma~\ref{lem:first-gamma} & Lemma~17.1 \\
+Theorem~\ref{thm:ternary-linear-match} & Theorem~17.2 \\
+Theorem~\ref{thm:binary-linear-square} & Theorem~18.1 \\
+Lemma~\ref{lem:entropy-repetitions} & Lemma~18.2 \\
+Theorem~\ref{thm:extreme-frequency} & Theorem~19.1 \\
+Theorem~\ref{thm:extreme-arithmetic} & Theorem~19.2 \\
+Theorem~\ref{thm:branching-frequency} & Theorem~19.3 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{99}
+\bibitem{ABL}
+B. Adamczewski, Y. Bugeaud, and F. Luca,
+\emph{Sur la complexit\'e des nombres alg\'ebriques},
+C. R. Math. Acad. Sci. Paris 339 (2004), 11--14.
+\href{https://doi.org/10.1016/j.crma.2004.04.012}{DOI}.
+
+\bibitem{AR}
+B. Adamczewski and N. Rampersad,
+\emph{On patterns occurring in binary algebraic numbers},
+Proc. Amer. Math. Soc. 136 (2008), 3105--3109.
+\href{https://doi.org/10.1090/S0002-9939-08-09319-2}{DOI}.
+\href{https://adamczewski.perso.math.cnrs.fr/Overlap.pdf}{Author version}.
+
+\bibitem{BC}
+G. Badkobeh and M. Crochemore,
+\emph{Fewest repetitions in infinite binary words},
+RAIRO Theor. Inform. Appl. 46 (2012), 17--31.
+\href{https://doi.org/10.1051/ita/2011109}{DOI}.
+
+\bibitem{BO}
+G. Badkobeh and P. Ochem,
+\emph{Characterization of some binary words with few squares},
+Theoret. Comput. Sci. 588 (2015), 73--80.
+\href{https://doi.org/10.1016/j.tcs.2015.03.044}{DOI}.
+\href{https://www.lirmm.fr/~ochem/morphisms/avoidability.pdf}{Author version}.
+
+\bibitem{Bugeaud}
+Y. Bugeaud,
+\emph{Distribution Modulo One and Diophantine Approximation},
+Cambridge Tracts in Mathematics, vol.~193, Cambridge University Press,
+2012.
+\href{https://doi.org/10.1017/CBO9781139017732}{DOI}.
+
+\bibitem{OR}
+P. Ochem and M. Rosenfeld,
+\emph{Avoidability of palindrome patterns},
+Electron. J. Combin. 28 (2021), no.~1, Paper P1.4.
+\href{https://doi.org/10.37236/9593}{DOI}.
+
+\bibitem{SS}
+J. Shallit and A. Shur,
+\emph{Subword complexity and power avoidance},
+Theoret. Comput. Sci. 792 (2019), 96--116.
+\href{https://doi.org/10.1016/j.tcs.2018.09.010}{DOI}.
+
+\bibitem{Bilu}
+Y. F. Bilu, \emph{The many faces of the subspace theorem [after
+Adamczewski, Bugeaud, Corvaja, Zannier...]}, S\'eminaire Bourbaki,
+expos\'e 967, Ast\'erisque 317 (2008), 1--38.
+\href{https://www.numdam.org/book-part/AST_2008__317__1_0/}{Publication record}.
+\href{https://arxiv.org/pdf/0907.2098#page=8}{Theorem 3.3, printed p.~8}.
+
+\bibitem{BE}
+Y. Bugeaud and J.-H. Evertse, \emph{On two notions of complexity of algebraic numbers}, Acta Arith. 133 (2008), 221--250. \href{https://arxiv.org/abs/0709.1560}{arXiv:0709.1560}.
+
+\bibitem{EF}
+J.-H. Evertse and R. G. Ferretti, \emph{A further improvement of the Quantitative Subspace Theorem}, Ann. of Math. 177 (2013), 513--590. \href{https://doi.org/10.4007/annals.2013.177.2.4}{DOI}.
+
+\bibitem{Hall}
+The Hall--Thue fixed point and its square-free property, as stated in \href{https://doi.org/10.1016/j.tcs.2022.04.025}{Avoiding square-free words on free groups} (2022). See also the Hall-word discussion in \href{https://www.lirmm.fr/~ochem/morphisms/pairs.pdf}{Theoret. Comput. Sci. 799 (2019), 140--148}.
+
+\bibitem{KS}
+J. Karhum\"aki and J. Shallit, \emph{Polynomial versus exponential growth in repetition-free binary words}. \href{https://arxiv.org/abs/math/0304095}{arXiv:math/0304095}.
+
+\bibitem{RSW}
+N. Rampersad, J. Shallit, and M.-w. Wang, \emph{Avoiding large squares in infinite binary words}. \href{https://arxiv.org/abs/math/0306081}{arXiv:math/0306081}.
+
+\bibitem{Stephan}
+R. Stephan,
+\emph{The Evertse--Ferretti interval result for a set of weights, and the exponent $1/2$ in three complexity bounds},
+preprint (2026).
+\href{https://arxiv.org/abs/2611.16536v1}{arXiv:2611.16536v1}.
+
+\bibitem{Breiman}
+L. Breiman,
+\emph{The individual ergodic theorem of information theory},
+Ann. Math. Statist. 28 (1957), 809--811.
+\href{https://doi.org/10.1214/aoms/1177706899}{DOI}.
+
+\bibitem{CurrieTest}
+J. D. Currie,
+\emph{Finite test sets for morphisms that are squarefree on some of Thue's squarefree ternary words},
+J. Integer Seq. 22 (2019), Article 19.8.2.
+\href{https://cs.uwaterloo.ca/journals/JIS/VOL22/Currie/currie20.html}{Journal text}.
+
+\bibitem{Dejean}
+F. Dejean, \emph{Sur un th\'eor\`eme de Thue},
+J. Combin. Theory Ser. A 13 (1972), 90--99.
+\href{https://doi.org/10.1016/0097-3165(72)90011-8}{DOI}.
+
+\bibitem{DMO}
+L'. Dvo\v r\'akov\'a, L. Mol, and P. Ochem,
+\emph{Critical exponent of ternary words with few distinct palindromes},
+Discrete Math. Theor. Comput. Sci. (2026).
+\href{https://doi.org/10.46298/dmtcs.16125}{DOI}.
+\href{https://arxiv.org/abs/2507.04925v3}{Version 3}.
+\href{https://www.lirmm.fr/~ochem/morphisms/few_ternary_palindromes.pdf}{Authors' copy}.
+\href{https://www.lirmm.fr/~ochem/morphisms/palin3.htm}{Authors' supplement}.
+
+\bibitem{DOO}
+L'. Dvo\v r\'akov\'a, P. Ochem, and D. Opo\v censk\'a,
+\emph{Critical exponent of binary words with few distinct palindromes},
+Electron. J. Combin. 31 (2024), Paper P2.29.
+\href{https://doi.org/10.37236/12574}{DOI}.
+\href{https://arxiv.org/abs/2311.13003v2}{Version 2}.
+
+\bibitem{Karp}
+R. M. Karp, \emph{A characterization of the minimum cycle mean in a digraph},
+Discrete Math. 23 (1978), 309--311.
+\href{https://doi.org/10.1016/0012-365X(78)90011-0}{DOI}.
+
+\bibitem{OchemSource}
+P. Ochem, \emph{A generator of morphisms for infinite words},
+RAIRO Theor. Inform. Appl. 40 (2006), 427--441.
+\href{https://doi.org/10.1051/ita:2006020}{DOI}.
+
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,116 @@
+\section{Counting palindromes with smaller integer multipliers}
+\label{sec:palindrome-counts}
+
+The palindrome result below improves the qualitative \(o(b^L)\) multiplier bound of Theorem~\ref{thm:pal-mult}. It concerns the actual expansion of a changing integer multiple of a fixed number. Fix \(b\ge2\) and a real algebraic irrational \(\alpha\). Write \(j=\lfloor\log_2 L\rfloor\), let \(F,G\ge1\) be nondecreasing functions of \(j\) with \(G(j)\to\infty\), and put
+\[
+ \begin{gathered}
+ V(j)=F(j)G(j),\qquad M=b^L,\qquad A=M b^{-G(j)},\\
+ T=\lfloor LF(j)\rfloor,\qquad H=\lceil L/G(j)\rceil .
+ \end{gathered}
+\]
+Let \(s_b=1+\omega(b)\), with \(\omega(b)\) the number of distinct prime factors of \(b\).
+
+\begin{theorem}\label{thm:palindrome-counts}
+With Stephan's preprint interval theorem one can discard at most
+\(O_{\alpha,b}(V(J)^2(1+\log V(J))^2)\) dyadic indices \(j\le J\).
+Using the published Evertse--Ferretti theorem one can instead discard
+\(O_{\alpha,b}(V(J)^{2+2s_b}(1+\log V(J))^2)\).
+Assume the chosen bound is \(o(J)\). For every sufficiently large \(L\) in a retained dyadic interval and every integer \(m_0\in[0,T-H]\), there is an integer \(m\in[m_0,m_0+H]\) with the following property.
+
+For any word \(U\) of length \(r\le\lfloor L/5\rfloor\), any fixed bounded half-open interval \(I\) of positive length, any \(\theta\in\mathbb R\), and any congruence \(a\equiv a_0\bmod d\) with \(1\le d\le b^{G(j)}\), the number of integers \(a\) with \(a/A\in I\) for which the first \(L\) digits of \(\{\theta+a b^m\alpha\}\) form a palindrome starting with \(U\) is
+\begin{equation}\label{eq:palindrome-count-main}
+       (1+o(1))\frac{|I|A}{d}\frac{b^{\lceil L/2\rceil-r}}{M}.
+\end{equation}
+The error is uniform in the phase window, \(U,\theta,d,a_0\), for each fixed \(I\). The retained lengths have logarithmic density one.
+\end{theorem}
+
+\begin{proof}
+We may replace \(\alpha\) by its fractional part. For the set \(\mathcal P_{L,U}\) of palindromic integer labels with \(L\) digits and prefix \(U\), its density among length-\(L\) labels is \(p_U=b^{\lceil L/2\rceil-r}/M\). Its normalized Fourier coefficient is
+\[
+ S_U(k)=|\mathcal P_{L,U}|^{-1}
+                   \sum_{P\in\mathcal P_{L,U}}e(-kP/M),
+ \qquad e(t)=e^{2\pi it}.
+\]
+As in the factorization for palindromic integer sums in \cite{BHS}, the mirror pairs with weights \(w_i=b^i+b^{L-1-i}\) are independent. Our prescribed prefix fixes the \(r\) exterior pairs. Thus
+\[
+ |S_U(k)|\le
+   \prod_{i=r}^{\lfloor L/2\rfloor-1}
+   \left|b^{-1}\sum_{\ell=0}^{b-1}e(\ell k w_i/M)\right|.
+\]
+If \(|S_U(k)|\ge b^{-8G(j)}\), there are at most \(C_bG(j)\) free indices with \(\|kw_i/M\|\ge \tau_b=1/[4(b+1)b^2]\). This follows from the strict maximum of the geometric sum at integer arguments. Therefore the interval of free indices from \(\lceil L/4\rceil\) to \(\lfloor3L/8\rfloor\) contains a block of \(\ell\gg_b L/G(j)\) consecutive indices with \(\|kw_i/M\|<\tau_b\). Using
+\(w_i-bw_{i+1}=-(b^2-1)b^i\) gives \(\|(b^2-1)k b^i/M\|<b^{-2}\) for each adjacent pair. These overlapping two-digit windows are all zero pairs or all \(b-1\) pairs. With \(E=(b^2-1)|k|\), this gives
+\begin{equation}\label{eq:pal-spectrum-split}
+ E=b^v u+r_0,\qquad |r_0|\le b^{v-\ell},\qquad
+                       5L/8-1\le v\le3L/4 .
+\end{equation}
+Indeed \(v=L-i_0\) where \(i_0\) is the first good index on that interval. Take \(r_0\) to be the residue modulo \(b^v\) for a zero block and the residue minus \(b^v\) for a \(b-1\) block. For \(b^{7L/8}\le|k|\le M b^{4G(j)}\) this gives \(u\ge1\), \(|r_0|/(b^v u)\le b^{-\ell}\), and \(|u r_0|\ll_b b^{L+4G(j)-\ell}\).
+
+Write \(Q_\perp\) for the largest divisor of \(Q\) coprime to \(b\), \(A_d=A/d\), and set \(R=Z=b^{4G(j)},\ \lambda=b^{-8G(j)}\). We first exclude, on the stated number of dyadic indices, all failures of
+\begin{align}
+ Q_\perp\|Q\alpha\|&> b^{-L/G(j)}
+                       &&(1\le Q\le b^{2T}),                     \label{eq:pal-denom}\\
+ A_d\|dk b^m\alpha\|&>Z
+       &&(0<|k|\le RM,\ |S_U(k)|\ge\lambda,\ 0\le m\le T).
+                                                               \label{eq:pal-resonance}
+\end{align}
+The dimensions of the Subspace Theorem applications are two and three. At the real place use the fixed forms \((X_1,\alpha X_1-X_2)\) or \((X_1,X_2,\alpha(X_1+X_2)-X_3)\). At each \(p\mid b\) use coordinate forms. The determinants have absolute value one.
+
+A failure in \eqref{eq:pal-denom}, after taking the nearest integer and reducing to a fraction \(p/q\), has \(q_\perp|q\alpha-p|\le b^{-L/G(j)}\). This is the product of the corresponding two-dimensional forms, or an upper bound on it at the finite places. Liouville's lower bound on the nonzero error gives \(\log q\gg_\alpha L/G(j)\), and \(\log q=O_b(LF(j))\). Each proper rational line has at most one primitive integer vector with positive first coordinate, so a fixed line contributes \(O_{\alpha,b}(1+\log V(J))\) indices \(j\le J\).
+
+In \eqref{eq:pal-resonance} take positive \(k\) by symmetry and put
+\[
+ Q=(b^2-1)d k b^m,\qquad |e_0|=|Q\alpha-P|=\|Q\alpha\|
+                                 \ll_b b^{-L+6G(j)}
+\]
+for a nearest integer \(P\). If \(k<b^{7L/8}\), then \(Q_\perp\ll_b b^{7L/8+G(j)}\). If \(k\ge b^{7L/8}\) and \(r_0=0\), then \(Q_\perp\le d u\ll_b b^{L+5G(j)-v}\) by \eqref{eq:pal-spectrum-split}. In either case \(Q_\perp|e_0|\le b^{-cL}\) for some \(c>0\) and large \(L\). The same two-dimensional argument applies, with upper log height \(O_b(LF(j))\).
+
+Otherwise use
+\[
+                  X_1=b^{m+v}d u,\qquad
+                  X_2=b^m d r_0,\qquad X_3=P.
+\]
+Its sup norm \(K\) is \(X_1\) for sufficiently large \(L\), by \(0<\alpha<1\) and \(|r_0|/(b^v u)\le b^{-\ell}\). Cancellation of the base factors at the finite places bounds the product of forms by
+\[
+               (d|u|)(d|r_0|)|e_0|
+                           \ll_b b^{-\ell+12G(j)}
+                           \le b^{-c'L/G(j)}.
+\]
+The log height has lower bound \(\gg_b L\) and upper bound \(O_b(LF(j))\). In the primitive-vector version the error is \(e_0/g\), where \(g\) is the common divisor, so its decay still gives the lower height bound by Liouville on \((X_1+X_2)/g\) and \(P/g\). The product of forms is multiplied by \(g_\perp^{-n}\le1\) in dimension \(n\).
+
+Here is the interval count in detail. In each case the log heights at \(j\le J\) are between \(c_1 L/G(J)\) and \(C_1 LF(J)\). The product bounds allow a uniform parameter \(\delta=c_2/V(J)\) for sufficiently small \(c_2>0\). For Stephan \cite[Theorem~4.2]{Stephan}, at the real place use the actual logarithmic ratios to \(K\). The first is one and the error has a negative exponent. At the finite places take the actual coordinate log ratios for the first coordinate or first two coordinates and zero for the last one. They are nonpositive and the product bound gives a sum at most \(-\delta\). The fixed forms and these weight vectors satisfy the common-weights theorem. It gives a bounded number of proper rational subspaces and \(O(\delta^{-2}(1+\log\delta^{-1}))\) log-height intervals with endpoint ratios \(O(\delta^{-1})\). Log heights below the theorem's threshold \(O(\delta^{-1})\) cover \(O(1+\log V(J))\) dyadic indices. Each stated interval covers at most \(O(1+\log V(J))\) dyadic indices too, by the upper and lower height inequalities.
+
+For Evertse--Ferretti \cite[Theorem~3.3]{EF}, use primitive vectors. Negating the normalized log-form values divided by \(\log K\) gives nonnegative weights of sum at least \(n+\delta\), since the vector is primitive at the finite places. There is at least one zero weight at each place, from \(K=X_1\) and the existence of a unit coordinate at each finite place. Truncate weights at \(n+1\), round them down with mesh \(\delta/(2n s_b)\), and scale the full vector down so its total is \(n+\delta/2\). The rounded total is at least \(n+\delta/2\) even when a weight needed truncation. This creates \(O(\delta^{-(n-1)s_b})\) fixed weight vectors. Taking their negatives gives nonpositive exponents of sum \(-n-\delta/2\), with the fixed determinant and coefficient fields. Apply the theorem to each, which gives the log-height interval count of order \(O(\delta^{-2}(1+\log\delta^{-1}))\) and a proper subspace. The same log-height comparison applies.
+
+For the remaining subspaces in dimension three, use a plane \(a_1X_1+a_2X_2+a_3P=0\). Put \(x=X_2/X_1\), \(y=e_0/X_1\). They are nonzero. Uniformly for \(j\le J\), the absolute values of \(x,y,y/x\) are at least \(b^{-C LF(J)}\), using the nonzero integers and Liouville for \(e_0\). Their upper bounds are respectively \(b^{-cL/G(J)}, b^{-L/2}, b^{-L/2}\). If \(a_3=0\), the plane fixes \(x\). Otherwise \((x,y)\) lie on a line. Split the dyadic indices into residue classes modulo \(\lceil C'(1+\log V(J))\rceil\). With \(C'\) sufficiently large, the values at successively larger indices satisfy \(|x'|\le|x|/4,\ |y'|\le|y|/4,\ |y'/x'|\le|y/x|/16\). The slope of a secant then has absolute value between \(3|y/x|/5\) and \(5|y/x|/3\) using its earlier endpoint. Two successive secants cannot have the same slope. Thus at most two such indices in each class come from a fixed plane, with at most one when \(x\) is fixed. Together with the previous interval count this gives the two asserted exceptional-index bounds. The bad set is the set of actual failures, so the conclusion is simultaneous in the template and all phases and residue classes.
+
+We now choose the phase. Put \(Q_0=(b+2)M\) and apply Dirichlet's approximation at \(m_0+H\) to \(\{b^{m_0+H}\alpha\}\), with reduced initial denominator \(q_0\le Q_0\) and error \(<1/(Q_0q_0)\). The reverse denominator step of Berend and Boshernitzan \cite{BBshift} sends \(p/q\) to \((p/q+e)/b\) where \(e\) is the actual removed digit. Reduction changes the proposed denominator \(bq\) by a divisor of \(b\). The step keeps the base-external part and reduces the error by \(b\). If the denominator first crosses \(Q_0/b\), the new one is at most \(Q_0\) and the error is \(<1/(Q_0q)\). If none crosses, at \(m_0\) the reduced denominator \(q_H\) satisfies
+\[
+ (q_H)_\perp\|q_H b^{m_0}\alpha\|
+      <b^{-H}q_H/Q_0\le b^{-H}/b.
+\]
+The input integer \(q_H b^{m_0}\) is at most \(b^{2T}\) for large \(L\), contradicting \eqref{eq:pal-denom}. Hence at some selectable \(m\) the rational approximation to \(\beta=\{b^m\alpha\}\) has \(q\asymp_b M\) and error \(<1/(Q_0q)\le1/q^2\).
+ 
+For the count, smooth the multiplier interval with a smooth compactly supported \(g\) and define
+\[
+ W(t)=\sum_{n\in\mathbb Z}g((a_0+dn)/A)e(nt).
+\]
+Finite differences give \(|W(t)|\ll_N A_d(1+A_d\|t\|)^{-N}\) for any fixed integer \(N\). In groups of \(k\)'s of span at most \(q/(2d)\), the \(dk\beta\) modulo one are \(1/(2q)\)-separated, since the rational approximation has error at most \(q^{-2}\). Grouping by distances to the nearest integer in bands of width \(1/A_d\) bounds each group's sum by \(O_N(q)\) and its sum restricted to \(A_d\|dk\beta\|>Z\) by \(O_N(q(1+Z)^{1-N})\). Thus over \(|k|\le K\), \(K\ge M\), the corresponding bounds are \(O_N(dK)\) and \(O_N(dK(1+Z)^{1-N})\).
+
+Insert a smooth compactly supported bump \(\phi(Mx-P)\) in each target cylinder and periodize. The resulting detector has Fourier coefficients \(p_U\widehat\phi(k/M)S_U(k)\). Its sum at \(\theta+(a_0+dn)\beta\), weighted by \(g((a_0+dn)/A)\), has zero-frequency term
+\[
+                 p_U A_d\left(\int\phi\right)\left(\int g\right)+O(p_U).
+\]
+Use the preceding grouped bounds for the tail \(|k|>RM\), for the internal small spectrum \(|S_U(k)|<\lambda\), and for the large spectrum with \eqref{eq:pal-resonance}. After division by \(p_U A_d\), the three errors are bounded by
+\[
+   O_N(d^2b^{G(j)}R^{1-N}),\qquad
+   O_N(\lambda d^2b^{G(j)}R),\qquad
+   O_N(d^2b^{G(j)}R(1+Z)^{1-N}).
+\]
+They tend to zero uniformly for \(N\ge4\) fixed. Take smooth nonnegative upper and lower functions for \([0,1)\) and \(I\), with arbitrarily close integrals. The pointwise comparisons hold at the endpoints, and the \(\theta\) factors have absolute value one. This proves \eqref{eq:palindrome-count-main}. The set of retained lengths has logarithmic density one since every retained dyadic interval is retained in full.
+\end{proof}
+
+For \(I=(0,c]\), \(\theta=0\), and \(a\equiv1\bmod b\), the count gives a positive hit for every fixed \(c>0\) eventually, hence the least such positive hit is \(o(b^{L-G(j)})\). Without the prefix constraint, one can require the palindrome's least period to exceed \(L-\lceil6G(j)\rceil\). A length-\(L\) palindrome of period \(t\) is determined by its digits on the orbits of \(i\mapsto L-1-i\bmod t\), at most \(t/2+1\) choices of positions. Summing \(b^{t/2+1}\) over the excluded periods gives \(O_b(b^{L/2-3G(j)})\) labels. The separation of multiplier outputs gives \(O_b(1)\) hits per label in a fixed \(I\), since its integer span is \(o(q)\). This discarded count is \(o(b^{L/2-2G(j)})\), below the main term for the empty prefix. With a prescribed prefix one can instead choose a square \(U=VV\) with \(|V|=\lfloor L/10\rfloor\) and \(VV\) of least period \(|V|\), giving both patterns in one multiple.
+
+In the preprint version take \(F=1\) and \(G(j)\asymp\sqrt j/(\log j)^{1+\zeta}\), for any fixed \(\zeta>0\), with \(m_0=0\). This gives \(m=o(L)\) and the saving \(\exp(-c\sqrt{\log L}/(\log\log L)^{1+\zeta})\) relative to \(b^L\). Alternatively \(F(j)=(1+j)^\tau,\ G(j)=(1+j)^\gamma\) with \(\tau,\gamma>0\) and \(\tau+\gamma<1/2\) allow \(m/L\to\infty\) by taking \(m_0=\lfloor T/2\rfloor\). The published version allows \(\tau+\gamma<1/(2+2s_b)\) and preserves the same count with its slower admissible growth.
+
+For quadratic \(\alpha\), bounded partial quotients supply \(q\asymp_\alpha M\) and the required approximant directly at \(m=0\) for every retained \(L\). In general the logarithms of consecutive convergent denominators have ratio tending to one by Roth's theorem \cite{RothClassic}. In each sufficiently large retained dyadic interval a convergent with \(\log_b q\) between \((5/4)2^j\) and \((7/4)2^j\) thus supplies both an even and an odd integer \(L\) immediately below \(\log_b q\), with \(q/b^L\in[1,b^2)\). In either case the arithmetic estimate \eqref{eq:pal-resonance} applies also at \(m=0\), so the Fourier argument gives the same count there. The count uses smoothing over changing multipliers. Specializing to the original digits would require a different average, such as estimates on \(e(k b^m\alpha)\) along the phase orbit at the scale of the palindromic target.

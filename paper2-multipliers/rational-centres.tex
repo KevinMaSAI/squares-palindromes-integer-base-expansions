@@ -1,0 +1,298 @@
+\section{Rational centers and the cost of growing powers}
+\label{sec:rational-centers}
+
+For \(x\in[0,1)\), a positive integer \(a\) is a hit at \((h,s)\)
+if its fractional part \(\{ax\}\) starts with \(V^s\) for some
+length-\(h\) word \(V\). Write \(w=[V]_b\), \(u=\lfloor ax\rfloor\),
+and \(P=aD v=Du+w\). The corresponding rational center is
+\(v=P/(aD)\). The digit cylinder for \(ax\) is equivalent to
+\begin{equation}\label{eq:signed-centre}
+        -\frac{w}{M}\le aD(x-v)<\frac{D-w}{M}.
+\end{equation}
+Indeed its fractional interval is
+\([Lw/M,(Lw+1)/M)\), and \(LD=M-1\). The first inequality
+is strict when \(x\) is irrational. In particular
+\(|x-v|<1/(aM)\) for irrational \(x\).
+The \emph{reduced cofactor} of a center is
+\[
+ q=\operatorname{den}(Dv)=\frac{a}{\gcd(a,P)},
+\]
+where \(\operatorname{den}\) means the positive reduced denominator.
+It divides both \(a\) and \(\operatorname{den}(v)\).
+
+\subsection{Uniform lower bounds for the reduced cofactor}
+
+\begin{lemma}\label{lem:late-three-forms}
+For each fixed \(\xi>0\), outside a set of dyadic indices
+satisfying \eqref{eq:bin-count}, all the corresponding \(h\)
+satisfy
+\begin{equation}\label{eq:late-three-forms}
+ (a_\perp)^2\,\|a(b^h-1)b^m\alpha\|>B^{-\xi}
+ \quad (0\le m\le T(h),\ 1\le a\le b^{T(h)}).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Normalize \(0<\alpha<1\). For a counterexample use the nearest
+integer \(p\) to \(a(B-1)b^m\alpha\), and put
+\(e=a(B-1)b^m\alpha-p\). Divide
+\((Ba b^m,a b^m,p)\) by \(g=\gcd(a b^m,p)\) to get
+\((B k,k,p')\) with \(k=a b^m/g\), \(p'=p/g\).
+The sup norm is \(B k\), and the real forms are the three
+used in Theorem~\ref{thm:late-separation}. Exponents may be
+taken as the exact logarithmic ratios for the values \(Bk,k,|e|/g\)
+at the real place, and for the first two coordinates at the primes
+of \(b\), with zero for the third at those primes.
+The sum, multiplied by \(\log(Bk)\), is
+\[
+ \log\bigl((k_\perp)^2 |e|/g\bigr)
+     \le -\xi\log B,
+\]
+because \(k_\perp\le a_\perp\). The third real exponent is
+nonpositive, and the first equals \(1\). The log height lies in
+\([h\log b,(h+2T(h))\log b]\), permitting the same choice of
+\(\delta\) and the interval argument.
+
+For any rational plane containing these vectors, its equation
+\(uX_1+v_0X_2+w_0X_3=0\) with \(w_0=0\) fixes \(B\).
+With \(w_0\ne0\), the points
+\((B,e/(a b^m))\) lie on the line
+\[
+ y=(u/w_0+\alpha)x+(v_0/w_0-\alpha).
+\]
+Here the upper bound in \eqref{eq:secant-hyp} follows from
+\(|e|\le B^{-\xi}\), and the lower bound follows by Liouville's
+inequality with denominator \(a(B-1)b^m\le b^{h+2T(h)}\)
+and division by \(a b^m\). The horizontal exponent in
+\eqref{eq:secant-hyp} is \(\Delta=h\). This gives
+\(O(1+\log F(J))\) indices per plane. Combined with the
+height-interval estimate, this proves the lemma.
+\end{proof}
+
+\begin{theorem}\label{thm:reduced-cost}
+Fix \(\xi>0\) and use the retained indices of
+Theorem~\ref{thm:late-separation} and Lemma~\ref{lem:late-three-forms}.
+Let \(x=\{b^m\alpha\}\) with \(0\le m\le T(h)\) and suppose
+\(a\) is a hit with \(aD\le b^{T(h)}\).
+For \(q=\operatorname{den}(Dv)\) the following inequalities hold:
+\begin{equation}\label{eq:reduced-cost}
+ \begin{aligned}
+ q q_\perp &> \frac{a M}{D^2} B^{-\xi}
+                      \ \ge a B^{s-2-\xi},\\
+ q q_\perp^2 &> \frac{a M}{D} B^{-\xi}
+                      \ \ge a B^{s-1-\xi}.
+ \end{aligned}
+\end{equation}
+In particular
+\begin{equation}\label{eq:qperp}
+ a_\perp\ge q_\perp>
+      B^{\max\{s-2-\xi,\ (s-1-\xi)/2\}} .
+\end{equation}
+For \(0<\xi<1\) the eventual period length of the canonical
+base-\(b\) expansion of \(v\) exceeds
+\(h\max\{s-2-\xi,(s-1-\xi)/2\}\).
+\end{theorem}
+
+\begin{proof}
+Since \(q Dv\) is integral, \eqref{eq:signed-centre} gives
+\[
+ \|qD b^m\alpha\|=\|qD x\|< (q/a)D/M .
+\]
+Apply \eqref{eq:uniform-q} to \(qD b^m\), which is at most
+\(b^{2T(h)}\) and has base-external part \(q_\perp D\).
+Apply \eqref{eq:late-three-forms} with \(a\) replaced by \(q\).
+This gives both inequalities in \eqref{eq:reduced-cost}.
+Using \(q\le a\) gives \eqref{eq:qperp}.
+If \(R=\operatorname{den}(v)\), then \(q_\perp\mid R_\perp\).
+After the base-prime part is removed by advancing past the
+preperiod, the eventual period \(t\) is the multiplicative order
+of \(b\) modulo \(R_\perp>1\). Thus \(b^t-1\ge R_\perp\ge
+q_\perp\), as claimed.
+\end{proof}
+
+For example \eqref{eq:reduced-cost} implies the explicit cancellation
+bound
+\[
+ \gcd(a,P)<\sqrt{a}\,D\,B^{\xi/2}/\sqrt{M}.
+\]
+When \(a\le B^{s-\gamma}\) this is at most
+\(B^{1-\gamma/2+\xi/2}\), uniformly in \(s\).
+For an elementary digit comparison at the rational center, assume
+\(0<\xi<1\). Then \(R_\perp>1\), and every \(b\)-adic endpoint
+\(j/b^n\) is at distance at least \(1/(R b^n)\) from \(v\).
+Consequently \(|x-v|<1/(aM)\) ensures that \(x\) and \(v\)
+share the first \(n\) digits whenever \(b^n\le aM/R\).
+In particular this gives \((s-1)h\) common leading digits, as
+\(R\le aD\). For hits with \(a\le B^{s-\gamma}\) the
+upper endpoint \(n=\lfloor\log_b(aM/R)\rfloor\) of this
+guarantee is at most \((s+2+\xi-\gamma)h\) by
+\(R\ge R_\perp\ge q_\perp > B^{s-2-\xi}\).
+For \(s>6+3\xi\) this endpoint is shorter than two eventual
+periods of \(v\), even before accounting for the preperiod.
+The guarantee comes only from the cylinder bound. Actual
+agreement could extend further.
+
+\begin{corollary}\label{cor:leading-cost}
+On the retained indices, let \(s=s(h)\to\infty\) with
+\(2\le s\le F(j(h))/8\). Let \(a_*(h,s)\) be the least
+positive integer multiplier giving a complete \(s\)-fold power
+with root length \(h\) at some phase \(0\le m\le T(h)\).
+The same conclusion holds if the minimum is taken only over the
+phase window \eqref{eq:growing-phase-window}, with
+\(a\equiv1\bmod b\) and least period \(h\). In either case
+\[
+       \frac{\log_b a_*(h,s)}{s h}\longrightarrow 1 .
+\]
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:growing-power} gives
+\(a_*(h,s)\le B^{s-\gamma}\) for all sufficiently large retained
+\(h\), for any fixed \(0<\gamma<1/2\).
+This upper bound ensures \(a_*D\le b^{T(h)}\).
+The lower bound \eqref{eq:qperp} gives
+\(\log_b a_*(h,s)>(s-2-\xi)h\). Divide by \(sh\).
+\end{proof}
+
+\subsection{When two multipliers have one center}
+
+The next statement is elementary. Its arithmetic consequences
+use the retained indices above. The square case with coprime
+multipliers gives the threshold \(a+c\le B+2\).
+
+\begin{proposition}\label{prop:common-centre}
+Let \(x\) be irrational. If \(a,c>0\) are hits at the same
+\((h,s)\) and
+\begin{equation}\label{eq:centre-threshold}
+       \frac{a+c}{\gcd(a,c)}\le L+1,
+\end{equation}
+then their rational centers coincide. If \(a\) is a hit of
+center \(v\) and \(d\mid a\) with \(\operatorname{den}(Dv)\mid d\),
+then \(d\) is also a hit with center \(v\).
+In particular the common-center case transfers to \(\gcd(a,c)\)
+and to \(\operatorname{den}(Dv)\).
+\end{proposition}
+
+\begin{proof}
+In case of distinct centers, exchange \(a,c\) so that
+\(v_a<v_c\), and divide \(a,c\) by \(g=\gcd(a,c)\) to get
+\(a',c'\). Set \(r=a'P_c-c'P_a\), a positive integer.
+From \eqref{eq:signed-centre} applied at both centers,
+\[
+       rM<c'(D-w_a)+a'w_c .
+\]
+The two sides are congruent modulo \(D\), since
+\(P_a\equiv w_a\), \(P_c\equiv w_c\bmod D\), and \(M\equiv1\bmod D\).
+Their gap is at least \(D\). Thus \(M+D\le(a'+c')D\),
+and \(M+D=(L+1)D+1\), proving the first statement.
+
+For the second, put \(t=a/d\). If \(x>v\), choose the residue
+\(w_d\in[0,D-1]\) of \(dDv\) and take \(w_a\) from the hit.
+The positive representative \(D-w_a\in[1,D]\) is at most
+\(t(D-w_d)\) since these two positive integers are congruent
+modulo \(D\). Thus the upper inequality for \(a\) in
+\eqref{eq:signed-centre} gives the upper inequality for \(d\).
+The lower inequality is automatic. If \(x<v\), use the
+representative \(w_d\in[1,D]\) and the corresponding positive
+\(w_a\in[1,D]\). Then \(w_a\le t w_d\), giving the lower
+inequality for \(d\), while the upper is automatic. In either
+case with \(u_d=(dDv-w_d)/D\in\Z\), the signed inequalities place
+\(dx\) in the cylinder with integer part \(u_d\) and digit
+label \(Lw_d\). This proves the transfer.
+\end{proof}
+
+\begin{proposition}[Sharpness]\label{prop:sharp-centre}
+The bound \(L+1\) in \eqref{eq:centre-threshold} for equality of
+centers is sharp for every \(h\) and \(s\).
+For each fixed \(b\) and \(s\) the same bound for transfer to
+the greatest common divisor is sharp for arbitrarily large \(h\).
+\end{proposition}
+
+\begin{proof}
+For equality of centers, take \(a=1,\ c=L+1\) and irrational
+\(x\in(L/(cM),1/M)\). The two root labels are \(0,1\) and their
+centers are distinct.
+
+For the transfer assertion choose \(1<a\mid D-1\) with
+\(\gcd(a,L+2)=1\) and let \(c=L+2-a\).
+This choice is possible for all large \(h\) for even \(b\),
+with \(a=2\), because \(D-1\) is even and \(L+2\) is odd.
+For odd \(b\), take \(a=B-2\), and choose \(h\) to be a
+multiple of the multiplicative orders of \(b\) modulo the
+primes \(p\mid 2^s+1\) with \(p\nmid b\). Indeed
+\(L+2\equiv 2^s+1\bmod a\), and at each such prime \(B\equiv1\).
+At a prime dividing both \(b\) and \(2^s+1\) one has \(B\equiv0\);
+neither case allows \(p\mid a\).
+
+Set \(w_a=0\), \(w_c=D-(D-1)/a\), so \(a w_c=1+D(a-1)\).
+Choose \(1\le u<a\) with \(cu\equiv-1\bmod a\),
+and \(v_0=(cu-a+1)/a\in\Z\). For the potential hits take
+\(P_a=Du\), \(P_c=Dv_0+w_c\), so \(aP_c-cP_a=1\).
+The proposed centers satisfy \(v_a=u/a<v_c\).
+The right endpoint of the \(a\)-cylinder is greater than the
+left endpoint of the \(c\)-cylinder precisely when
+\(M<cD+a w_c\), and the latter sum is \(M+D\).
+The right endpoint of the \(c\)-cylinder is at least \(v_c\),
+so it is greater than the left endpoint \(v_a\) of the
+\(a\)-cylinder. Their interiors therefore intersect.
+Take irrational \(x\) in the intersection. Its distance to
+\(u/a\) is less than \(1/(aM)\). Since \(a\mid D-1\) and
+\(\gcd(cu,a)=1\), it follows that
+\[
+  \|Dx\|\ge 1/a-D/(aM)>D/M,
+\]
+using \(M>(a+1)D\). Thus \(1=\gcd(a,c)\) is not a hit.
+Multiplying both multipliers by any positive \(g\) and replacing
+\(x\) by \(x/g\) gives the same threshold for a prescribed
+greatest common divisor \(g\).
+\end{proof}
+
+\begin{corollary}\label{cor:centre-obstructions}
+Under the assumptions of Theorem~\ref{thm:reduced-cost} with
+\(0<\xi<1\), two hits sharing a center cannot have a greatest
+common divisor composed only of primes dividing \(b\).
+Moreover if \(A D\le b^{T(h)}\) and \(2A\le L+1\), the number
+of hits with \(1\le a\le A\) at one phase is at most
+\[
+ \min\!\left\{
+      (A B^{2-s+\xi})^{1/2},\,
+      (A^2 B^{1-s+\xi})^{1/3}
+      \right\}.
+\]
+If this set is nonempty it has a unique common center and its
+smallest multiplier is \(\operatorname{den}(Dv)\).
+\end{corollary}
+
+\begin{proof}
+The reduced cofactor \(q\) divides the greatest common divisor
+and has \(q_\perp>1\) by \eqref{eq:qperp}.
+For the count, \(2A\le L+1\) implies \eqref{eq:centre-threshold}
+for every pair.
+All hits are multiples of \(q\), and \(q\) itself is a hit by
+Proposition~\ref{prop:common-centre}. If \(a_{\max}\) is the
+largest hit, the number is at most \(a_{\max}/q\).
+In \eqref{eq:reduced-cost} one may substitute \(a_{\max}\)
+and use \(q_\perp\le q\), so
+\(q^2>a_{\max}B^{s-2-\xi}\) and
+\(q^3>a_{\max}B^{s-1-\xi}\). The result follows using
+\(a_{\max}\le A\).
+\end{proof}
+
+There is also a two-phase restriction. Suppose \(a\) hits at
+\(m\), \(c\) hits at \(m+\Delta\), and both use root length \(h\)
+and exponent \(s\). At the earlier tail \(x\) these are hits
+of \(a\) and \(b^\Delta c\). Suppose these two hits of \(x\)
+share the same center, and \(aD\le b^{T(h)}\).
+Then \(q\mid\gcd(a,b^\Delta c)\) and the proof of
+Theorem~\ref{thm:reduced-cost}, using the stronger precision
+\(|x-v|<b^{-\Delta}/(cM)\), gives
+\[
+ b^\Delta c M B^{-\xi}
+   < \min\{D^2 q q_\perp,\ D q q_\perp^2\}.
+\]
+Thus at retained \(h\) even a later phase sharing an earlier
+center needs a substantial base-external common factor.
+These restrictions concern this specific transfer through a
+rational center. The existence of sufficiently late powers or
+palindromes in the original expansion remains open.
+

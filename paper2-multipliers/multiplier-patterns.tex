@@ -1,0 +1,124 @@
+\section{Exact patterns under growing integer multipliers}\label{sec:positive-multipliers}
+
+Let $e(t)=\exp(2\pi i t)$. A target set of integer labels $\mathcal A\subset\{0,\ldots,M-1\}$ represents the half-open intervals $[P/M,(P+1)/M)$ for $P\in\mathcal A$. Define
+\[
+ p=\frac{|\mathcal A|}{M},\qquad S(k)=\frac1{|\mathcal A|}
+                      \sum_{P\in\mathcal A}e(-kP/M).
+\]
+We use a common smoothing calculation for both families of labels. For compactly supported, continuous, finitely piecewise linear functions $g,\phi$ on $\mathbb R$, let
+\[
+ F(x)=\sum_{P\in\mathcal A}\sum_{j\in\mathbb Z}\phi(M(x+j)-P),
+ \qquad G(t)=\sum_{n\in\mathbb Z}g(n/M)e(nt).
+\]
+Then
+\begin{align}
+ \widehat F(k)&=p\,\widehat\phi(k/M)S(k),
+ &|\widehat\phi(u)|&\ll_\phi(1+|u|)^{-2},\label{eq:sharedfourier}\\
+ |G(t)|&\ll_g\min\{M,(M\|t\|^2)^{-1}\}.\label{eq:sharedg}
+\end{align}
+The first line follows by change of variables and integration by parts on the linear pieces. For the second line put $\delta=1/M$. The sum of the absolute second differences of $g(n\delta)$ is at most $\delta\operatorname{Var}(g')$, by integrating translated differences of $g'$ on intervals of length $\delta$. Taking the Fourier transform of the second difference gives the claimed decay away from the integers.
+
+Assume that for all $0<|j|\le c_1 M$ one has $\|j\beta\|\ge c_2/M$, with positive constants $c_1,c_2$ independent of $M$. Split $|k|\le RM$ into $O(R)$ groups of length at most $c_1M$. In each group at most $O(1)$ of the distances $\|k\beta\|$ lie between $i/M$ and $(i+1)/M$. Summing \eqref{eq:sharedg} gives, for $R\ge1$ and integers $C\ge2$,
+\begin{equation}\label{eq:shared-spacing}
+ \sum_{|k|\le RM}|G(k\beta)|\ll RM,\qquad
+ \sum_{\substack{|k|\le RM\\ \|k\beta\|>C/M}}|G(k\beta)|
+                    \ll RM/(C-1).
+\end{equation}
+The constants may depend on $g,c_1,c_2$. The first contribution comes from $i=0$ and the convergent sum of $i^{-2}$ over $i\ge1$.
+
+For a shift $\theta$, the weighted count is $\sum_k\widehat F(k)e(k\theta)G(k\beta)$. The zero frequency is
+$pG(0)\int\phi$ with $G(0)/M\to\int g$. By dyadic summation of \eqref{eq:sharedfourier} and \eqref{eq:shared-spacing}, frequencies $|k|>RM$ contribute $O(pM/R)$. The frequencies $0<|k|\le RM$ with $|S(k)|<\rho$ contribute $O(\rho RpM)$. It remains to control the high coefficients $|S(k)|\ge\rho$ for fixed $R,\rho$. All estimates are independent of $\theta$. Once the remaining contribution is $o(pM)$, approximate indicators of the multiplier interval and of $[0,1)$ by nonnegative piecewise linear minorants and majorants. Their integrals can be as close as desired to the respective interval lengths, including pointwise inequalities at the half-open endpoints. This yields the unweighted count.
+
+\subsection{Palindromes for arbitrary real algebraic irrationals}
+
+\begin{theorem}\label{thm:pal-mult}
+Let $x$ be a fixed real algebraic irrational and $b\ge2$. For every sufficiently large $L$ there are integers $m_L\ge0$, $a_L\ge1$ with $m_L=o(L)$ and $a_L=o(b^L)$ such that the length-$L$ block of $a_Lx$ starting after position $m_L$ is a palindrome. The block can have least period $L-o(L)$. For quadratic $x$ one may use $m_L=0$ for all large $L$. For every algebraic irrational one may use $m_L=0$ along an unbounded sequence of each parity.
+\end{theorem}
+
+\begin{proof}
+Put $M=b^L$ and let $\mathcal A$ be the $b^{\lceil L/2\rceil}$ palindrome labels. The factorization of $S(k)$ over the mirror pairs contains the factors
+\[
+       b^{-1}\sum_{d=0}^{b-1}e(-dk w_i/M),
+       \qquad w_i=b^i+b^{L-1-i},\quad 0\le i<\lfloor L/2\rfloor .
+\]
+There is also a central factor for odd $L$. Fix $\rho>0$ and take a small $\eta>0$ with $(b+1)\eta<b^{-2}$. Each index with $\|kw_i/M\|\ge\eta$ contributes a factor bounded in modulus by some $\gamma_{b,\eta}<1$. Thus $|S(k)|\ge\rho$ allows only $O(1)$ such indices. For two consecutive good indices use
+\[
+ bw_i-w_{i+1}=(b^2-1)b^{L-i-2},\qquad
+ w_i-bw_{i+1}=-(b^2-1)b^i .
+\]
+Writing $E=(b^2-1)k\bmod M$, these give $\|E/b^{i+2}\|<b^{-2}$ and $\|E/b^{L-i}\|<b^{-2}$. In each case the corresponding two leading digits of the residue are both $0$ or both $b-1$. These conditions cover all neighboring pairs except for $O(1)$ pairs associated with bad indices or the center. The base-$b$ word of $E$ has $O(1)$ digit changes. Since $b^2-1$ is a unit modulo $M$, the number of such $k$ with $|k|\le RM$ is $O(L^J)$, for a fixed $J$ depending on $b,\rho,R$.
+
+The same observation gives
+\begin{equation}\label{eq:palresonance}
+ \|k b^m x\|\ge b^{-\epsilon L}
+ \quad(0<|k|\le RM,\ |S(k)|\ge\rho,\ 0\le m\le A_0 L)
+\end{equation}
+for any fixed $\epsilon,A_0>0$ and all sufficiently large $L$. Indeed, multiply the constant-digit-run representation for $E$ by $b-1$. For $|k|\le RM$, the integer $Dk$, with $D=(b-1)(b^2-1)$, is a bounded sum of integer multiples of powers of $b$, with bounded coefficients and largest exponent $O(L)$. In a counterexample sequence pass to a subsequence with fixed coefficients and constant or diverging adjacent exponent gaps. Merge the constant gaps and discard zero terms, so $Dk=\sum_i c_i b^{v_i}$ with consecutive gaps diverging. With $P$ the nearest integer to $k b^m x$, apply the $S$-adic Subspace Theorem to $(b^{m+v_i},P)$, using the archimedean form $(x/D)\sum_i c_i X_i-P$ in place of the last coordinate. Use the coordinate forms at primes dividing $b$. The power factors cancel and the form product is at most $b^{-\epsilon L}$. The height is at most $b^{O(L)}$. A fixed rational dependence on a subsequence would, after division by the largest power, involve the irrational limit $c_{\max}x/D$ of the scaled last coordinate. The two corresponding coefficients vanish. Divide by the remaining leading powers successively to see that all coefficients vanish. This proves \eqref{eq:palresonance}.
+
+To obtain the spacing hypothesis, fix $Q=(b+2)M$. There is an $m=m_L=o(L)$ with a reduced rational $P/q$ satisfying
+\begin{equation}\label{eq:reverse-dirichlet}
+ Q/b<q\le Q,\qquad
+ \big|\{b^m x\}-P/q\big|<1/(Qq).
+\end{equation}
+For completeness choose a late phase $J$ and use Dirichlet approximation with denominator at most $Q$, including an integer part so the rational shadows $b^Jx$. Divide by $b$ one step at a time to move back through the actual expansion. The reduced denominator is nondecreasing, grows by at most a factor $b$ per step, and its part $q_\perp$ coprime to $b$ stays fixed. At the first step (including step zero) where it exceeds $Q/b$, its size is at most $Q$, and the error is still less than $1/(Qq)$. If no such step occurs, the approximation at phase zero has error less than $b^{-J}/(Qq_J)$, where $q_J$ is the final-phase denominator. Ridout's theorem \cite{Ridout} gives for its initial-phase denominator $q_0\le Q$ an error at least $c_\delta q_0^{-1-\delta}(q_0)_\perp^{-1}$. Since $(q_0)_\perp\le q_J$, this forces $b^{-J}\gg Q^{-\delta}$. For any fixed $\delta>0$, starting at $J=\lceil 2\delta\log_b Q\rceil+C_\delta$ precludes this. The earliest admissible phase therefore satisfies $m_L=o(L)$. Finally, \eqref{eq:reverse-dirichlet} implies $\|j b^m x\|\ge1/(2q)$ for $0<|j|\le q/2$, giving \eqref{eq:shared-spacing}.
+
+For the high coefficients choose $0<\epsilon<1/2$ in \eqref{eq:palresonance}. The contribution is at most $O(p L^J M^{-1+2\epsilon})=o(pM)$, by \eqref{eq:sharedg}. The shared smoothing calculation shows that for every fixed $c>0$ there are asymptotically $c|\mathcal A|$ positive $a<cM$ hitting the target at $m_L$. For $c$ small enough, the same spacing estimate gives $O(1)$ hits in each cylinder. Words of length $L$ with palindrome symmetry and a period $t$ number at most $b^{(t+2)/2}$ because reflection modulo $t$ has at most two fixed points. Roots of period at most $(1-\epsilon)L$ therefore account for $o(|\mathcal A|)$ labels. A diagonal choice over $c,\epsilon\downarrow0$ gives the first assertions.
+
+A quadratic irrational is badly approximable, so for $m=0$ the spacing hypothesis holds at all $L$. For any irrational, an unbounded sequence of convergent denominators $q$ permits $M\le q<b^2M$ for an unbounded sequence of $L$ of either parity. Along it the error $<q^{-2}$ gives the same spacing estimate without shifting. The resonance argument applies at $m=0$ as well.
+\end{proof}
+
+
+\subsection{Exact repetition counts for quadratic irrationals}
+
+\begin{lemma}\label{lem:pellresidue}
+Let $\beta$ be a real quadratic irrational, $b\ge2$ an integer and $s\ge2$ fixed. Set $B=b^h$, $M=B^s$ and $D=B-1$. For every fixed $R,C,A>0$, all sufficiently large $h$ admit no integers satisfying
+\[
+ 0<|k|\le RM,\qquad k\equiv r\pmod D,\quad |r|\le A,
+ \qquad \|k\beta\|\le C/M.
+\]
+\end{lemma}
+
+\begin{proof}
+Take $k>0$ by changing signs. If such pairs exist for unbounded $h$, take $P$ to be the nearest integer to $k\beta$. Let $A_0X^2+A_1X+A_2$ be an integral minimal polynomial with discriminant $\Delta$. Choose $\kappa\in\{-1,1\}$ with $2A_0\beta+A_1=\kappa\sqrt\Delta$. For $\xi=2A_0P+A_1k+\kappa k\sqrt\Delta$, its conjugate is $2A_0(P-k\beta)$. Thus $0<|\xi\bar\xi|\ll_{\beta,R,C}1$ and $|\xi|\asymp k\to\infty$. Let $\varepsilon>1$ be a fixed norm-one unit in $\mathbb Z[\sqrt\Delta]$. Reducing the absolute value of $\xi$ modulo powers of $\varepsilon$ gives $\xi=z\varepsilon^j$, with $1\le|z|<\varepsilon$ and $|\bar z|=O(1)$. These bounds restrict the two integral coordinates of $z$ to finitely many values. Pass to a subsequence with $z,r$ fixed, $j\to\infty$, and $j=O(h)$.
+
+Write $y=\varepsilon^j$. The congruence on $k$ implies $D\mid k-r$, where
+\[
+ 2\kappa\sqrt\Delta\, y(k-r)=zy^2-2\kappa\sqrt\Delta\, r y-\bar z.
+\]
+Factor the polynomial as $z(y-\lambda_1)(y-\lambda_2)$ in a fixed number field. Both roots are nonzero. Choose a finite set of places $S$ containing the archimedean places and the places at which any of $b,z,2\sqrt\Delta,\lambda_i$ fails to be a unit. Write $v_\nu=-\log|\cdot|_\nu$ with product-formula normalization. Outside $S$, the divisibility gives
+\[
+ v_\nu(D)\le \sum_{i=1}^2
+         \min\bigl(v_\nu(b^h-1),\,v_\nu(y/\lambda_i-1)\bigr).
+\]
+This is because $v_\nu(D)\le v_\nu(y/\lambda_1-1)+v_\nu(y/\lambda_2-1)$ and all the terms are nonnegative. The finitely many indices with $y=\lambda_i$ can be removed.
+
+For each $i$, apply the $S$-unit common-divisor estimate of Corvaja and Zannier \cite[Proposition~2 of the preprint]{CZ} to $(X,Y)=(b^h,y/\lambda_i)$. Both logarithmic heights are $O(h)$. For every $\epsilon>0$, outside a finite set and finitely many one-dimensional subgroups $X^a=Y^d$, the sum of the local common-divisor heights is at most $\epsilon\max(\operatorname{ht}(X),\operatorname{ht}(Y))$, where $\operatorname{ht}$ is logarithmic height. Each fixed subgroup with $a\ne0$ can occur only for bounded $h$, by comparing valuations above a prime factor of $b$. The valuation of $Y$ is fixed there because $\varepsilon$ is a unit. If $a=0$, the archimedean growth of $Y$ excludes the subgroup eventually. Hence the sum outside $S$ is $o(h)$. At the fixed finite places in $S$ above primes not dividing $b$, the valuations of $b^h-1$ are $O(\log(h+1))$ by lifting the exponent, including the usual separate formula at $2$. At primes dividing $b$ the valuations are zero. Summing yields $\log D\le o(h)$, contrary to $\log D\sim h\log b$.
+\end{proof}
+
+\begin{theorem}\label{thm:quadcount}
+Fix a real quadratic irrational $\alpha$, an integer $b\ge2$ and an integer $s\ge2$. Write $B=b^h$, $M=B^s$, and $L_s=(M-1)/(B-1)$. For fixed bounded half-open intervals $I\subset\mathbb R$ and $J\subset[0,1)$,
+\begin{multline}\label{eq:repeatcount}
+ \#\bigl\{n\in\mathbb Z:n/M\in I,\ \
+     \lfloor M\{\theta+n\alpha\}\rfloor=L_s w,\
+     0\le w<B,\ w/B\in J\bigr\}\\
+                     = B|I||J|+o(B)\qquad (h\to\infty),
+\end{multline}
+uniformly in $\theta\in\mathbb R$. In particular for every large $h$ one can choose $a_h=o(B^s)$, a positive integer coprime to $b$, such that $a_h\alpha$ begins with a true $s$-fold repeat $V^s$ with $|V|=h$. The least period of $V$ can be $h-o(h)$ and the least period of the whole repeat is then exactly $h$. Any fixed starting position is allowed.
+\end{theorem}
+
+\begin{proof}
+The case $|J|=0$ is empty. Otherwise let $\mathcal A$ consist of the labels $L_sw$ with $w/B\in J$. The root indices form one integer interval of length $B|J|+O(1)$. For fixed $\rho>0$, the geometric sum gives
+\[
+           |S(k)|\ge\rho\ \Longrightarrow\
+             \|kL_s/M\|\ll_{J,\rho}B^{-1}.
+\]
+With $\ell$ the nearest integer to $kL_s/M$, take $r=k-\ell(B-1)$. The equality $M=(B-1)L_s+1$ gives $L_s r-\ell=kL_s-\ell M$. When $|k|\le RM$, $\ell$ has size at most $RL_s+1/2$. Since $BL_s\ge M$, $r$ is bounded in terms of $R,J,\rho$. By Lemma~\ref{lem:pellresidue}, for every fixed $C$ all these nonzero high coefficients eventually have $\|k\alpha\|>C/M$.
+
+Bad approximability of $\alpha$ supplies the spacing hypothesis in \eqref{eq:shared-spacing}. Use its second estimate for the high coefficients. Their total contribution is $O(RpM/(C-1))$, with a constant independent of $C$. Let $C$ tend to infinity after fixing $R,\rho$, then use the low- and far-frequency bounds by taking $R$ large and $\rho$ small. This proves \eqref{eq:repeatcount} through the shared smoothing calculation.
+
+For $0<a<cM$, restrict to $a\equiv1\pmod b$ by applying the count with step $b\alpha$ and shift $\alpha$. There are asymptotically $cB/b$ successes. The spacing of the points $\{a\alpha\}$ allows only $O_{\alpha,c}(1)$ of these in each interval of length $1/M$. There are $O_b(b^{(1-\epsilon)h})$ possible roots of least period at most $(1-\epsilon)h$. These roots therefore do not exhaust the successes. Make a diagonal choice over $c,\epsilon\downarrow0$. If $V^s$ has a period $t<h$, comparison over the first $h$ positions makes $V$ invariant under cyclic shift by $t$. Then $\gcd(t,h)\le h/2$ is a period of $V$, which contradicts the choice for large $h$. A fixed offset $m$ is accommodated by replacing $\alpha$ with $b^m\alpha$.
+\end{proof}
+
+A related rational obstruction gives an entire family of exact grids missing the target at one scale. For $1\le q<L_s$ set $Q=q(B-1)+1$. Scaling $[w L_s/M,(wL_s+1)/M)$ by $Q$ places it in $(wq,wq+1]$ for $0<w<B$, with the right endpoint of the scaled interval excluded. When $w=0$ the scaled interval contains only the integer $0$. Thus every nonzero $j/Q$, $0<j<Q$, misses the target. If $\gcd(Q,b)=1$, every shifted nonzero grid point misses the same target. These rationals depend on the scale.
+
+For an original algebraic expansion an unbounded sequence of squares of root length $h$ must start after positions $m$ with $m/h\to\infty$, by \eqref{eq:known-early}. Setting $a_h=b^m$ in the bound $a_h=o(b^{2h})$ would give $m\le2h$, so Theorem~\ref{thm:quadcount} cannot simply be turned into a shift along the original expansion.

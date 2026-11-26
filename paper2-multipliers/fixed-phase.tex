@@ -1,0 +1,226 @@
+\section{Fixed-phase powers and fractional repetitions}
+\label{sec:fixed-phase}
+
+The conditions on the phase in Section~\ref{sec:phase-counts}
+differ from those in the following two results. The first gives a
+small power saving at a prescribed phase for every quadratic
+irrational. The second gives prescribed-phase counts for a
+shortened comparison in arbitrary degree.
+
+\begin{theorem}\label{thm:fixed-quad}
+Fix a real quadratic irrational \(\alpha\) and \(s\ge2\).
+There is \(\eta>0\) such that, with \(A=B^{s-\eta}\), the
+following assertion holds for fixed bounded \(I\) of positive
+length. Let \(J_h\subset[0,1)\) be a half-open interval of length
+at least \(B^{-\eta}\) and \(1\le q\le B^\eta\). For all real
+\(\theta\) and
+\[
+ \beta=(u b^m\alpha+v)/d,\quad
+ 1\le |u|,d\le B^\eta,\quad 0\le m\le\eta h,
+ \qquad u,v,d,m\in\Z,
+\]
+the number of integers \(n/A\in I\) for which \(\{\theta+n\beta\}\)
+starts with \(V^s\), \([V]_b/B\in J_h\), and
+\([V]_b\equiv w_0\bmod q\), is
+\[
+ (1+o(1))\, \frac{AB |I|\,|J_h|}{M q}.
+\]
+The error is uniform in the stated ranges. In particular at phase
+zero there are powers of least period \(h\) with positive multipliers
+\(a\equiv1\bmod b,\ a=o(B^{s-\eta})\). For squares, the root can be
+prescribed to begin with \(U\) or \(cU\) and to end with
+\(\overleftarrow U\), where \(U\) is any word of length
+\(\lfloor\eta h\rfloor-1\). These choices give an even or an odd
+palindrome at the seam, respectively.
+\end{theorem}
+
+\begin{proof}
+We first show there exists \(\zeta>0\) such that
+\[
+ 0<|k|\le B^{s+\zeta},\quad |r|\le B^\zeta,\quad
+ k\equiv r\bmod D,\quad \|k\alpha\|\le B^{-s+\zeta}
+\]
+has no solution for large \(h\). Otherwise take a sequence of
+counterexamples with \(\zeta\to0\), \(h\to\infty\), and \(k>0\).
+The quadratic estimate \(\|k\alpha\|\gg 1/k\) gives
+\(\log k=(s+o(1))\log B\).
+Let \(a_0 X^2+a_1X+a_2\) be an integer minimal polynomial,
+\(\Delta=a_1^2-4a_0a_2\), and \(2a_0\alpha+a_1=\sigma\sqrt\Delta\)
+with \(\sigma=\pm1\). For the nearest integer \(P\) to \(k\alpha\),
+put \(Z=2a_0P+a_1 k+\sigma k\sqrt\Delta\). Its conjugate is
+\(\overline{Z}=2a_0(P-k\alpha)\), and
+\(Z-\overline Z=2\sigma k\sqrt\Delta\).
+Hence \(|Z|\asymp k\) and \(0<|Z\overline{Z}|\ll B^{2\zeta}\).
+Use a fixed norm-one Pell unit \(\epsilon>1\) of
+\(\Z[\sqrt\Delta]\) and write \(Z=z\epsilon^j\) with
+\(1\le |z|<\epsilon\).
+Then \(j\log\epsilon=(s+o(1))\log B\), and the coefficients \(z\),
+\(\overline z\), and \(r\) have logarithmic height \(o(\log B)\).
+
+Take \(S\) to consist of the archimedean places and those over
+primes dividing \(b\) in \(\Q(\sqrt\Delta)\).
+The two arguments \(X=B,\ Y=\epsilon^j\) are \(S\)-units of
+maximum logarithmic height \(H\asymp\log B\).
+The moving polynomials \(X-1\) and
+\(zY^2-2\sigma\sqrt\Delta\,rY-\overline z\) are coprime of
+fixed positive degrees with nonzero constant terms and height
+\(o(H)\). The second value equals
+\(2\sigma\sqrt\Delta\,Y(k-r)\), divisible by \(B-1\) at the
+finite places in the ring of integers. Their logarithmic gcd
+is therefore at least \(\log(B-1)\).
+Grieve--Wang's moving gcd theorem
+\cite[Theorem~1.2]{GrieveWang}, with sufficiently small
+gcd tolerance, implies on an infinite subsequence that
+\(B^a(\epsilon^j)^d\) has height \(o(H)\) for a fixed nonzero
+integer pair \((a,d)\).
+If \(a\ne0\), a valuation over a prime dividing \(b\) gives
+height \(\gg h\), as the Pell unit has valuation zero.
+If \(a=0\), the height is \(|d|j\operatorname{ht}(\epsilon)\gg h\).
+Both cases contradict the conclusion. This proves the exclusion.
+
+Choose \(0<\eta<\min(\zeta/32,1/16)\).
+Let \(W=\{w:w/B\in J_h,\ 0\le w<B,\ w\equiv w_0\bmod q\}\).
+It has cardinality \(B|J_h|/q+O(1)\gg B^{1-2\eta}\).
+Smooth each digit cylinder at \(Lw/M\) on scale \(1/M\)
+using a single compactly supported \(C^\infty\) function
+\(\phi(Mx-Lw)\), periodized in \(x\). Their sum has coefficient
+\[
+ p\,\widehat\phi(k/M)S(k),\quad
+ p=|W|/M,\qquad
+ S(k)=|W|^{-1}\sum_{w\in W}e(-kLw/M).
+\]
+For the multiplier smoothing \(g(n/A)\), put
+\(G_A(t)=\sum_n g(n/A)e(nt)\). Its magnitude is bounded by
+\(O(A(1+A\|t\|)^{-8})\).
+For \(1\le |k|\le T_1\) the quadratic estimate for \(\alpha\)
+makes the sample points \(k\beta\bmod1\) separated by
+\(\gg 1/(T_1 B^{3\eta})\).
+Counting points in bands of width \(1/A\) gives, for \(T_1\ge A\),
+\[
+ \begin{aligned}
+ \sum_{|k|\le T_1}|G_A(k\beta)|&\ll B^{3\eta}T_1,\\
+ \sum_{\substack{|k|\le T_1\\ A\|k\beta\|>Z_1}}
+       |G_A(k\beta)|&\ll B^{3\eta}T_1(1+Z_1)^{-7}
+                  \qquad (Z_1\ge2).
+ \end{aligned}
+\]
+For \(0<|k|\le K=MB^\eta\) with \(|S(k)|\ge B^{-8\eta}\),
+the geometric sum gives
+\(\|qkL/M\|\ll B^{-1+10\eta}\).
+Taking the nearest integer \(l\) gives
+\(r_1=qk-lD\) of magnitude \(O(B^{10\eta})\), using \(M=LD+1\).
+If \(\|k\beta\|\le B^{-s+\zeta-2\eta}\), then the frequency
+\(qk u b^m\) has magnitude at most \(B^{s+4\eta}\), residue
+\(r_1 u b^m\) of magnitude \(O(B^{12\eta})\),
+and its distance after multiplication by \(\alpha\) is
+at most \(qd\|k\beta\|\le B^{-s+\zeta}\).
+This is excluded by the first paragraph. Thus
+\(A\|k\beta\|>B^{\zeta-3\eta}\) for these \(k\).
+Relative to \(pA\), the error for \(|k|>K\) is
+\(O(B^{3\eta}(M/A)(K/M)^{-7})=O(B^{-3\eta})\) by dyadic
+summation and decay of \(\widehat\phi\).
+For \(|k|\le K\) the small-\(|S(k)|\) and large-\(|S(k)|\)
+errors are bounded by \(O(B^{-3\eta})\) and
+\(O(B^{5\eta-7(\zeta-3\eta)})\), respectively.
+The zero term yields \(pA\int g\int\phi+o(pA)\).
+Sandwiching the half-open interval and the cylinders with
+smooth functions proves the asserted exact count.
+
+For the special multipliers take \(\beta=b\alpha,\theta=\alpha\).
+Distinct tested multipliers have circle separation \(\gg 1/A>1/M\)
+for large \(h\). There are \(\gg B^{1-3\eta}\) distinct roots
+even with the prescribed templates, because the prefix interval
+has width at least \(B^{-\eta}\) and the suffix prescribes one
+residue with modulus at most \(B^\eta\).
+Discard \(O(B^{1/2})\) roots with a period at most \(h/2\) to
+obtain least period \(h\) for the full power. Allowing any fixed
+positive proportion bound on \(a/A\) and taking a minimum yields
+the little-oh assertion.
+\end{proof}
+
+\begin{theorem}\label{thm:fractional-fixed}
+Fix any real algebraic irrational \(\alpha\), \(0<\xi<1\),
+\(\delta,C>0\), and put \(r=\lfloor\xi h\rfloor\), \(E=b^r\),
+\(A=E^2B^\delta\). For fixed bounded \(I\) of positive length,
+among integers \(n/A\in I\) the number for which the first \(r\)
+digits of \(\{\theta+n b^m\alpha\}\) agree with its length-\(r\)
+block after \(h\) places is \((1+o(1))|I|A/E\), uniformly for
+\(\theta\in\R\) and \(0\le m\le Ch\).
+If \(0<\delta<1-\xi\) and
+\(\xi+\delta>\max(1/2,1-\xi)\), a positive proportion of the hits
+have least period \(h\) on the entire length-\((h+r)\) segment.
+\end{theorem}
+
+\begin{proof}
+Let \(\kappa=\delta/16\), \(\lambda=\delta/4\).
+For a fixed finite set of integers \(j\), all nonzero
+\(k=jE+lD\), \(|l|\le EB^\kappa\), satisfy
+\(\|k b^m\alpha\|>A^{-1}B^\lambda\) for large \(h\).
+For \(l=0\) this is \eqref{eq:phase-ridout}, applied to
+\(j b^{m+r}\). For \(l\ne0\) use the integer vector
+\[
+     (X_1,X_2,X_3,P)=(b^{m+h}l,b^m l,b^mE,P)
+\]
+where \(P\) is the nearest integer to \(k b^m\alpha\).
+The real forms are the first three coordinates and
+\(\alpha(X_1-X_2+jX_3)-P\). At primes dividing \(b\) use coordinate
+forms. For a counterexample their product is at most
+\(l^2 E^{-2}B^{-\delta+\lambda}\le B^{2\kappa-\delta+\lambda}\)
+by cancellation of the base powers, and the height is \(B^{O(1)}\).
+The \(S\)-adic Subspace Theorem \cite{Bilu} therefore puts an
+infinite subsequence of counterexamples with fixed \(j\)
+in a proper rational hyperplane. Divide its linear relation
+by \(X_1\). The limit of \(P/X_1\) is \(\alpha\), while
+\(X_2/X_1\) and \(X_3/X_1\) tend to zero. Irrationality
+forces the coefficients of \(X_1,P\) to vanish.
+The remaining relation gives \(l=c_0 E\) for a fixed nonzero
+rational \(c_0\). Now \(k b^m\) equals
+\(c_0 b^{m+r+h}+(j-c_0)b^{m+r}\).
+Apply the same theorem on the vector
+\((b^{m+r+h},b^{m+r},P)\) with error form
+\(\alpha(c_0 X_1+(j-c_0)X_2)-P\).
+The product is at most the error itself.
+Dividing the new rational relation by its first coordinate
+makes the limiting ratio of \(P\) equal to \(c_0\alpha\).
+It forces all coefficients to vanish, a contradiction.
+
+The exact block condition for \(x\in[0,1)\) is
+\[
+ -u\le t<1-u,\qquad u=\{Ex\},\quad t=E\langle Dx\rangle .
+\]
+Indeed \(\{Bx\}\) belongs to the same length-\(1/E\) cylinder
+as \(x\) exactly when its signed circle displacement meets
+these bounds. Use a trigonometric polynomial in \(u\), a smooth
+test in \(t\), and a smooth multiplier test. The frequencies
+are \(jE+lD\) and the nonzero terms with \(|l|\le EB^\kappa\)
+have weighted error \(O(AB^{-N\lambda})\) by finite differences.
+The tail is \(O(AB^{-\kappa(N-1)})\).
+The zero term is \(A/E\) times the product of the test integrals
+up to \(o(A/E)\). Taking \(N\) large and approximating the
+region by rectangles as in Theorem~\ref{thm:selectable-counts}
+yields the exact count, because its area is \(1\).
+
+In the stated smaller range of \(\delta\),
+\eqref{eq:phase-ridout} makes the hits use distinct
+length-\((h+r)\) cylinders. For \(t_0<h\) a second period,
+view a word of period \(t_0\) as labels modulo \(t_0\).
+The equality constraints for period \(h\) join \(i\) to \(i+h\)
+modulo \(t_0\) for \(0\le i<r\).
+If \(r\ge t_0\), the graph has \(g=\gcd(h,t_0)\) components.
+If \(r<t_0\), exactly \(\max(0,r-t_0+g)\) of the original shift
+cycles remain complete, since their largest representatives are
+\(t_0-g,\ldots,t_0-1\). There are then
+\(t_0-r+\max(0,r-t_0+g)=\max(t_0-r,g)\) components.
+Hence at most \(h b^{\max(h/2,h-1-r)}=o(A/E)\)
+of all candidate words have a second period \(t_0<h\).
+Discarding them proves the least-period assertion.
+\end{proof}
+
+Taking \(\xi=1-1/j\), \(\delta=1/(2j)\) and \(C=j\), and passing
+through sufficiently large thresholds as \(j\to\infty\), gives
+a comparison length \(r=h-o(h)\) with \(h-r\to\infty\).
+The chosen positive multiplier is \(o(b^{h+r})\), and one
+may take phase zero or a phase with \(m/h\to\infty\).
+The comparison still leaves an intervening segment of \(h-r\)
+digits.
+
